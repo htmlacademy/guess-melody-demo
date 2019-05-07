@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Угадай мелодию</title>
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <main class="app">
+    <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: -1200em;">
+      <filter id="blur">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5"></feGaussianBlur>
+        <feOffset dx="0" dy="0"></feOffset>
+        <feMerge>
+          <feMergeNode></feMergeNode>
+          <feMergeNode in="SourceGraphic"></feMergeNode>
+        </feMerge>
+      </filter>
+    </svg>
+
+    <section class="main">
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+      <img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" alt="Creative Commons License" width="88" height="31" style="border-width:0">
+    </a>
+    <section class="copyright">
+      <a class="copyright__logo" href="https://htmlacademy.ru"><img src="img/logo-htmla.svg" width="144" height="49" alt="HTML Academy"></a>
+      <p class="copyright__text">Сделано в <a class="copyright__link" href="https://htmlacademy.ru">HTML Academy</a></p>
+    </section>
+  </footer>
+
+<!-- Приветствие -->
+<template id="welcome">
+  <section class="welcome">
+    <div class="welcome__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
+    <button class="welcome__button"><span class="visually-hidden">Начать игру</span></button>
+    <h2 class="welcome__rules-title">Правила игры</h2>
+    <p class="welcome__text">Правила просты:</p>
+    <ul class="welcome__rules-list">
+      <li>За 5 минут нужно ответить на все вопросы.</li>
+      <li>Можно допустить 3 ошибки.</li>
+    </ul>
+    <p class="welcome__text">Удачи!</p>
+  </section>
+</template>
+
+<!-- Игра на выбор жанра -->
+<template id="game-genre">
+  <section class="game game--genre">
+    <header class="game__header">
+      <a class="game__back" href="#">
+        <span class="visually-hidden">Сыграть ещё раз</span>
+        <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию">
+      </a>
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
+        <circle class="timer__line" cx="390" cy="390" r="370"
+                style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+      </svg>
+
+      <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
+        <span class="timer__mins">05</span>
+        <span class="timer__dots">:</span>
+        <span class="timer__secs">00</span>
+      </div>
+
+      <div class="game__mistakes">
+        <div class="wrong"></div>
+        <div class="wrong"></div>
+        <div class="wrong"></div>
+      </div>
+    </header>
+
+    <section class="game__screen">
+      <h2 class="game__title">Выберите инди-рок треки</h2>
+      <form class="game__tracks">
+        <div class="track">
+          <button class="track__button track__button--play" type="button"></button>
+          <div class="track__status">
+            <audio></audio>
+          </div>
+          <div class="game__answer">
+            <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1">
+            <label class="game__check" for="answer-1">Отметить</label>
+          </div>
+        </div>
+
+        <div class="track">
+          <button class="track__button track__button--play" type="button"></button>
+          <div class="track__status">
+            <audio></audio>
+          </div>
+          <div class="game__answer">
+            <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2">
+            <label class="game__check" for="answer-2">Отметить</label>
+          </div>
+        </div>
+
+        <div class="track">
+          <button class="track__button track__button--pause" type="button"></button>
+          <div class="track__status">
+            <audio></audio>
+          </div>
+          <div class="game__answer">
+            <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3">
+            <label class="game__check" for="answer-3">Отметить</label>
+          </div>
+        </div>
+
+        <div class="track">
+          <button class="track__button track__button--play" type="button"></button>
+          <div class="track__status">
+            <audio></audio>
+          </div>
+          <div class="game__answer">
+            <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4">
+            <label class="game__check" for="answer-4">Отметить</label>
+          </div>
+        </div>
+
+        <button class="game__submit button" type="submit">Ответить</button>
+      </form>
+    </section>
+  </section>
+</template>
+
+<!-- Игра на выбор исполнителя -->
+<template id="game-artist">
+  <section class="game game--artist">
+    <header class="game__header">
+      <a class="game__back" href="#">
+        <span class="visually-hidden">Сыграть ещё раз</span>
+        <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию">
+      </a>
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
+        <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center" />
+      </svg>
+
+      <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
+        <span class="timer__mins">05</span>
+        <span class="timer__dots">:</span>
+        <span class="timer__secs">00</span>
+      </div>
+
+      <div class="game__mistakes">
+        <div class="wrong"></div>
+        <div class="wrong"></div>
+        <div class="wrong"></div>
+      </div>
+    </header>
+
+    <section class="game__screen">
+      <h2 class="game__title">Кто исполняет эту песню?</h2>
+      <div class="game__track">
+        <button class="track__button track__button--play" type="button"></button>
+        <audio></audio>
+      </div>
+
+      <form class="game__artist">
+        <div class="artist">
+          <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1">
+          <label class="artist__name" for="answer-1">
+            <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
+            Пелагея
+          </label>
+        </div>
+
+        <div class="artist">
+          <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2">
+          <label class="artist__name" for="answer-2">
+            <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
+            Краснознаменная дивизия имени моей бабушки
+          </label>
+        </div>
+
+        <div class="artist">
+          <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3">
+          <label class="artist__name" for="answer-3">
+            <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
+            Lorde
+          </label>
+        </div>
+      </form>
+    </section>
+  </section>
+</template>
+
+<!-- Результат игры: выигрыш -->
+<template id="result-success">
+  <section class="result">
+    <div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
+    <h2 class="result__title">Вы настоящий меломан!</h2>
+    <p class="result__total">За 3 минуты и 25 секунд вы набрали 12 баллов (8 быстрых), совершив 3 ошибки</p>
+    <p class="result__text">Вы заняли 2 место из 10. Это лучше чем у 80% игроков</p>
+    <button class="replay" type="button">Сыграть ещё раз</button>
+  </section>
+</template>
+
+<!-- Результат игры: выигрыш и авторизация -->
+<template id="result-login">
+  <section class="login">
+    <div class="login__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
+    <h2 class="login__title">Вы настоящий меломан!</h2>
+    <p class="login__total">За 3 минуты и 25 секунд вы набрали 12 баллов (8 быстрых), совершив 3 ошибки</p>
+    <p class="login__text">Хотите сравнить свой результат с предыдущими попытками? Представтесь!</p>
+    <form class="login__form" action="">
+      <p class="login__field">
+        <label class="login__label" for="name">Логин</label>
+        <input class="login__input" type="text" name="name" id="name">
+      </p>
+      <p class="login__field">
+        <label class="login__label" for="password">Пароль</label>
+        <input class="login__input" type="text" name="password" id="password">
+        <span class="login__error">Неверный пароль</span>
+      </p>
+      <button class="login__button button" type="submit">Войти</button>
+    </form>
+    <button class="replay" type="button">Сыграть ещё раз</button>
+  </section>
+</template>
+
+<!-- Результат игры: проигрыш, время вышло -->
+<template id="fail-time">
+  <section class="result">
+    <div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
+    <h2 class="result__title">Увы и ах!</h2>
+    <p class="result__total result__total--fail">Время вышло! Вы не успели отгадать все мелодии</p>
+    <button class="replay" type="button">Попробовать ещё раз</button>
+  </section>
+</template>
+
+<!-- Результат игры: проигрыш, закончились попытки -->
+<template id="fail-tries">
+  <section class="result">
+    <div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
+    <h2 class="result__title">Какая жалость!</h2>
+    <p class="result__total result__total--fail">У вас закончились все попытки. Ничего, повезёт в следующий раз!</p>
+    <button class="replay" type="button">Попробовать ещё раз</button>
+  </section>
+</template>
+
+<!-- Модальное окно: ошибка -->
+<template id="modal-error">
+  <section class="modal">
+    <h2 class="modal__title">Произошла ошибка!</h2>
+    <p class="modal__text">Статус: 404. Пожалуйста, перезагрузите страницу.</p>
+  </section>
+</template>
+
+<!--Модальное окно: подтверждение -->
+<template id="modal-confirm">
+  <section class="modal">
+    <button class="modal__close" type="button"><span class="visually-hidden">Закрыть</span></button>
+    <h2 class="modal__title">Подтверждение</h2>
+    <p class="modal__text">Вы уверены что хотите начать игру заново?</p>
+    <div class="modal__buttons">
+      <button class="modal__button button">Ок</button>
+      <button class="modal__button button">Отмена</button>
+    </div>
+  </section>
+</template>
+
+</body>
+<script src="index.js"></script>
+</html>
