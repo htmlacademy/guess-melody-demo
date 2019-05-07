@@ -87,7 +87,7 @@ class App extends Component {
       {this._getScreen(questions[question], () => {
         this.setState({
           question: question + 1 >= questions.length
-            ? 0
+            ? -1
             : question + 1,
         });
       })}

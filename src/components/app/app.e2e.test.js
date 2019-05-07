@@ -93,5 +93,5 @@ it(`Last question answer leads to the first screen`, () => {
     preventDefault() {}
   });
 
-  expect(app.state(`question`)).toEqual(0);
+  expect(app.state(`question`)).toEqual(-1);
 });
