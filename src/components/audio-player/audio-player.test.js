@@ -9,10 +9,13 @@ const mock = {
   }
 };
 
-
 it(`AudioPlayer is rendered correctly`, () => {
   const {song} = mock;
+  const onPlayButtonClick = jest.fn();
+
   const tree = renderer.create(<AudioPlayer
+    isPlaying={false}
+    onPlayButtonClick={onPlayButtonClick}
     src={song.src}
   />).toJSON();
 
