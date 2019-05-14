@@ -427,7 +427,7 @@ img {
   padding: 0;
   white-space: nowrap;
   -webkit-clip-path: inset(100%);
-          clip-path: inset(100%);
+  clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden; }
 
@@ -450,30 +450,30 @@ img {
 @-webkit-keyframes bounce {
   0% {
     -webkit-transform: translateY(-2000px);
-            transform: translateY(-2000px); }
+    transform: translateY(-2000px); }
   70% {
     -webkit-transform: translateY(30px);
-            transform: translateY(30px); }
+    transform: translateY(30px); }
   90% {
     -webkit-transform: translateY(-10px);
-            transform: translateY(-10px); }
+    transform: translateY(-10px); }
   100% {
     -webkit-transform: translateY(0);
-            transform: translateY(0); } }
+    transform: translateY(0); } }
 
 @keyframes bounce {
   0% {
     -webkit-transform: translateY(-2000px);
-            transform: translateY(-2000px); }
+    transform: translateY(-2000px); }
   70% {
     -webkit-transform: translateY(30px);
-            transform: translateY(30px); }
+    transform: translateY(30px); }
   90% {
     -webkit-transform: translateY(-10px);
-            transform: translateY(-10px); }
+    transform: translateY(-10px); }
   100% {
     -webkit-transform: translateY(0);
-            transform: translateY(0); } }
+    transform: translateY(0); } }
 
 /*
  * Стили для футера сайта
@@ -501,8 +501,8 @@ img {
 
 .copyright__link {
   color: #ff9749; }
-  .copyright__link:hover, .copyright__link:focus {
-    color: #f00000; }
+.copyright__link:hover, .copyright__link:focus {
+  color: #f00000; }
 
 /*
  * Стили для логотипа сайта
@@ -539,12 +539,12 @@ img {
   border-color: transparent;
   border-left-color: #ff9749;
   border-width: 70px 0 70px 100px; }
-  .welcome__button:hover {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05); }
-  .welcome__button:active {
-    -webkit-transform: scale(1.04);
-            transform: scale(1.04); }
+.welcome__button:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05); }
+.welcome__button:active {
+  -webkit-transform: scale(1.04);
+  transform: scale(1.04); }
 
 .welcome__rules-title {
   margin: 0;
@@ -578,11 +578,11 @@ img {
   background-color: #f0eed5;
   border: 3px solid #ff9749;
   border-radius: 15px; }
-  .button:disabled {
-    color: #808080;
-    border: 4px solid #ffc396; }
-  .button:hover {
-    color: #ff9749; }
+.button:disabled {
+  color: #808080;
+  border: 4px solid #ffc396; }
+.button:hover {
+  color: #ff9749; }
 
 /*
  * Игровые экраны
@@ -604,22 +604,22 @@ img {
   margin-left: 50px;
   z-index: 1;
   width: 260px; }
-  .game__back::before {
-    content: "";
-    position: absolute;
-    left: -50px;
-    top: 25px;
-    width: 40px;
-    height: 40px;
-    background-image: url("../img/right-arrow.svg");
-    background-repeat: no-repeat;
-    background-size: 40px;
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg); }
-  .game__back:hover {
-    opacity: 0.8; }
-  .game__back:active, .game__back:focus {
-    opacity: 0.6; }
+.game__back::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 25px;
+  width: 40px;
+  height: 40px;
+  background-image: url("../img/right-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 40px;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg); }
+.game__back:hover {
+  opacity: 0.8; }
+.game__back:active, .game__back:focus {
+  opacity: 0.6; }
 
 .game__mistakes {
   display: flex;
@@ -642,6 +642,7 @@ img {
   margin-bottom: 30px; }
 
 .game__answer {
+  margin-left: 15px;
   width: 35px;
   height: 49px; }
 
@@ -669,17 +670,8 @@ img {
   font-size: 24px; }
 
 .game__track {
-  margin-bottom: 120px;
   width: 100%;
-  height: 55px;
-  text-align: left;
-  background-image: url("../img/player-background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-animation: fadein 1000ms ease-out;
-          animation: fadein 1000ms ease-out;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1; }
+  display: flex; }
 
 @-webkit-keyframes fadein {
   0% {
@@ -695,7 +687,8 @@ img {
 
 .game__artist {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-top: 120px; }
 
 /*
  * Стили для игрового таймера
@@ -723,15 +716,15 @@ img {
 
 .timer__dots {
   -webkit-animation: blink 1000ms steps(1, end) infinite;
-          animation: blink 1000ms steps(1, end) infinite; }
+  animation: blink 1000ms steps(1, end) infinite; }
 
 .timer__value--finished {
   -webkit-animation: shrink 2000ms infinite;
-          animation: shrink 2000ms infinite;
+  animation: shrink 2000ms infinite;
   color: red; }
-  .timer__value--finished .timer__dots {
-    -webkit-animation: none;
-            animation: none; }
+.timer__value--finished .timer__dots {
+  -webkit-animation: none;
+  animation: none; }
 
 @-webkit-keyframes blink {
   0% {
@@ -748,24 +741,24 @@ img {
 @-webkit-keyframes shrink {
   0% {
     -webkit-transform: translateX(-50%) scale(1);
-            transform: translateX(-50%) scale(1); }
+    transform: translateX(-50%) scale(1); }
   50% {
     -webkit-transform: translateX(-50%) scale(1.1);
-            transform: translateX(-50%) scale(1.1); }
+    transform: translateX(-50%) scale(1.1); }
   100% {
     -webkit-transform: translateX(-50%) scale(1);
-            transform: translateX(-50%) scale(1); } }
+    transform: translateX(-50%) scale(1); } }
 
 @keyframes shrink {
   0% {
     -webkit-transform: translateX(-50%) scale(1);
-            transform: translateX(-50%) scale(1); }
+    transform: translateX(-50%) scale(1); }
   50% {
     -webkit-transform: translateX(-50%) scale(1.1);
-            transform: translateX(-50%) scale(1.1); }
+    transform: translateX(-50%) scale(1.1); }
   100% {
     -webkit-transform: translateX(-50%) scale(1);
-            transform: translateX(-50%) scale(1); } }
+    transform: translateX(-50%) scale(1); } }
 
 /*
  * Стили для трека на экране игры на выбор жанра
@@ -782,21 +775,21 @@ img {
   background-color: transparent;
   background-image: url("../img/sprite.png");
   cursor: pointer; }
-  .track__button--play {
-    background-position: -5px -241px; }
-  .track__button--pause {
-    background-position: -5px -294px; }
+.track__button--play {
+  background-position: -5px -241px; }
+.track__button--pause {
+  background-position: -5px -294px; }
 
 .track__status {
-  width: 330px;
   height: 55px;
+  flex-grow: 1;
   background-image: url("../img/player-background.png");
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-animation: fadein 1000ms ease-out;
-          animation: fadein 1000ms ease-out;
+  animation: fadein 1000ms ease-out;
   -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1; }
+  animation-iteration-count: 1; }
 
 @keyframes fadein {
   0% {
@@ -853,21 +846,21 @@ img {
   font-size: 30px;
   border: none;
   background: transparent; }
-  .replay::after {
-    position: absolute;
-    content: "";
-    width: 27px;
-    height: 25px;
-    top: 50%;
-    right: 0;
-    background-image: url("../img/sprite.png");
-    background-position: -5px -357px;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%); }
-  .replay:hover, .replay:focus {
-    color: #f00000; }
-    .replay:hover::after, .replay:focus::after {
-      background-position: -5px -392px; }
+.replay::after {
+  position: absolute;
+  content: "";
+  width: 27px;
+  height: 25px;
+  top: 50%;
+  right: 0;
+  background-image: url("../img/sprite.png");
+  background-position: -5px -357px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+.replay:hover, .replay:focus {
+  color: #f00000; }
+.replay:hover::after, .replay:focus::after {
+  background-position: -5px -392px; }
 
 /*
  * Общие стили для экранов с результатами игры
@@ -905,8 +898,8 @@ img {
   font-size: 20px;
   margin-top: 30px;
   width: 500px; }
-  .login__total--fail {
-    margin-top: 170px; }
+.login__total--fail {
+  margin-top: 170px; }
 
 .login__text {
   margin: 0;
@@ -932,8 +925,8 @@ img {
   flex-basis: 50%;
   width: 50%;
   margin: 0; }
-  .login__field:last-of-type {
-    text-align: right; }
+.login__field:last-of-type {
+  text-align: right; }
 
 .login__label {
   font-family: "Fira Sans", "Arial", sans-serif;
@@ -947,12 +940,12 @@ img {
   background-color: #f0eed5;
   border: 3px solid #230d1a;
   border-radius: 15px; }
-  .login__input:hover {
-    border-color: #ff9749; }
-  .login__input--error {
-    border-color: #f00000; }
-    .login__input--error:hover {
-      border-color: #f00000; }
+.login__input:hover {
+  border-color: #ff9749; }
+.login__input--error {
+  border-color: #f00000; }
+.login__input--error:hover {
+  border-color: #f00000; }
 
 .login__error {
   font-family: "Fira Sans", "Arial", sans-serif;
@@ -981,21 +974,21 @@ img {
   font-size: 30px;
   border: none;
   background: transparent; }
-  .login__replay::after {
-    position: absolute;
-    content: "";
-    width: 27px;
-    height: 25px;
-    top: 50%;
-    right: 0;
-    background-image: url("../img/sprite.png");
-    background-position: -5px -357px;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%); }
-  .login__replay:hover, .login__replay:focus {
-    color: #f00000; }
-    .login__replay:hover::after, .login__replay:focus::after {
-      background-position: -5px -392px; }
+.login__replay::after {
+  position: absolute;
+  content: "";
+  width: 27px;
+  height: 25px;
+  top: 50%;
+  right: 0;
+  background-image: url("../img/sprite.png");
+  background-position: -5px -357px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+.login__replay:hover, .login__replay:focus {
+  color: #f00000; }
+.login__replay:hover::after, .login__replay:focus::after {
+  background-position: -5px -392px; }
 
 /*
  * Общие стили для экранов с результатами игры
@@ -1033,8 +1026,8 @@ img {
   font-size: 30px;
   margin-top: 130px;
   width: 500px; }
-  .result__total--fail {
-    margin-top: 170px; }
+.result__total--fail {
+  margin-top: 170px; }
 
 .result__text {
   margin: 0;
@@ -1050,21 +1043,21 @@ img {
   font-size: 30px;
   border: none;
   background: transparent; }
-  .result__replay::after {
-    position: absolute;
-    content: "";
-    width: 27px;
-    height: 25px;
-    top: 50%;
-    right: 0;
-    background-image: url("../img/sprite.png");
-    background-position: -5px -357px;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%); }
-  .result__replay:hover, .result__replay:focus {
-    color: #f00000; }
-    .result__replay:hover::after, .result__replay:focus::after {
-      background-position: -5px -392px; }
+.result__replay::after {
+  position: absolute;
+  content: "";
+  width: 27px;
+  height: 25px;
+  top: 50%;
+  right: 0;
+  background-image: url("../img/sprite.png");
+  background-position: -5px -357px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+.result__replay:hover, .result__replay:focus {
+  color: #f00000; }
+.result__replay:hover::after, .result__replay:focus::after {
+  background-position: -5px -392px; }
 
 /*
  * Стили для экрана с результатами игры на выбор исполнителя
@@ -1105,15 +1098,15 @@ img {
   position: relative;
   margin: 0;
   font-size: 16px; }
-  .result--list .result__total::before {
-    position: absolute;
-    content: "~";
-    top: -35px;
-    left: 50%;
-    font-size: 50px;
-    line-height: 50px;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%); }
+.result--list .result__total::before {
+  position: absolute;
+  content: "~";
+  top: -35px;
+  left: 50%;
+  font-size: 50px;
+  line-height: 50px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%); }
 
 .result--list .result__replay {
   margin-top: 10px; }
@@ -1188,9 +1181,9 @@ img {
   border: 5px solid rgba(0, 0, 0, 0.8);
   border-radius: 50px;
   -webkit-animation: bounce 0.6s;
-          animation: bounce 0.6s; }
-  .modal--hidden {
-    display: none; }
+  animation: bounce 0.6s; }
+.modal--hidden {
+  display: none; }
 
 .modal__title {
   margin: 0;
@@ -1212,17 +1205,17 @@ img {
   background-repeat: no-repeat;
   background-size: 30px 30px;
   border: none; }
-  .modal__close:hover {
-    opacity: 0.8; }
-  .modal__close:focus {
-    opacity: 0.6; }
+.modal__close:hover {
+  opacity: 0.8; }
+.modal__close:focus {
+  opacity: 0.6; }
 
 .modal__button {
   font-family: "Fira Sans", "Arial", sans-serif;
   font-style: normal;
   font-weight: 500; }
-  .modal__button:not(:last-of-type) {
-    margin-right: 10px; }
+.modal__button:not(:last-of-type) {
+  margin-right: 10px; }
 
 /*
  * Стили для чего-то неизвестного
