@@ -33,7 +33,11 @@ it(`ArtistQuestionScreen is rendered correctly`, () => {
   const tree = renderer.create(<ArtistQuestionScreen
     onAnswer={jest.fn()}
     question={question}
-  />).toJSON();
+  />, {
+    createNodeMock: () => {
+      return {};
+    }
+  }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

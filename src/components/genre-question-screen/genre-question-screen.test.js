@@ -34,7 +34,11 @@ it(`GenreQuestionScreen is rendered correctly`, () => {
   const tree = renderer.create(<GenreQuestionScreen
     onAnswer={jest.fn()}
     question={question}
-  />).toJSON();
+  />, {
+    createNodeMock: () => {
+      return {};
+    }
+  }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
