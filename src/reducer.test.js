@@ -288,4 +288,16 @@ describe(`Reducer works correctly`, () => {
       mistakes: 0,
     });
   });
+
+  it(`Reducer should correctly reset application state`, () => {
+    expect(reducer({
+      step: 1000000,
+      mistakes: 12309,
+    }, {
+      type: `RESET`,
+    })).toEqual({
+      step: -1,
+      mistakes: 0,
+    });
+  });
 });
