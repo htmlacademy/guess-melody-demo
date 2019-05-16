@@ -7,8 +7,12 @@ class GenreQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
 
+    const {question} = this.props;
+    const {answers} = question;
+
     this.state = {
       activePlayer: -1,
+      userAnswer: new Array(answers.length).fill(false),
     };
   }
 
@@ -23,7 +27,7 @@ class GenreQuestionScreen extends PureComponent {
       <h2 className="game__title">Выберите {genre} треки</h2>
       <form className="game__tracks" onSubmit={(evt) => {
         evt.preventDefault();
-        onAnswer();
+        onAnswer(this.state.userAnswer);
       }}>
         {answers.map((it, i) => <div className="track" key={`answer-${i}`}>
           <AudioPlayer
@@ -34,7 +38,19 @@ class GenreQuestionScreen extends PureComponent {
             })}
           />
           <div className="game__answer">
-            <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${i}`} id={`answer-${i}`}/>
+            <input
+              checked={this.state.userAnswer[i]}
+              className="game__input visually-hidden"
+              type="checkbox"
+              name="answer"
+              value={`answer-${i}`}
+              id={`answer-${i}`}
+              onChange={() => {
+                const userAnswer = [...this.state.userAnswer];
+                userAnswer[i] = !userAnswer[i];
+                this.setState({userAnswer});
+              }}
+            />
             <label className="game__check" htmlFor={`answer-${i}`}>
               Отметить
             </label>
