@@ -14,6 +14,32 @@ const isGenreAnswerCorrect = (userAnswer, question) =>
   ));
 
 
+const ActionCreator = {
+  incrementStep: () => ({
+    type: `INCREMENT_STEP`,
+    payload: 1,
+  }),
+
+  incrementMistake: (userAnswer, question) => {
+    let answerIsCorrect = false;
+
+    switch (question.type) {
+      case `artist`:
+        answerIsCorrect = isArtistAnswerCorrect(userAnswer, question);
+        break;
+      case `genre`:
+        answerIsCorrect = isGenreAnswerCorrect(userAnswer, question);
+        break;
+    }
+
+    return {
+      type: `INCREMENT_MISTAKES`,
+      payload: answerIsCorrect ? 0 : 1,
+    };
+  },
+};
+
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `INCREMENT_STEP`: return Object.assign({}, state, {
@@ -30,6 +56,7 @@ const reducer = (state = initialState, action) => {
 
 
 export {
+  ActionCreator,
   isArtistAnswerCorrect,
   isGenreAnswerCorrect,
   reducer,
