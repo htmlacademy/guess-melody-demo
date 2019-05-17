@@ -10,7 +10,7 @@ import {reducer} from "./reducer";
 
 const gameSettings = {
   gameTime: 5,
-  errorCount: 1,
+  errorCount: 3,
 };
 
 
