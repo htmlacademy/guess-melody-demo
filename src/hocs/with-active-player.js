@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
 
 const withActivePlayer = (Component) => {
   class WithActivePlayer extends PureComponent {
@@ -7,28 +6,24 @@ const withActivePlayer = (Component) => {
       super(props);
 
       this.state = {
-        activePlayer: props.activePlayer,
+        activePlayer: -1,
       };
-      console.error({state: this.state});
     }
 
     render() {
-      console.error('render:hock', {props: this.props, state: this.state});
       const {activePlayer} = this.state;
 
       return <Component
         {...this.props}
         activePlayer={activePlayer}
-        onPlayButtonClick={(i) => console.error('call::onPlayButtonClick') || this.setState({
+        onPlayButtonClick={(i) => this.setState({
           activePlayer: activePlayer === i ? -1 : i
         })}
       />;
     }
   }
 
-  WithActivePlayer.propTypes = {
-    activePlayer: PropTypes.number.isRequired,
-  };
+  WithActivePlayer.propTypes = {};
 
   return WithActivePlayer;
 };

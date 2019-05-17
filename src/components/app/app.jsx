@@ -6,6 +6,9 @@ import {ActionCreator} from "../../reducer";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen.jsx";
 import QuestionGenreScreen from "../genre-question-screen/genre-question-screen.jsx";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
+import withActivePlayer from "../../hocs/with-active-player";
+
+const QuestionGenreScreenWrapped = withActivePlayer(QuestionGenreScreen);
 
 
 const Type = {
@@ -37,7 +40,7 @@ class App extends Component {
     } = this.props;
 
     switch (question.type) {
-      case `genre`: return <QuestionGenreScreen
+      case `genre`: return <QuestionGenreScreenWrapped
         question={question}
         onAnswer={(userAnswer) => onUserAnswer(
             userAnswer,

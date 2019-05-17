@@ -35,7 +35,9 @@ it(`When user answers genre question form is not sent`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
   const genreQuestion = shallow(<GenreQuestionScreen
+    activePlayer={-1}
     onAnswer={onAnswer}
+    onPlayButtonClick={jest.fn()}
     question={question}
   />);
 
@@ -52,7 +54,9 @@ it(`When user answers genre question form is not sent`, () => {
 it(`Rendered checkboxes are synchronized with state`, () => {
   const {question} = mock;
   const genreQuestion = shallow(<GenreQuestionScreen
+    activePlayer={-1}
     onAnswer={jest.fn()}
+    onPlayButtonClick={jest.fn()}
     question={question}
   />);
 
@@ -76,7 +80,9 @@ it(`User answer passed to callback is consistent with internal component state`,
   const {question} = mock;
   const onAnswer = jest.fn();
   const genreQuestion = shallow(<GenreQuestionScreen
+    activePlayer={-1}
     onAnswer={onAnswer}
+    onPlayButtonClick={jest.fn()}
     question={question}
   />);
 
