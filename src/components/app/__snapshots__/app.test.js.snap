@@ -1,0 +1,438 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App correctly renders artist question screen 1`] = `
+<section
+  className="game game--artist"
+>
+  <header
+    className="game__header"
+  >
+    <a
+      className="game__back"
+      href="#"
+    >
+      <span
+        className="visually-hidden"
+      >
+        Сыграть ещё раз
+      </span>
+      <img
+        alt="Угадай мелодию"
+        className="game__logo"
+        src="img/melody-logo-ginger.png"
+      />
+    </a>
+    <svg
+      className="timer"
+      viewBox="0 0 780 780"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="timer__line"
+        cx="390"
+        cy="390"
+        r="370"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
+        }
+      />
+    </svg>
+    <div
+      className="timer__value"
+      xmlns="http://www.w3.org/1999/xhtml"
+    >
+      <span
+        className="timer__mins"
+      >
+        05
+      </span>
+      <span
+        className="timer__dots"
+      >
+        :
+      </span>
+      <span
+        className="timer__secs"
+      >
+        00
+      </span>
+    </div>
+    <div
+      className="game__mistakes"
+    >
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+    </div>
+  </header>
+  <section
+    className="welcome"
+  >
+    <div
+      className="welcome__logo"
+    >
+      <img
+        alt="Угадай мелодию"
+        height="83"
+        src="img/melody-logo.png"
+        width="186"
+      />
+    </div>
+    <button
+      className="welcome__button"
+      onClick={[MockFunction]}
+    >
+      <span
+        className="visually-hidden"
+      >
+        Начать игру
+      </span>
+    </button>
+    <h2
+      className="welcome__rules-title"
+    >
+      Правила игры
+    </h2>
+    <p
+      className="welcome__text"
+    >
+      Правила просты:
+    </p>
+    <ul
+      className="welcome__rules-list"
+    >
+      <li>
+        За 
+        100
+         минут нужно ответить на все вопросы.
+      </li>
+      <li>
+        Можно допустить 
+        Infinity
+         ошибки.
+      </li>
+    </ul>
+    <p
+      className="welcome__text"
+    >
+      Удачи!
+    </p>
+  </section>
+</section>
+`;
+
+exports[`App correctly renders first screen 1`] = `
+<section
+  className="game game--artist"
+>
+  <header
+    className="game__header"
+  >
+    <a
+      className="game__back"
+      href="#"
+    >
+      <span
+        className="visually-hidden"
+      >
+        Сыграть ещё раз
+      </span>
+      <img
+        alt="Угадай мелодию"
+        className="game__logo"
+        src="img/melody-logo-ginger.png"
+      />
+    </a>
+    <svg
+      className="timer"
+      viewBox="0 0 780 780"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="timer__line"
+        cx="390"
+        cy="390"
+        r="370"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
+        }
+      />
+    </svg>
+    <div
+      className="timer__value"
+      xmlns="http://www.w3.org/1999/xhtml"
+    >
+      <span
+        className="timer__mins"
+      >
+        05
+      </span>
+      <span
+        className="timer__dots"
+      >
+        :
+      </span>
+      <span
+        className="timer__secs"
+      >
+        00
+      </span>
+    </div>
+    <div
+      className="game__mistakes"
+    >
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+    </div>
+  </header>
+  <section
+    className="welcome"
+  >
+    <div
+      className="welcome__logo"
+    >
+      <img
+        alt="Угадай мелодию"
+        height="83"
+        src="img/melody-logo.png"
+        width="186"
+      />
+    </div>
+    <button
+      className="welcome__button"
+      onClick={[MockFunction]}
+    >
+      <span
+        className="visually-hidden"
+      >
+        Начать игру
+      </span>
+    </button>
+    <h2
+      className="welcome__rules-title"
+    >
+      Правила игры
+    </h2>
+    <p
+      className="welcome__text"
+    >
+      Правила просты:
+    </p>
+    <ul
+      className="welcome__rules-list"
+    >
+      <li>
+        За 
+        100
+         минут нужно ответить на все вопросы.
+      </li>
+      <li>
+        Можно допустить 
+        Infinity
+         ошибки.
+      </li>
+    </ul>
+    <p
+      className="welcome__text"
+    >
+      Удачи!
+    </p>
+  </section>
+</section>
+`;
+
+exports[`App correctly renders genre question screen 1`] = `
+<section
+  className="game game--artist"
+>
+  <header
+    className="game__header"
+  >
+    <a
+      className="game__back"
+      href="#"
+    >
+      <span
+        className="visually-hidden"
+      >
+        Сыграть ещё раз
+      </span>
+      <img
+        alt="Угадай мелодию"
+        className="game__logo"
+        src="img/melody-logo-ginger.png"
+      />
+    </a>
+    <svg
+      className="timer"
+      viewBox="0 0 780 780"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        className="timer__line"
+        cx="390"
+        cy="390"
+        r="370"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
+        }
+      />
+    </svg>
+    <div
+      className="timer__value"
+      xmlns="http://www.w3.org/1999/xhtml"
+    >
+      <span
+        className="timer__mins"
+      >
+        05
+      </span>
+      <span
+        className="timer__dots"
+      >
+        :
+      </span>
+      <span
+        className="timer__secs"
+      >
+        00
+      </span>
+    </div>
+    <div
+      className="game__mistakes"
+    >
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+      <div
+        className="wrong"
+      />
+    </div>
+  </header>
+  <section
+    className="game__screen"
+  >
+    <h2
+      className="game__title"
+    >
+      Кто исполняет эту песню?
+    </h2>
+    <div
+      className="game__track"
+    >
+      <button
+        className="track__button track__button--play"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      />
+      <div
+        className="track__status"
+      >
+        <audio />
+      </div>
+    </div>
+    <form
+      className="game__artist"
+    >
+      <div
+        className="artist"
+      >
+        <input
+          className="artist__input visually-hidden"
+          id="artist-0"
+          name="answer"
+          onClick={[Function]}
+          type="radio"
+          value="artist-0"
+        />
+        <label
+          className="artist__name"
+          htmlFor="artist-0"
+        >
+          <img
+            alt="John Snow"
+            className="artist__picture"
+            src="path.jpg"
+          />
+          John Snow
+        </label>
+      </div>
+      <div
+        className="artist"
+      >
+        <input
+          className="artist__input visually-hidden"
+          id="artist-1"
+          name="answer"
+          onClick={[Function]}
+          type="radio"
+          value="artist-1"
+        />
+        <label
+          className="artist__name"
+          htmlFor="artist-1"
+        >
+          <img
+            alt="Jack Daniels"
+            className="artist__picture"
+            src="path.jpg"
+          />
+          Jack Daniels
+        </label>
+      </div>
+      <div
+        className="artist"
+      >
+        <input
+          className="artist__input visually-hidden"
+          id="artist-2"
+          name="answer"
+          onClick={[Function]}
+          type="radio"
+          value="artist-2"
+        />
+        <label
+          className="artist__name"
+          htmlFor="artist-2"
+        >
+          <img
+            alt="Jim Beam"
+            className="artist__picture"
+            src="path.jpg"
+          />
+          Jim Beam
+        </label>
+      </div>
+    </form>
+  </section>
+</section>
+`;
