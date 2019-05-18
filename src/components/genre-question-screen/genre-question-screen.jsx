@@ -8,7 +8,7 @@ class GenreQuestionScreen extends PureComponent {
       question,
       onAnswer,
       onChange,
-      renderPlayer,
+      renderAnswer,
       userAnswer,
     } = this.props;
 
@@ -24,7 +24,7 @@ class GenreQuestionScreen extends PureComponent {
         onAnswer();
       }}>
         {answers.map((it, i) => <div className="track" key={`answer-${i}`}>
-          {renderPlayer(it, i)}
+          {renderAnswer(it, i)}
           <div className="game__answer">
             <input
               checked={userAnswer[i]}
@@ -51,7 +51,7 @@ class GenreQuestionScreen extends PureComponent {
 GenreQuestionScreen.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
+  renderAnswer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     answers: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,

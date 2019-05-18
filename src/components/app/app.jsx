@@ -7,9 +7,16 @@ import ArtistQuestionScreen from "../artist-question-screen/artist-question-scre
 import QuestionGenreScreen from "../genre-question-screen/genre-question-screen.jsx";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+import withTransformProps from "../../hocs/with-transform-props/with-transform-props";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-asnwer";
 
-const QuestionGenreScreenWrapped = withUserAnswer(withActivePlayer(QuestionGenreScreen));
+const QuestionGenreScreenWrapped = withUserAnswer(
+    withActivePlayer(
+        withTransformProps((props) => {
+          return Object.assign({}, props, {
+            renderAnswer: props.renderPlayer,
+          });
+        })(QuestionGenreScreen)));
 
 
 const Type = {
