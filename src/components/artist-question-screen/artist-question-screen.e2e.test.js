@@ -42,6 +42,7 @@ it(`Click on user answer should pass to the callback data-object from which this
 
   const screen = shallow(<ArtistQuestionScreen
     onAnswer={onAnswer}
+    renderPlayer={jest.fn()}
     question={question}
   />);
 

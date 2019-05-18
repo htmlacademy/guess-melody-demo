@@ -10,14 +10,17 @@ import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 import withTransformProps from "../../hocs/with-transform-props/with-transform-props";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-asnwer";
 
-const QuestionGenreScreenWrapped = withUserAnswer(
-    withActivePlayer(
-        withTransformProps((props) => {
-          return Object.assign({}, props, {
-            renderAnswer: props.renderPlayer,
-          });
-        })(QuestionGenreScreen)));
+const transformPlayerToAnswer = (props) => {
+  const newProps = Object.assign({}, props, {
+    renderAnswer: props.renderPlayer,
+  });
+  delete newProps.renderPlayer;
+  return newProps;
+};
 
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
+const QuestionGenreScreenWrapped = withUserAnswer(withActivePlayer(
+    withTransformProps(transformPlayerToAnswer)(QuestionGenreScreen)));
 
 const Type = {
   ARTIST: `game--artist`,
@@ -59,7 +62,7 @@ class App extends Component {
         )}
       />;
 
-      case `artist`: return <ArtistQuestionScreen
+      case `artist`: return <ArtistQuestionScreenWrapped
         question={question}
         onAnswer={(userAnswer) => onUserAnswer(
             userAnswer,
