@@ -1,16 +1,14 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import AudioPlayer from "../audio-player/audio-player.jsx";
 
 
 class GenreQuestionScreen extends PureComponent {
   render() {
     const {
-      activePlayer,
       question,
       onAnswer,
       onChange,
-      onPlayButtonClick,
+      renderPlayer,
       userAnswer,
     } = this.props;
 
@@ -26,11 +24,7 @@ class GenreQuestionScreen extends PureComponent {
         onAnswer();
       }}>
         {answers.map((it, i) => <div className="track" key={`answer-${i}`}>
-          <AudioPlayer
-            src={it.src}
-            isPlaying={i === activePlayer}
-            onPlayButtonClick={() => onPlayButtonClick(i)}
-          />
+          {renderPlayer(it, i)}
           <div className="game__answer">
             <input
               checked={userAnswer[i]}
@@ -55,10 +49,9 @@ class GenreQuestionScreen extends PureComponent {
 
 
 GenreQuestionScreen.propTypes = {
-  activePlayer: PropTypes.number.isRequired,
   onAnswer: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     answers: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,

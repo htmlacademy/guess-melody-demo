@@ -36,6 +36,7 @@ it(`GenreQuestionScreen is rendered correctly`, () => {
     onAnswer={jest.fn()}
     onChange={jest.fn()}
     onPlayButtonClick={jest.fn()}
+    renderPlayer={jest.fn()}
     question={question}
     userAnswer={[false, false, false, false]}
   />, {
