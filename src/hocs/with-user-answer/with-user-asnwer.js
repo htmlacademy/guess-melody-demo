@@ -8,21 +8,28 @@ const withUserAnswer = (Component) => {
       this.state = {
         userAnswers: new Array(props.answers.length).fill(false),
       };
+
+      this._onAnswer = this._onAnswer.bind(this);
+      this._onChange = this._onChange.bind(this);
     }
 
     render() {
-      const {onAnswer} = this.props;
-
       return <Component
         {...this.props}
         userAnswer={this.state.userAnswers}
-        onChange={(i) => {
-          const userAnswers = this.state.userAnswers.slice(0);
-          userAnswers[i] = !userAnswers[i];
-          this.setState({userAnswers});
-        }}
-        onAnswer={() => onAnswer(this.state.userAnswers)}
+        onChange={this._onChange}
+        onAnswer={this._onAnswer}
       />;
+    }
+
+    _onChange(i) {
+      const userAnswers = this.state.userAnswers.slice(0);
+      userAnswers[i] = !userAnswers[i];
+      this.setState({userAnswers});
+    }
+
+    _onAnswer() {
+      this.props.onAnswer(this.state.userAnswers);
     }
   }
 

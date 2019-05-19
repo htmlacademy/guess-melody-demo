@@ -15,6 +15,7 @@ const withAudio = (Component) => {
       };
 
       this._onPlayButtonClick = this._onPlayButtonClick.bind(this);
+      this._renderAudio = this._renderAudio.bind(this);
     }
 
     render() {
@@ -25,9 +26,7 @@ const withAudio = (Component) => {
           {...this.props}
           isLoading={isLoading}
           isPlaying={isPlaying}
-          renderAudio={() => <audio
-            ref={this._audioRef}
-          />}
+          renderAudio={this._renderAudio}
           onPlayButtonClick={this._onPlayButtonClick}
         />
       );
@@ -81,6 +80,12 @@ const withAudio = (Component) => {
     _onPlayButtonClick() {
       this.props.onPlayButtonClick();
       this.setState({isPlaying: !this.state.isPlaying});
+    }
+
+    _renderAudio() {
+      return <audio
+        ref={this._audioRef}
+      />;
     }
   }
 
