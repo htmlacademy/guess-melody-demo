@@ -12,6 +12,7 @@ class App extends Component {
   render() {
     const {
       questions,
+      renderScreen,
       step,
     } = this.props;
 
@@ -45,7 +46,7 @@ class App extends Component {
         </div>
       </header>
 
-      {this.props.renderScreen(questions[step])}
+      {renderScreen(questions[step])}
     </section>;
   }
 }
@@ -54,7 +55,7 @@ class App extends Component {
 App.propTypes = {
   gameTime: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
-  renderScreen: PropTypes.number.isRequired,
+  renderScreen: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
 };
 

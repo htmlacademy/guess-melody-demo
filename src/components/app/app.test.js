@@ -63,6 +63,7 @@ it(`App correctly renders first screen`, () => {
     onUserAnswer={jest.fn()}
     onWelcomeScreenClick={jest.fn()}
     resetGame={jest.fn()}
+    renderScreen={jest.fn()}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -79,6 +80,7 @@ it(`App correctly renders genre question screen`, () => {
     onUserAnswer={jest.fn()}
     onWelcomeScreenClick={jest.fn()}
     resetGame={jest.fn()}
+    renderScreen={jest.fn()}
   />, {
     createNodeMock: () => {
       return {};
@@ -99,6 +101,7 @@ it(`App correctly renders artist question screen`, () => {
     onUserAnswer={jest.fn()}
     onWelcomeScreenClick={jest.fn()}
     resetGame={jest.fn()}
+    renderScreen={jest.fn()}
   />, {
     createNodeMock: () => {
       return {};
