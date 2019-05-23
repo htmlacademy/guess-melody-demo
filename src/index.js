@@ -4,8 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./components/app/app.jsx";
-import questions from "./mocks/questions";
-import {reducer} from "./reducer";
+import {reducer, ActionCreator} from "./reducer";
 import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
 
 const gameSettings = {
@@ -15,7 +14,7 @@ const gameSettings = {
 const AppWrapped = withScreenSwitch(App);
 
 
-const init = (gameQuestions) => {
+const init = () => {
   const {errorCount, gameTime} = gameSettings;
   /* eslint-disable no-underscore-dangle */
   const store = createStore(
@@ -24,14 +23,15 @@ const init = (gameQuestions) => {
   );
   /* eslint-enable */
 
+  store.dispatch(ActionCreator.loadQuestions());
+
   ReactDOM.render(<Provider store={store}>
     <AppWrapped
       maxMistakes={errorCount}
       gameTime={gameTime}
-      questions={gameQuestions}
     />
   </Provider>,
   document.querySelector(`.main`));
 };
 
-init(questions);
+init();
