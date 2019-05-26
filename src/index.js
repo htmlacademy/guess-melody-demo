@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import {compose} from "recompose";
 
 import App from "./components/app/app.jsx";
+import {createAPI} from './api';
 import {reducer, Operation} from "./reducer";
 import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
 
@@ -18,11 +19,13 @@ const AppWrapped = withScreenSwitch(App);
 
 const init = () => {
   const {errorCount, gameTime} = gameSettings;
+  const api = createAPI((...args) => store.dispatch(...args));
+
   /* eslint-disable no-underscore-dangle */
   const store = createStore(
       reducer,
       compose(
-          applyMiddleware(thunk),
+          applyMiddleware(thunk.withExtraArgument(api)),
           window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
       )
   );

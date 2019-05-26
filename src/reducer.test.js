@@ -1,5 +1,5 @@
 import MockAdapter from "axios-mock-adapter";
-import api from "./api";
+import {createAPI} from "./api";
 import {
   ActionCreator,
   ActionType,
@@ -306,15 +306,16 @@ describe(`Reducer works correctly`, () => {
   });
 
   it(`Should make a correct API call to /questions`, function () {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const api = createAPI(dispatch);
+    const apiMock = new MockAdapter(api);
     const questionLoader = Operation.loadQuestions();
 
     apiMock
       .onGet(`/questions`)
       .reply(200, [{fake: true}]);
 
-    return questionLoader(dispatch)
+    return questionLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

@@ -1,5 +1,3 @@
-import api from "./api";
-
 const initialState = {
   step: -1,
   mistakes: 0,
@@ -73,7 +71,7 @@ const ActionCreator = {
 };
 
 const Operation = {
-  loadQuestions: () => (dispatch) => {
+  loadQuestions: () => (dispatch, _getState, api) => {
     return api.get(`/questions`)
       .then((response) => {
         dispatch(ActionCreator.loadQuestions(response.data));
