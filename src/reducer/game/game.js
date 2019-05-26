@@ -1,16 +1,12 @@
 const initialState = {
   step: -1,
   mistakes: 0,
-  questions: [],
-  isAuthorizationRequired: false,
 };
 
 
 const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   INCREMENT_STEP: `INCREMENT_STEP`,
-  LOAD_QUESTIONS: `LOAD_QUESTIONS`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   RESET: `RESET`,
 };
 
@@ -49,20 +45,6 @@ const ActionCreator = {
     };
   },
 
-  loadQuestions: (questions) => {
-    return {
-      type: ActionType.LOAD_QUESTIONS,
-      payload: questions,
-    };
-  },
-
-  requireAuthorization: (status) => {
-    return {
-      type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: status,
-    };
-  },
-
   resetGame: () => {
     return {
       type: ActionType.RESET
@@ -70,14 +52,6 @@ const ActionCreator = {
   },
 };
 
-const Operation = {
-  loadQuestions: () => (dispatch, _getState, api) => {
-    return api.get(`/questions`)
-      .then((response) => {
-        dispatch(ActionCreator.loadQuestions(response.data));
-      });
-  },
-};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -91,16 +65,6 @@ const reducer = (state = initialState, action) => {
         mistakes: state.mistakes + action.payload,
       });
 
-    case ActionType.LOAD_QUESTIONS:
-      return Object.assign({}, state, {
-        questions: action.payload,
-      });
-
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return Object.assign({}, state, {
-        isAuthorizationRequired: action.payload,
-      });
-
     case ActionType.RESET:
       return Object.assign({}, initialState);
   }
@@ -112,7 +76,6 @@ const reducer = (state = initialState, action) => {
 export {
   ActionCreator,
   ActionType,
-  Operation,
   isArtistAnswerCorrect,
   isGenreAnswerCorrect,
   reducer,
