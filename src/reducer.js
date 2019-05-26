@@ -4,6 +4,7 @@ const initialState = {
   step: -1,
   mistakes: 0,
   questions: [],
+  isAuthorizationRequired: false,
 };
 
 
@@ -11,6 +12,7 @@ const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   INCREMENT_STEP: `INCREMENT_STEP`,
   LOAD_QUESTIONS: `LOAD_QUESTIONS`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   RESET: `RESET`,
 };
 
@@ -56,6 +58,13 @@ const ActionCreator = {
     };
   },
 
+  requireAuthorization: (status) => {
+    return {
+      type: ActionType.REQUIRED_AUTHORIZATION,
+      payload: status,
+    };
+  },
+
   resetGame: () => {
     return {
       type: ActionType.RESET
@@ -87,6 +96,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_QUESTIONS:
       return Object.assign({}, state, {
         questions: action.payload,
+      });
+
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return Object.assign({}, state, {
+        isAuthorizationRequired: action.payload,
       });
 
     case ActionType.RESET:
