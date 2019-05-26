@@ -13,15 +13,6 @@ const ActionType = {
 };
 
 
-const loadQuestions = () => (dispatch) => {
-  return fetch(`https://es31-server.appspot.com/guess-melody/questions`)
-    .then((response) => response.json())
-    .then((questions) => {
-      dispatch(ActionCreator.loadQuestions(questions));
-    });
-};
-
-
 const isArtistAnswerCorrect = (userAnswer, question) =>
   userAnswer.artist === question.song.artist;
 
@@ -70,6 +61,15 @@ const ActionCreator = {
   },
 };
 
+const Operation = {
+  loadQuestions: () => (dispatch) => {
+    fetch(`https://es31-server.appspot.com/guess-melody/questions`)
+      .then((response) => response.json())
+      .then((questions) => {
+        dispatch(ActionCreator.loadQuestions(questions));
+      });
+  },
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -99,8 +99,8 @@ const reducer = (state = initialState, action) => {
 export {
   ActionCreator,
   ActionType,
+  Operation,
   isArtistAnswerCorrect,
   isGenreAnswerCorrect,
   reducer,
-  loadQuestions,
 };

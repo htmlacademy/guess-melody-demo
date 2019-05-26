@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import {compose} from "recompose";
 
 import App from "./components/app/app.jsx";
-import {reducer, loadQuestions} from "./reducer";
+import {reducer, Operation} from "./reducer";
 import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
 
 const gameSettings = {
@@ -28,7 +28,7 @@ const init = () => {
   );
   /* eslint-enable */
 
-  store.dispatch(loadQuestions());
+  store.dispatch(Operation.loadQuestions());
 
   ReactDOM.render(<Provider store={store}>
     <AppWrapped
