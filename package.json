@@ -39,6 +39,7 @@
     "react-redux": "7.0.3",
     "recompose": "0.30.0",
     "redux": "4.0.1",
+    "redux-thunk": "2.3.0",
     "why-did-you-update": "^1.0.6"
   }
 }
