@@ -42,6 +42,7 @@
     "recompose": "0.30.0",
     "redux": "4.0.1",
     "redux-thunk": "2.3.0",
+    "reselect": "4.0.0",
     "why-did-you-update": "^1.0.6"
   }
 }

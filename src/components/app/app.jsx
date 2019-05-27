@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {getStep} from "../../reducer/game/selectors";
+import {getQuestions} from "../../reducer/data/selectors";
 
 const Type = {
   ARTIST: `game--artist`,
@@ -61,8 +63,8 @@ App.propTypes = {
 
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  questions: state.data.questions,
-  step: state.game.step,
+  questions: getQuestions(state),
+  step: getStep(state),
 });
 
 
