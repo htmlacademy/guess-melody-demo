@@ -4,7 +4,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import thunk from "redux-thunk";
 import {compose} from "recompose";
-import {BrowserRouter} from "react-router-dom";
 
 import App from "./components/app/app.jsx";
 import {createAPI} from './api';
@@ -21,7 +20,7 @@ const AppWrapped = withScreenSwitch(App);
 
 const init = () => {
   const {errorCount, gameTime} = gameSettings;
-  const api = createAPI((...args) => store.dispatch(...args));
+  const api = createAPI(() => history.pushState(null, null, `/login`));
 
   /* eslint-disable no-underscore-dangle */
   const store = createStore(
@@ -36,12 +35,10 @@ const init = () => {
   store.dispatch(Operation.loadQuestions());
 
   ReactDOM.render(<Provider store={store}>
-    <BrowserRouter>
-      <AppWrapped
-        maxMistakes={errorCount}
-        gameTime={gameTime}
-      />
-    </BrowserRouter>
+    <AppWrapped
+      maxMistakes={errorCount}
+      gameTime={gameTime}
+    />
   </Provider>,
   document.querySelector(`.main`));
 };
