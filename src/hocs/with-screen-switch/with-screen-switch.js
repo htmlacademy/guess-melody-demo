@@ -49,7 +49,9 @@ const withScreenSwitch = (Component) => {
             renderScreen={this._getScreen}
           />} />
           <Route path="/win" component={WinScreen} />
-          <Route path="/lose" component={GameOverScreen} />
+          <Route path="/lose" render={() => <GameOverScreen
+            onRelaunchButtonClick={this.props.resetGame}
+          />} />
           <Route path="/login" component={AuthorizationScreen} />
         </Switch>
       </BrowserRouter>;
@@ -156,7 +158,9 @@ const mapDispatchToProps = (dispatch) => ({
     ));
   },
 
-  resetGame: () => dispatch(ActionCreator.resetGame()),
+  resetGame: () => {
+    dispatch(ActionCreator.resetGame());
+  },
 });
 
 export default compose(
