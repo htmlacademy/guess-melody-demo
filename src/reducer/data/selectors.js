@@ -10,7 +10,7 @@ export const getQuestions = (state) => {
 
 export const getGenreQuestions = createSelector(
     getQuestions,
-    (questions) => questions.filter((it) => it.type === `genre`).map(it => console.log(it) || it)
+    (questions) => questions.filter((it) => it.type === `genre`).map((it) => global.console.log(it) || it)
 );
 
 
