@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {compose} from "recompose";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 
-import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.jsx";
+import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.tsx";
 import AuthorizationScreen from "../../components/authorization-screen/authorization-screen.jsx";
 import GameOverScreen from "../../components/game-over-screen/game-over-screen.jsx";
 import QuestionGenreScreen from "../../components/genre-question-screen/genre-question-screen.jsx";

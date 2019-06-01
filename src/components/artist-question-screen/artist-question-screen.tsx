@@ -1,10 +1,10 @@
 import * as React from "react";
-import {QuestionArtist} from "../../types";
+import {QuestionArtist, Song, AnswerArtist} from "../../types";
 
 
 interface Props {
-  onAnswer: () => void,
-  renderPlayer: () => React.ReactElement,
+  onAnswer: (answer: AnswerArtist) => void,
+  renderPlayer: (song: Song, id: number) => React.ReactElement,
   question: QuestionArtist,
 }
 
