@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
+import * as PropTypes from "prop-types";
 import {getStep} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
 
@@ -10,7 +10,7 @@ const Type = {
 };
 
 
-class App extends Component {
+class App extends React.Component {
   render() {
     const {
       questions,
