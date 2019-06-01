@@ -2,34 +2,10 @@ import * as React from "react";
 import {connect} from "react-redux";
 import {getStep} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
+import {Type, QuestionArtist, QuestionGenre} from "../../types";
 
-enum Type {
-  ARTIST = "game--artist",
-  GENRE = "game--genre",
-}
 
 type Question = QuestionArtist | QuestionGenre;
-
-interface QuestionArtist {
-  answers: {
-    artist: string,
-    picture: string,
-  }[],
-  song: {
-    artist: string,
-    src: string,
-  }
-  type: Type,
-}
-
-interface QuestionGenre {
-  answers: {
-    src: string,
-    genre: string,
-  }[],
-  genre: string,
-  type: Type,
-}
 
 interface Props {
   gameTime: number,
@@ -46,7 +22,7 @@ class App extends React.Component<Props, null> {
       step,
     } = this.props;
 
-    return <section className={`game ${Type.ARTIST}`}>
+    return <section className={`game game--${Type.ARTIST}`}>
       <header className="game__header">
         <a className="game__back" href="#">
           <span className="visually-hidden">Сыграть ещё раз</span>
