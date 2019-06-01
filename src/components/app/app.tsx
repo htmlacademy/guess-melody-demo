@@ -1,16 +1,44 @@
 import * as React from "react";
 import {connect} from "react-redux";
-import * as PropTypes from "prop-types";
 import {getStep} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
 
-const Type = {
-  ARTIST: `game--artist`,
-  GENRE: `game--genre`,
-};
+enum Type {
+  ARTIST = "game--artist",
+  GENRE = "game--genre",
+}
 
+type Question = QuestionArtist | QuestionGenre;
 
-class App extends React.Component {
+interface QuestionArtist {
+  answers: {
+    artist: string,
+    picture: string,
+  }[],
+  song: {
+    artist: string,
+    src: string,
+  }
+  type: Type,
+}
+
+interface QuestionGenre {
+  answers: {
+    src: string,
+    genre: string,
+  }[],
+  genre: string,
+  type: Type,
+}
+
+interface Props {
+  gameTime: number,
+  questions: Question[],
+  renderScreen: (question: Question) => React.ReactElement,
+  step: number,
+}
+
+class App extends React.Component<Props, null> {
   render() {
     const {
       questions,
@@ -35,7 +63,7 @@ class App extends React.Component {
           />
         </svg>
 
-        <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
+        <div className="timer__value">
           <span className="timer__mins">05</span>
           <span className="timer__dots">:</span>
           <span className="timer__secs">00</span>
@@ -52,14 +80,6 @@ class App extends React.Component {
     </section>;
   }
 }
-
-
-App.propTypes = {
-  gameTime: PropTypes.number.isRequired,
-  questions: PropTypes.array.isRequired,
-  renderScreen: PropTypes.func.isRequired,
-  step: PropTypes.number.isRequired,
-};
 
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
