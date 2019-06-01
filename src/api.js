@@ -11,8 +11,10 @@ export const createAPI = (onLoginFail) => {
   const onFail = (err) => {
     if (err.status === 403) {
       onLoginFail();
+      return;
     }
-    return err;
+
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
