@@ -7,7 +7,7 @@ import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.tsx";
 import AuthorizationScreen from "../../components/authorization-screen/authorization-screen.jsx";
 import GameOverScreen from "../../components/game-over-screen/game-over-screen.jsx";
-import QuestionGenreScreen from "../../components/genre-question-screen/genre-question-screen.jsx";
+import QuestionGenreScreen from "../../components/genre-question-screen/genre-question-screen.tsx";
 import WelcomeScreen from "../../components/welcome-screen/welcome-screen.jsx";
 import WinScreen from "../../components/win-screen/win-screen.jsx";
 
@@ -129,7 +129,7 @@ const withScreenSwitch = (Component) => {
   WithScreenSwitch.propTypes = {
     gameTime: PropTypes.number.isRequired,
     isRequiredAuthentication: PropTypes.bool.isRequired,
-    questionsLength: PropTypes.number.isRequired,
+    // questionsLength: PropTypes.number.isRequired,
     maxMistakes: PropTypes.number.isRequired,
     mistakes: PropTypes.number.isRequired,
     onUserAnswer: PropTypes.func.isRequired,
