@@ -18,6 +18,7 @@ import {ActionCreator} from "../../reducer/game/game";
 
 import {getStep, getMistakes} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
 
 const transformPlayerToAnswer = (props) => {
   const newProps = Object.assign({}, props, {
@@ -61,6 +62,7 @@ const withScreenSwitch = (Component) => {
     _getScreen(question) {
       const {
         gameTime,
+        isRequiredAuthentication,
         maxMistakes,
         mistakes,
         onUserAnswer,
@@ -71,7 +73,9 @@ const withScreenSwitch = (Component) => {
 
       // Переход на экран победы, если пользователь добрался
       // до последнего шага
-      if (step >= questions.length) {
+      if (step >= questions.length && isRequiredAuthentication) {
+        return <Redirect to="/login" />;
+      } else if (step >= questions.length) {
         return <Redirect to="/results" />;
       }
 
@@ -124,6 +128,7 @@ const withScreenSwitch = (Component) => {
 
   WithScreenSwitch.propTypes = {
     gameTime: PropTypes.number.isRequired,
+    isRequiredAuthentication: PropTypes.bool.isRequired,
     questionsLength: PropTypes.number.isRequired,
     maxMistakes: PropTypes.number.isRequired,
     mistakes: PropTypes.number.isRequired,
@@ -144,6 +149,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   questions: getQuestions(state),
   step: getStep(state),
   mistakes: getMistakes(state),
+  isRequiredAuthentication: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

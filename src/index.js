@@ -9,6 +9,7 @@ import App from "./components/app/app.jsx";
 import {createAPI} from './api';
 import reducer from "./reducer";
 import {Operation} from "./reducer/data/data";
+import {Operation as UserOperation} from "./reducer/user/user";
 import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
 
 const gameSettings = {
@@ -33,6 +34,7 @@ const init = () => {
   /* eslint-enable */
 
   store.dispatch(Operation.loadQuestions());
+  store.dispatch(UserOperation.checkAuth());
 
   ReactDOM.render(<Provider store={store}>
     <AppWrapped
