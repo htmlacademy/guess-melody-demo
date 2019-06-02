@@ -29,6 +29,7 @@
     "react-test-renderer": "16.8.6",
     "ts-loader": "6.0.2",
     "typescript": "3.5.1",
+    "utility-types": "3.7.0",
     "webpack": "4.30.0",
     "webpack-cli": "3.3.1",
     "webpack-dev-server": "3.3.1"
