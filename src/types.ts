@@ -19,11 +19,13 @@ export interface QuestionArtist {
   type: Type,
 }
 
+export interface AnswerGenre {
+  src: string,
+  genre: string,
+}
+
 export interface QuestionGenre {
-  answers: {
-    src: string,
-    genre: string,
-  }[],
+  answers: AnswerGenre[],
   genre: string,
   type: Type,
 }

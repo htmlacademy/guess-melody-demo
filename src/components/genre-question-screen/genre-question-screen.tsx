@@ -1,8 +1,15 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {QuestionGenre, AnswerGenre} from "../../types";
 
+interface Props {
+  onAnswer: () => void,
+  onChange: (number) => void,
+  renderAnswer: (answer: AnswerGenre, id: number) => void,
+  question: QuestionGenre,
+  userAnswer: boolean[],
+}
 
-class GenreQuestionScreen extends PureComponent {
+class GenreQuestionScreen extends React.PureComponent<Props, null> {
   render() {
     const {
       question,
@@ -46,22 +53,6 @@ class GenreQuestionScreen extends PureComponent {
     </section>;
   }
 }
-
-
-GenreQuestionScreen.propTypes = {
-  onAnswer: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  renderAnswer: PropTypes.func.isRequired,
-  question: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      genre: PropTypes.oneOf([`rock`, `jazz`, `blues`]).isRequired,
-    })).isRequired,
-    genre: PropTypes.oneOf([`rock`, `jazz`, `blues`]).isRequired,
-    type: PropTypes.oneOf([`genre`, `artist`]).isRequired,
-  }).isRequired,
-  userAnswer: PropTypes.arrayOf(PropTypes.bool).isRequired,
-};
 
 
 export default GenreQuestionScreen;
