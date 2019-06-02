@@ -1,16 +1,18 @@
 import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
-import React from "react";
-import ReactDOM from "react-dom";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import thunk from "redux-thunk";
 import {compose} from "recompose";
 
-import App from "./components/app/app.tsx";
+import App from "./components/app/app";
 import {createAPI} from './api';
 import reducer from "./reducer";
 import {Operation} from "./reducer/data/data";
 import {Operation as UserOperation} from "./reducer/user/user";
 import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
+
+declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
 
 const gameSettings = {
   gameTime: 5,
@@ -28,7 +30,7 @@ const init = () => {
       reducer,
       compose(
           applyMiddleware(thunk.withExtraArgument(api)),
-          window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        __REDUX_DEVTOOLS_EXTENSION__ && __REDUX_DEVTOOLS_EXTENSION__()
       )
   );
   /* eslint-enable */

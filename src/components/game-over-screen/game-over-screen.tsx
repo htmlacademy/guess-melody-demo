@@ -1,9 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Link} from "react-router-dom";
 
+interface Props {
+  onRelaunchButtonClick: () => void,
+}
 
-const GameOverScreen = ({onRelaunchButtonClick = () => {}}) => {
+const GameOverScreen = ({onRelaunchButtonClick}: Props) => {
   return <section className="result">
     <div className="result__logo">
       <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
@@ -33,11 +35,6 @@ const GameOverScreen = ({onRelaunchButtonClick = () => {}}) => {
       onClick={onRelaunchButtonClick}
     >Попробовать ещё раз</Link>
   </section>;
-};
-
-
-GameOverScreen.propTypes = {
-  onRelaunchButtonClick: PropTypes.func.isRequired,
 };
 
 

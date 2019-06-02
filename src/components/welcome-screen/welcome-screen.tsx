@@ -1,8 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
+interface Props {
+  errorCount: number,
+  gameTime: number,
+  onClick: () => void,
+}
 
-const WelcomeScreen = (props) => {
+const WelcomeScreen: React.FunctionComponent<Props> = (props) => {
   const {
     errorCount,
     gameTime,
@@ -29,11 +33,5 @@ const WelcomeScreen = (props) => {
   </section>;
 };
 
-
-WelcomeScreen.propTypes = {
-  errorCount: PropTypes.number.isRequired,
-  gameTime: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
 
 export default WelcomeScreen;
