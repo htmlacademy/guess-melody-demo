@@ -35,7 +35,7 @@ const Operation = {
         .get(`/login`)
         .then((res) => {
           if (res.status === 200) {
-            dispatch(ActionCreator.requireAuthorization(true));
+            dispatch(ActionCreator.requireAuthorization(false));
           }
         });
     };
