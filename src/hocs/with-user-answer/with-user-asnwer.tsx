@@ -1,8 +1,31 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {Subtract} from "utility-types";
+
+
+interface Props {
+  answers: {
+    src: string,
+    genre: string,
+  }[],
+  onAnswer: (answers: boolean[]) => void,
+}
+
+interface State {
+  userAnswers: boolean[],
+}
+
+interface InjectedProps {
+  userAnswer: boolean[],
+  onChange: (i: number) => void,
+  onAnswer: () => void,
+}
 
 const withUserAnswer = (Component) => {
-  class WithUserAnswer extends PureComponent {
+  // Так же, как и в `with-active-player`,
+  // только добавляем пропсы, которые нужны самому хоку.
+  type P = Props & React.ComponentProps<typeof Component>;
+
+  class WithUserAnswer extends React.PureComponent<Subtract<P, InjectedProps>, State> {
     constructor(props) {
       super(props);
       this.state = {
@@ -32,14 +55,6 @@ const withUserAnswer = (Component) => {
       this.props.onAnswer(this.state.userAnswers);
     }
   }
-
-  WithUserAnswer.propTypes = {
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      genre: PropTypes.oneOf([`rock`, `folk`, `pop`, `jazz`, `blues`]).isRequired,
-    })),
-    onAnswer: PropTypes.func.isRequired,
-  };
 
   return WithUserAnswer;
 };
