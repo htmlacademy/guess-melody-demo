@@ -1,7 +1,8 @@
-import React from "react";
+import * as React from "react";
 import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as Adapter from "enzyme-adapter-react-16";
 import withUserAnswer from "./with-user-asnwer";
+import {Type} from "../../types";
 
 configure({adapter: new Adapter()});
 
@@ -10,7 +11,7 @@ const MockComponentWrapped = withUserAnswer(MockComponent);
 
 const mock = {
   question: {
-    type: `genre`,
+    type: Type.GENRE,
     genre: `rock`,
     answers: [
       {
