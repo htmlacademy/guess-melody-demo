@@ -11,6 +11,7 @@ import reducer from "./reducer";
 import {Operation} from "./reducer/data/data";
 import {Operation as UserOperation} from "./reducer/user/user";
 import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
+import history from './history';
 
 declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
 
@@ -23,7 +24,7 @@ const AppWrapped = withScreenSwitch(App);
 
 const init = () => {
   const {errorCount, gameTime} = gameSettings;
-  const api = createAPI(() => history.pushState(null, null, `/login`));
+  const api = createAPI(() => history.push(`/login`));
 
   /* eslint-disable no-underscore-dangle */
   const store = createStore(

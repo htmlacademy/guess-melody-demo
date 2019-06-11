@@ -9,7 +9,7 @@ export const createAPI = (onLoginFail) => {
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.status === 403) {
+    if (err.response.request.responseURL.indexOf(`/login`) === -1 && err.response.status === 403) {
       onLoginFail();
       return;
     }

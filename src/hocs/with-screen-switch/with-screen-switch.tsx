@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
-import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import {Router, Switch, Route, Redirect} from "react-router-dom";
 
 import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen";
 import AuthorizationScreen from "../../components/authorization-screen/authorization-screen";
@@ -19,6 +19,7 @@ import {getStep, getMistakes} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
 import {getAuthorizationStatus} from "../../reducer/user/selectors";
 import {AnswerArtist, AnswerGenre, QuestionArtist, QuestionGenre} from "../../types";
+import history from "../../history";
 
 type Answer = AnswerArtist|AnswerGenre|boolean[];
 type Question = QuestionGenre|QuestionArtist;
@@ -57,13 +58,15 @@ const withScreenSwitch = (Component) => {
     }
 
     render() {
-      return <BrowserRouter>
+      return <Router
+        history={history}
+      >
         <Switch>
           <Route path="/" exact render={() => <Component
             {...this.props}
             renderScreen={this._getScreen}
           />} />
-          <Route path="/results" render={<WinScreen
+          <Route path="/results" render={() => <WinScreen
             onReplayButtonClick={this.props.resetGame}
           />} />
           <Route path="/lose" render={() => <GameOverScreen
@@ -71,7 +74,7 @@ const withScreenSwitch = (Component) => {
           />} />
           <Route path="/login" component={AuthorizationScreen} />
         </Switch>
-      </BrowserRouter>;
+      </Router>;
     }
 
     _getScreen(question) {
