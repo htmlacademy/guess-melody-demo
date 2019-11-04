@@ -34,9 +34,11 @@ const mock = {
 it(`When user answers genre question form is not sent`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
+  const renderPlayer = jest.fn();
   const genreQuestion = shallow(<GenreQuestionScreen
     onAnswer={onAnswer}
     question={question}
+    renderPlayer={renderPlayer}
   />);
 
   const form = genreQuestion.find(`form`);
@@ -51,9 +53,11 @@ it(`When user answers genre question form is not sent`, () => {
 
 it(`Rendered checkboxes are synchronized with state`, () => {
   const {question} = mock;
+  const renderPlayer = jest.fn();
   const genreQuestion = shallow(<GenreQuestionScreen
     onAnswer={jest.fn()}
     question={question}
+    renderPlayer={renderPlayer}
   />);
 
   expect(genreQuestion.state(`userAnswer`)).toEqual([false, false, false, false]);
@@ -75,9 +79,11 @@ it(`Rendered checkboxes are synchronized with state`, () => {
 it(`User answer passed to callback is consistent with internal component state`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
+  const renderPlayer = jest.fn();
   const genreQuestion = shallow(<GenreQuestionScreen
     onAnswer={onAnswer}
     question={question}
+    renderPlayer={renderPlayer}
   />);
 
   const form = genreQuestion.find(`form`);

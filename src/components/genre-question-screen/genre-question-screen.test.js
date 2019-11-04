@@ -34,6 +34,7 @@ it(`GenreQuestionScreen is rendered correctly`, () => {
   const tree = renderer.create(<GenreQuestionScreen
     onAnswer={jest.fn()}
     question={question}
+    renderPlayer={jest.fn()}
   />, {
     createNodeMock: () => {
       return {};
