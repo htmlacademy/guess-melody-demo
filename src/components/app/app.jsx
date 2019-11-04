@@ -10,6 +10,7 @@ import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 
 
 const GenreQuestionScreenWrapped = withActivePlayer(GenreQuestionScreen);
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
 
 const Type = {
@@ -53,7 +54,7 @@ class App extends Component {
         )}
       />;
 
-      case `artist`: return <ArtistQuestionScreen
+      case `artist`: return <ArtistQuestionScreenWrapped
         step={step}
         question={question}
         onAnswer={(userAnswer) => onUserAnswer(
