@@ -8,7 +8,7 @@ class ArtistQuestionScreen extends PureComponent {
   }
 
   render() {
-    const {step, question, onAnswer, renderPlayer} = this.props;
+    const {step, question, onAnswer, renderQuestion} = this.props;
     const {
       answers,
       song,
@@ -17,7 +17,7 @@ class ArtistQuestionScreen extends PureComponent {
     return <section className="game__screen">
       <h2 className="game__title">Кто исполняет эту песню?</h2>
       <div className="game__track">
-        {renderPlayer(song, 0)}
+        {renderQuestion(song, 0)}
       </div>
 
       <form className="game__artist">
@@ -55,7 +55,7 @@ ArtistQuestionScreen.propTypes = {
     }).isRequired,
     type: PropTypes.oneOf([`genre`, `artist`]).isRequired,
   }).isRequired,
-  renderPlayer: PropTypes.func.isRequired,
+  renderQuestion: PropTypes.func.isRequired,
 };
 
 

@@ -7,10 +7,26 @@ import ArtistQuestionScreen from "../artist-question-screen/artist-question-scre
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+import withTransformProps from "../../hocs/with-transform-props/with-transform-props";
 
+const transformPlayerToAnswer = (props) => {
+  const newProps = Object.assign({}, props, {
+    renderAnswer: props.renderPlayer,
+  });
+  delete newProps.renderPlayer;
+  return newProps;
+};
 
-const GenreQuestionScreenWrapped = withActivePlayer(GenreQuestionScreen);
-const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
+const transformPlayerToQuestion = (props) => {
+  const newProps = Object.assign({}, props, {
+    renderQuestion: props.renderPlayer,
+  });
+  delete newProps.renderPlayer;
+  return newProps;
+};
+
+const GenreQuestionScreenWrapped = withActivePlayer(withTransformProps(transformPlayerToAnswer)(GenreQuestionScreen));
+const ArtistQuestionScreenWrapped = withActivePlayer(withTransformProps(transformPlayerToQuestion)(ArtistQuestionScreen));
 
 
 const Type = {
