@@ -3,10 +3,6 @@ import PropTypes from "prop-types";
 
 
 class ArtistQuestionScreen extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {step, question, onAnswer, renderQuestion} = this.props;
     const {

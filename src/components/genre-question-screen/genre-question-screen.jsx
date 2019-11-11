@@ -3,19 +3,15 @@ import PropTypes from "prop-types";
 
 
 class GenreQuestionScreen extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    const {question} = this.props;
-    const {answers} = question;
-
-    this.state = {
-      userAnswer: new Array(answers.length).fill(false),
-    };
-  }
-
   render() {
-    const {step, question, onAnswer, renderAnswer} = this.props;
+    const {
+      question,
+      onAnswer,
+      onChange,
+      renderAnswer,
+      userAnswer,
+    } = this.props;
+
     const {
       answers,
       genre,
@@ -25,23 +21,19 @@ class GenreQuestionScreen extends PureComponent {
       <h2 className="game__title">Выберите {genre} треки</h2>
       <form className="game__tracks" onSubmit={(evt) => {
         evt.preventDefault();
-        onAnswer(this.state.userAnswer);
+        onAnswer();
       }}>
-        {answers.map((it, i) => <div className="track" key={`${step}-answer-${i}`}>
+        {answers.map((it, i) => <div className="track" key={`answer-${i}`}>
           {renderAnswer(it, i)}
           <div className="game__answer">
             <input
-              checked={this.state.userAnswer[i]}
+              checked={userAnswer[i]}
               className="game__input visually-hidden"
               type="checkbox"
               name="answer"
               value={`answer-${i}`}
               id={`answer-${i}`}
-              onChange={() => {
-                const userAnswer = [...this.state.userAnswer];
-                userAnswer[i] = !userAnswer[i];
-                this.setState({userAnswer});
-              }}
+              onChange={() => onChange(i)}
             />
             <label className="game__check" htmlFor={`answer-${i}`}>
               Отметить
@@ -57,8 +49,9 @@ class GenreQuestionScreen extends PureComponent {
 
 
 GenreQuestionScreen.propTypes = {
-  step: PropTypes.number,
   onAnswer: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  renderAnswer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     answers: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
@@ -67,7 +60,7 @@ GenreQuestionScreen.propTypes = {
     genre: PropTypes.oneOf([`rock`, `jazz`, `blues`]).isRequired,
     type: PropTypes.oneOf([`genre`, `artist`]).isRequired,
   }).isRequired,
-  renderAnswer: PropTypes.func.isRequired,
+  userAnswer: PropTypes.arrayOf(PropTypes.bool).isRequired,
 };
 
 

@@ -36,6 +36,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "7.0.3",
+    "recompose": "0.30.0",
     "redux": "4.0.1"
   }
 }

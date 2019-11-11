@@ -6,12 +6,13 @@ import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 import questions from "./mocks/questions";
 import {reducer} from "./reducer";
-
+import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
 
 const gameSettings = {
   gameTime: 5,
   errorCount: 3,
 };
+const AppWrapped = withScreenSwitch(App);
 
 
 const init = (gameQuestions) => {
@@ -24,10 +25,11 @@ const init = (gameQuestions) => {
   /* eslint-enable */
 
   ReactDOM.render(<Provider store={store}>
-    <App
+    <AppWrapped
       maxMistakes={errorCount}
       gameTime={gameTime}
       questions={gameQuestions}
+      questionsLength={gameQuestions.length}
     />
   </Provider>,
   document.querySelector(`#root`));

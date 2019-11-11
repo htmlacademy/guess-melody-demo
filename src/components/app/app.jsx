@@ -2,33 +2,6 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-import {ActionCreator} from "../../reducer";
-import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen.jsx";
-import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
-import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
-import withActivePlayer from "../../hocs/with-active-player/with-active-player";
-import withTransformProps from "../../hocs/with-transform-props/with-transform-props";
-
-const transformPlayerToAnswer = (props) => {
-  const newProps = Object.assign({}, props, {
-    renderAnswer: props.renderPlayer,
-  });
-  delete newProps.renderPlayer;
-  return newProps;
-};
-
-const transformPlayerToQuestion = (props) => {
-  const newProps = Object.assign({}, props, {
-    renderQuestion: props.renderPlayer,
-  });
-  delete newProps.renderPlayer;
-  return newProps;
-};
-
-const GenreQuestionScreenWrapped = withActivePlayer(withTransformProps(transformPlayerToAnswer)(GenreQuestionScreen));
-const ArtistQuestionScreenWrapped = withActivePlayer(withTransformProps(transformPlayerToQuestion)(ArtistQuestionScreen));
-
-
 const Type = {
   ARTIST: `game--artist`,
   GENRE: `game--genre`,
@@ -36,58 +9,10 @@ const Type = {
 
 
 class App extends Component {
-  _getScreen(question) {
-    if (!question) {
-      const {
-        maxMistakes,
-        gameTime,
-        onWelcomeScreenClick
-      } = this.props;
-
-      return <WelcomeScreen
-        errorCount={maxMistakes}
-        gameTime={gameTime}
-        onClick={onWelcomeScreenClick}
-      />;
-    }
-
-    const {
-      onUserAnswer,
-      mistakes,
-      maxMistakes,
-      step
-    } = this.props;
-
-    switch (question.type) {
-      case `genre`: return <GenreQuestionScreenWrapped
-        step={step}
-        question={question}
-        onAnswer={(userAnswer) => onUserAnswer(
-            userAnswer,
-            question,
-            mistakes,
-            maxMistakes
-        )}
-      />;
-
-      case `artist`: return <ArtistQuestionScreenWrapped
-        step={step}
-        question={question}
-        onAnswer={(userAnswer) => onUserAnswer(
-            userAnswer,
-            question,
-            mistakes,
-            maxMistakes
-        )}
-      />;
-    }
-
-    return null;
-  }
-
   render() {
     const {
       questions,
+      renderScreen,
       step,
     } = this.props;
 
@@ -111,43 +36,25 @@ class App extends Component {
         </div>
       </header>
 
-      {this._getScreen(questions[step])}
+      {renderScreen(questions[step])}
     </section>;
   }
 }
 
 
 App.propTypes = {
-  mistakes: PropTypes.number.isRequired,
-  maxMistakes: PropTypes.number.isRequired,
   gameTime: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
+  renderScreen: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
-  onUserAnswer: PropTypes.func.isRequired,
-  onWelcomeScreenClick: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   step: state.step,
-  mistakes: state.mistakes,
 });
 
-
-const mapDispatchToProps = (dispatch) => ({
-  onWelcomeScreenClick: () => dispatch(ActionCreator.incrementStep()),
-
-  onUserAnswer: (userAnswer, question, mistakes, maxMistakes) => {
-    dispatch(ActionCreator.incrementStep());
-    dispatch(ActionCreator.incrementMistake(
-        userAnswer,
-        question,
-        mistakes,
-        maxMistakes
-    ));
-  }
-});
 
 export {App};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

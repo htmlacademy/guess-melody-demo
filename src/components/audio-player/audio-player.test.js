@@ -15,13 +15,11 @@ it(`AudioPlayer is rendered correctly`, () => {
 
   const tree = renderer.create(<AudioPlayer
     isPlaying={false}
+    isLoading={true}
     onPlayButtonClick={onPlayButtonClick}
+    renderAudio={jest.fn()}
     src={song.src}
-  />, {
-    createNodeMock: () => {
-      return {};
-    }
-  }).toJSON();
+  />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
