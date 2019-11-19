@@ -1,19 +1,20 @@
 import axios from 'axios';
-import {ActionCreator} from './reducer/user/user';
 
-export const createAPI = (dispatch) => {
+export const createAPI = (onLoginFail) => {
   const api = axios.create({
-    baseURL: `https://es31-server.appspot.com/guess-melody`,
+    baseURL: `https://htmlacademy-react-2.appspot.com/guess-melody`,
     timeout: 1000 * 5,
     withCredentials: true,
   });
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === 403) {
-      dispatch(ActionCreator.requireAuthorization(true));
+    if (err.status === 401) {
+      onLoginFail();
+      return;
     }
-    return err;
+
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
