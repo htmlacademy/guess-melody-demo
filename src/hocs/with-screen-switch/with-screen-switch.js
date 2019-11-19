@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {compose} from "recompose";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 
 import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.jsx";
 import AuthorizationScreen from "../../components/authorization-screen/authorization-screen.jsx";
@@ -18,7 +18,6 @@ import {ActionCreator} from "../../reducer/game/game";
 
 import {getStep, getMistakes} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
-import {getAuthorizationStatus} from "../../reducer/user/selectors";
 
 const transformPlayerToQuestion = (props) => {
   const newProps = Object.assign({}, props, {
@@ -58,40 +57,54 @@ const withScreenSwitch = (Component) => {
           {...this.props}
           renderScreen={this._getScreen}
         />} />
-        <Route path="/auth" component={AuthorizationScreen} />
+        <Route path="/results" render={() => <WinScreen
+          onReplayButtonClick={this.props.resetGame}
+        />} />
+        <Route path="/lose" render={() => <GameOverScreen
+          onRelaunchButtonClick={this.props.resetGame}
+        />} />
+        <Route path="/login" component={AuthorizationScreen} />
       </Switch>;
     }
 
     _getScreen(question) {
-      if (!question) {
-        const {step, questions} = this.props;
-        if (step > questions.length - 1) {
-          return <WinScreen/>;
-        } else {
-          const {
-            maxMistakes,
-            gameTime,
-            onWelcomeScreenClick,
-          } = this.props;
-
-          return <WelcomeScreen
-            errorCount={maxMistakes}
-            gameTime={gameTime}
-            onClick={onWelcomeScreenClick}
-          />;
-        }
-      }
-
       const {
-        onUserAnswer,
-        mistakes,
+        gameTime,
         maxMistakes,
-        resetGame,
+        mistakes,
+        onUserAnswer,
+        onWelcomeScreenClick,
+        questions,
+        step,
       } = this.props;
 
+      // Переход на экран победы, если пользователь добрался
+      // до последнего шага
+      if (step >= questions.length) {
+        return <Redirect to="/results" />;
+      }
+
+      // Если количество ошибок превысило максимально допустимое
+      // количество, переход на экран поражения
       if (mistakes >= maxMistakes) {
-        return <GameOverScreen
-          onRelaunchButtonClick={resetGame}
+        return <Redirect to="/lose" />;
+      }
+
+      // NB!
+      // Компоненты <WinScreen />, <QuestionGenreScreenWrapped />
+      // и <ArtistQuestionScreenWrapped /> отрисовываются без помощи
+      // компонента <Redirect />. Это значит, что все эти экраны
+      // переключаются в рамках одного сценария: невозможно перейти
+      // на экран второго вопроса, не ответив, предварительно на первый
+
+      // Если номер текущего вопроса в игре равен -1
+      // значит игра ещё не начата и нужно показать
+      // приветственный экран
+      if (step === -1) {
+        return <WelcomeScreen
+          errorCount={maxMistakes}
+          gameTime={gameTime}
+          onClick={onWelcomeScreenClick}
         />;
       }
 
@@ -116,13 +129,10 @@ const withScreenSwitch = (Component) => {
 
       return null;
     }
-
   }
 
   WithScreenSwitch.propTypes = {
     gameTime: PropTypes.number.isRequired,
-    isAuthorizationRequired: PropTypes.bool.isRequired,
-    questionsLength: PropTypes.number.isRequired,
     maxMistakes: PropTypes.number.isRequired,
     mistakes: PropTypes.number.isRequired,
     onUserAnswer: PropTypes.func.isRequired,
@@ -142,7 +152,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   questions: getQuestions(state),
   step: getStep(state),
   mistakes: getMistakes(state),
-  isAuthorizationRequired: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -156,7 +165,9 @@ const mapDispatchToProps = (dispatch) => ({
     ));
   },
 
-  resetGame: () => dispatch(ActionCreator.resetGame()),
+  resetGame: () => {
+    dispatch(ActionCreator.resetGame());
+  },
 });
 
 export default compose(
