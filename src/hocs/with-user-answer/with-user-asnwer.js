@@ -36,7 +36,7 @@ const withUserAnswer = (Component) => {
   WithUserAnswer.propTypes = {
     answers: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,
-      genre: PropTypes.oneOf([`rock`, `folk`, `pop`, `jazz`, `blues`]).isRequired,
+      genre: PropTypes.oneOf([`country`, `electronic`, `rock`, `folk`, `pop`, `jazz`, `blues`]).isRequired,
     })),
     onAnswer: PropTypes.func.isRequired,
   };
