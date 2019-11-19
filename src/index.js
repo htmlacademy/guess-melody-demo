@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import thunk from "redux-thunk";
 import {compose} from "recompose";
+import {BrowserRouter} from "react-router-dom";
 
 import App from "./components/app/app.jsx";
 import {createAPI} from './api';
@@ -35,10 +36,12 @@ const init = () => {
   store.dispatch(Operation.loadQuestions());
 
   ReactDOM.render(<Provider store={store}>
-    <AppWrapped
-      maxMistakes={errorCount}
-      gameTime={gameTime}
-    />
+    <BrowserRouter>
+      <AppWrapped
+        maxMistakes={errorCount}
+        gameTime={gameTime}
+      />
+    </BrowserRouter>
   </Provider>,
   document.querySelector(`#root`));
 };
