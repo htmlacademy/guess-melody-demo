@@ -13,3 +13,4 @@ node_modules/
 
 # Файл с собранными скриптами проекта
 public/index.js
+public/index.js.map
