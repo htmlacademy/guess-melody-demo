@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenreQuestionScreen is rendered correctly 1`] = `
+<section
+  className="game__screen"
+>
+  <h2
+    className="game__title"
+  >
+    Выберите 
+    rock
+     треки
+  </h2>
+  <form
+    className="game__tracks"
+    onSubmit={[Function]}
+  >
+    <div
+      className="track"
+    >
+      <div
+        className="game__answer"
+      >
+        <input
+          checked={false}
+          className="game__input visually-hidden"
+          id="answer-0"
+          name="answer"
+          onChange={[Function]}
+          type="checkbox"
+          value="answer-0"
+        />
+        <label
+          className="game__check"
+          htmlFor="answer-0"
+        >
+          Отметить
+        </label>
+      </div>
+    </div>
+    <div
+      className="track"
+    >
+      <div
+        className="game__answer"
+      >
+        <input
+          checked={false}
+          className="game__input visually-hidden"
+          id="answer-1"
+          name="answer"
+          onChange={[Function]}
+          type="checkbox"
+          value="answer-1"
+        />
+        <label
+          className="game__check"
+          htmlFor="answer-1"
+        >
+          Отметить
+        </label>
+      </div>
+    </div>
+    <div
+      className="track"
+    >
+      <div
+        className="game__answer"
+      >
+        <input
+          checked={false}
+          className="game__input visually-hidden"
+          id="answer-2"
+          name="answer"
+          onChange={[Function]}
+          type="checkbox"
+          value="answer-2"
+        />
+        <label
+          className="game__check"
+          htmlFor="answer-2"
+        >
+          Отметить
+        </label>
+      </div>
+    </div>
+    <div
+      className="track"
+    >
+      <div
+        className="game__answer"
+      >
+        <input
+          checked={false}
+          className="game__input visually-hidden"
+          id="answer-3"
+          name="answer"
+          onChange={[Function]}
+          type="checkbox"
+          value="answer-3"
+        />
+        <label
+          className="game__check"
+          htmlFor="answer-3"
+        >
+          Отметить
+        </label>
+      </div>
+    </div>
+    <button
+      className="game__submit button"
+      type="submit"
+    >
+      Ответить
+    </button>
+  </form>
+</section>
+`;

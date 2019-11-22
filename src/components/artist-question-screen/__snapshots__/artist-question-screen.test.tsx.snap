@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArtistQuestionScreen is rendered correctly 1`] = `
+<section
+  className="game__screen"
+>
+  <h2
+    className="game__title"
+  >
+    Кто исполняет эту песню?
+  </h2>
+  <div
+    className="game__track"
+  />
+  <form
+    className="game__artist"
+  >
+    <div
+      className="artist"
+    >
+      <input
+        className="artist__input visually-hidden"
+        id="artist-0"
+        name="answer"
+        onClick={[Function]}
+        type="radio"
+        value="artist-0"
+      />
+      <label
+        className="artist__name"
+        htmlFor="artist-0"
+      >
+        <img
+          alt="John Snow"
+          className="artist__picture"
+          src="path.jpg"
+        />
+        John Snow
+      </label>
+    </div>
+    <div
+      className="artist"
+    >
+      <input
+        className="artist__input visually-hidden"
+        id="artist-1"
+        name="answer"
+        onClick={[Function]}
+        type="radio"
+        value="artist-1"
+      />
+      <label
+        className="artist__name"
+        htmlFor="artist-1"
+      >
+        <img
+          alt="Jack Daniels"
+          className="artist__picture"
+          src="path.jpg"
+        />
+        Jack Daniels
+      </label>
+    </div>
+    <div
+      className="artist"
+    >
+      <input
+        className="artist__input visually-hidden"
+        id="artist-2"
+        name="answer"
+        onClick={[Function]}
+        type="radio"
+        value="artist-2"
+      />
+      <label
+        className="artist__name"
+        htmlFor="artist-2"
+      >
+        <img
+          alt="Jim Beam"
+          className="artist__picture"
+          src="path.jpg"
+        />
+        Jim Beam
+      </label>
+    </div>
+  </form>
+</section>
+`;

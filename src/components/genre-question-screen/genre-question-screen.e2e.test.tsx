@@ -1,6 +1,6 @@
 import * as React from "react";
 import {configure, shallow} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import Adapter from "enzyme-adapter-react-16";
 
 import GenreQuestionScreen from "./genre-question-screen";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-asnwer";
