@@ -1,15 +1,16 @@
-import React from "react";
+import * as React from "react";
 import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as Adapter from "enzyme-adapter-react-16";
 
-import GenreQuestionScreen from "./genre-question-screen.jsx";
+import GenreQuestionScreen from "./genre-question-screen";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-asnwer";
+import {Type} from "../../types";
 
 configure({adapter: new Adapter()});
 
 const mock = {
   question: {
-    type: `genre`,
+    type: Type.GENRE,
     genre: `rock`,
     answers: [
       {
@@ -36,10 +37,8 @@ it(`When user answers genre question form is not sent`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
   const genreQuestion = shallow(<GenreQuestionScreen
-    activePlayer={-1}
     onAnswer={onAnswer}
     onChange={jest.fn()}
-    onPlayButtonClick={jest.fn()}
     renderAnswer={jest.fn()}
     question={question}
     userAnswer={[]}
@@ -88,10 +87,8 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   const onAnswer = jest.fn();
   const userAnswer = [false, true, false, false];
   const genreQuestion = shallow(<GenreQuestionScreen
-    activePlayer={-1}
     onAnswer={onAnswer}
     onChange={jest.fn()}
-    onPlayButtonClick={jest.fn()}
     renderAnswer={jest.fn()}
     question={question}
     userAnswer={userAnswer}
@@ -100,7 +97,11 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   const form = genreQuestion.find(`form`);
   const inputTwo = genreQuestion.find(`input`).at(1);
   inputTwo.simulate(`change`);
-  form.simulate(`submit`, {preventDefault() {}});
+  form.simulate(`submit`, {
+    preventDefault() {
+      // мокаем preventDefault
+    }
+  });
 
   expect(genreQuestion.find(`input`).map((it) => it.prop(`checked`)))
     .toEqual(userAnswer);

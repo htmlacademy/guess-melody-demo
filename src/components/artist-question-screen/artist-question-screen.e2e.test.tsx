@@ -1,14 +1,15 @@
-import React from "react";
+import * as React from "react";
 import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as Adapter from "enzyme-adapter-react-16";
 
-import ArtistQuestionScreen from "./artist-question-screen.jsx";
+import ArtistQuestionScreen from "./artist-question-screen";
+import {Type} from "../../types";
 
 configure({adapter: new Adapter()});
 
 const mock = {
   question: {
-    type: `artist`,
+    type: Type.ARTIST,
     song: {
       artist: ``,
       src: ``
@@ -32,19 +33,20 @@ const mock = {
 
 
 const mockEvent = {
-  preventDefault() {}
+  preventDefault() {
+    // мокаем preventDefault
+  }
 };
 
 
 it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
   const {question} = mock;
   const onAnswer = jest.fn();
-  const renderQuestion = jest.fn();
 
   const screen = shallow(<ArtistQuestionScreen
     onAnswer={onAnswer}
+    renderPlayer={jest.fn()}
     question={question}
-    renderQuestion={renderQuestion}
   />);
 
   const answerInputs = screen.find(`input`);

@@ -1,15 +1,14 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
 import {compose} from "recompose";
-import {Switch, Route, Redirect} from "react-router-dom";
+import {Router, Switch, Route, Redirect} from "react-router-dom";
 
-import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen.jsx";
-import AuthorizationScreen from "../../components/authorization-screen/authorization-screen.jsx";
-import GameOverScreen from "../../components/game-over-screen/game-over-screen.jsx";
-import GenreQuestionScreen from "../../components/genre-question-screen/genre-question-screen.jsx";
-import WelcomeScreen from "../../components/welcome-screen/welcome-screen.jsx";
-import WinScreen from "../../components/win-screen/win-screen.jsx";
+import ArtistQuestionScreen from "../../components/artist-question-screen/artist-question-screen";
+import AuthorizationScreen from "../../components/authorization-screen/authorization-screen";
+import GameOverScreen from "../../components/game-over-screen/game-over-screen";
+import QuestionGenreScreen from "../../components/genre-question-screen/genre-question-screen";
+import WelcomeScreen from "../../components/welcome-screen/welcome-screen";
+import WinScreen from "../../components/win-screen/win-screen";
 
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 import withTransformProps from "../../hocs/with-transform-props/with-transform-props";
@@ -18,14 +17,24 @@ import {ActionCreator} from "../../reducer/game/game";
 
 import {getStep, getMistakes} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {AnswerArtist, AnswerGenre, QuestionArtist, QuestionGenre} from "../../types";
+import history from "../../history";
 
-const transformPlayerToQuestion = (props) => {
-  const newProps = Object.assign({}, props, {
-    renderQuestion: props.renderPlayer,
-  });
-  delete newProps.renderPlayer;
-  return newProps;
-};
+type Answer = AnswerArtist|AnswerGenre|boolean[];
+type Question = QuestionGenre|QuestionArtist;
+
+interface Props {
+  gameTime: number;
+  isRequiredAuthentication: boolean;
+  maxMistakes: number;
+  mistakes: number;
+  onUserAnswer: (answer: Answer, question: Question) => void;
+  onWelcomeScreenClick: () => void;
+  resetGame: () => void;
+  questions: Question[];
+  step: number;
+}
 
 const transformPlayerToAnswer = (props) => {
   const newProps = Object.assign({}, props, {
@@ -35,16 +44,13 @@ const transformPlayerToAnswer = (props) => {
   return newProps;
 };
 
-const ArtistQuestionScreenWrapped = withActivePlayer(
-    withTransformProps(transformPlayerToQuestion)(ArtistQuestionScreen)
-);
-const GenreQuestionScreenWrapped = withUserAnswer(
-    withActivePlayer(withTransformProps(transformPlayerToAnswer)(GenreQuestionScreen))
-);
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
+const QuestionGenreScreenWrapped = withUserAnswer(withActivePlayer(
+    withTransformProps(transformPlayerToAnswer)(QuestionGenreScreen)));
 
 
 const withScreenSwitch = (Component) => {
-  class WithScreenSwitch extends PureComponent {
+  class WithScreenSwitch extends React.PureComponent<Props, null> {
     constructor(props) {
       super(props);
 
@@ -52,24 +58,29 @@ const withScreenSwitch = (Component) => {
     }
 
     render() {
-      return <Switch>
-        <Route path="/" exact render={() => <Component
-          {...this.props}
-          renderScreen={this._getScreen}
-        />} />
-        <Route path="/results" render={() => <WinScreen
-          onReplayButtonClick={this.props.resetGame}
-        />} />
-        <Route path="/lose" render={() => <GameOverScreen
-          onRelaunchButtonClick={this.props.resetGame}
-        />} />
-        <Route path="/login" component={AuthorizationScreen} />
-      </Switch>;
+      return <Router
+        history={history}
+      >
+        <Switch>
+          <Route path="/" exact render={() => <Component
+            {...this.props}
+            renderScreen={this._getScreen}
+          />} />
+          <Route path="/results" render={() => <WinScreen
+            onReplayButtonClick={this.props.resetGame}
+          />} />
+          <Route path="/lose" render={() => <GameOverScreen
+            onRelaunchButtonClick={this.props.resetGame}
+          />} />
+          <Route path="/login" component={AuthorizationScreen} />
+        </Switch>
+      </Router>;
     }
 
     _getScreen(question) {
       const {
         gameTime,
+        isRequiredAuthentication,
         maxMistakes,
         mistakes,
         onUserAnswer,
@@ -80,7 +91,9 @@ const withScreenSwitch = (Component) => {
 
       // Переход на экран победы, если пользователь добрался
       // до последнего шага
-      if (step >= questions.length) {
+      if (step >= questions.length && isRequiredAuthentication) {
+        return <Redirect to="/login" />;
+      } else if (step >= questions.length) {
         return <Redirect to="/results" />;
       }
 
@@ -109,7 +122,7 @@ const withScreenSwitch = (Component) => {
       }
 
       switch (question.type) {
-        case `genre`: return <GenreQuestionScreenWrapped
+        case `genre`: return <QuestionGenreScreenWrapped
           answers={question.answers}
           question={question}
           onAnswer={(userAnswer) => onUserAnswer(
@@ -131,17 +144,6 @@ const withScreenSwitch = (Component) => {
     }
   }
 
-  WithScreenSwitch.propTypes = {
-    gameTime: PropTypes.number.isRequired,
-    maxMistakes: PropTypes.number.isRequired,
-    mistakes: PropTypes.number.isRequired,
-    onUserAnswer: PropTypes.func.isRequired,
-    onWelcomeScreenClick: PropTypes.func.isRequired,
-    resetGame: PropTypes.func.isRequired,
-    questions: PropTypes.array.isRequired,
-    step: PropTypes.number.isRequired,
-  };
-
   return WithScreenSwitch;
 };
 
@@ -152,6 +154,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   questions: getQuestions(state),
   step: getStep(state),
   mistakes: getMistakes(state),
+  isRequiredAuthentication: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

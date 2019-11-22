@@ -4,40 +4,40 @@ export default [
     genre: `rock`,
     answers: [
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/6/64/Ugandan_national_anthem%2C_performed_by_the_U.S._Navy_Band.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
         genre: `rock`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/6/64/Ugandan_national_anthem%2C_performed_by_the_U.S._Navy_Band.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
         genre: `blues`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/6/64/Ugandan_national_anthem%2C_performed_by_the_U.S._Navy_Band.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
         genre: `jazz`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/6/64/Ugandan_national_anthem%2C_performed_by_the_U.S._Navy_Band.ogg`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
         genre: `rock`,
       },
     ],
   }, {
     type: `artist`,
     song: {
-      artist: `Mikle Jackson`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/6/64/Ugandan_national_anthem%2C_performed_by_the_U.S._Navy_Band.ogg`,
+      artist: `Jim Beam`,
+      src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
     },
     answers: [
       {
-        picture: `https://via.placeholder.com/134x134`,
-        artist: `Mikle Jackson`,
+        picture: `path.jpg`,
+        artist: `John Snow`,
       },
       {
-        picture: `https://via.placeholder.com/134x134`,
-        artist: `Selena Gomez`,
+        picture: `path.jpg`,
+        artist: `Jack Daniels`,
       },
       {
-        picture: `https://via.placeholder.com/134x134`,
-        artist: `50 cent`,
+        picture: `path.jpg`,
+        artist: `Jim Beam`,
       },
     ],
   },
