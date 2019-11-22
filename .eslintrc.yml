@@ -1,3 +1,5 @@
+parser: '@typescript-eslint/parser'
+
 env:
   es6: true
   browser: true
@@ -6,7 +8,8 @@ env:
 
 extends: [
   'htmlacademy/es6',
-  'plugin:react/recommended'
+  'plugin:react/recommended',
+  'plugin:@typescript-eslint/recommended'
 ]
 
 parserOptions:
@@ -20,3 +23,7 @@ plugins: ['react']
 settings:
   react:
     version: '16'
+
+rules: {
+  "react/prop-types": "off"
+}

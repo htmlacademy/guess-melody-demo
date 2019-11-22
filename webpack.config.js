@@ -1,13 +1,13 @@
-const path = require(`path`);
+const path = require('path');
 
 module.exports = {
-  entry: `./src/index.js`,
+  entry: './src/index.js',
   output: {
-    filename: `index.js`,
-    path: path.join(__dirname, `public`)
+    filename: 'index.js',
+    path: path.join(__dirname, 'public')
   },
   devServer: {
-    contentBase: path.join(__dirname, `public`),
+    contentBase: path.join(__dirname, 'public'),
     compress: false,
     port: 1337,
     historyApiFallback: true,
@@ -15,13 +15,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: `babel-loader`,
+          loader: 'babel-loader',
         },
       }
     ],
   },
-  devtool: `source-map`
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
+  },
 };
