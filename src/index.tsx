@@ -31,7 +31,7 @@ const init = () => {
       reducer,
       compose(
           applyMiddleware(thunk.withExtraArgument(api)),
-          __REDUX_DEVTOOLS_EXTENSION__ && __REDUX_DEVTOOLS_EXTENSION__()
+          window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
       )
   );
   /* eslint-enable */
