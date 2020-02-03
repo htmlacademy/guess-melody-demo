@@ -1,0 +1,17 @@
+{
+  "name": "guess-melody",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Учебный проект «{{projectTitle}}» от HTML Academy",
+  "scripts": {
+    "eslint": "eslint src/**/*.js",
+    "test": "npm run eslint"
+  },
+  "devDependencies": {
+    "eslint": "5.13.0",
+    "eslint-config-htmlacademy": "0.5.2"
+  },
+  "engines": {
+    "node": "10"
+  }
+}
