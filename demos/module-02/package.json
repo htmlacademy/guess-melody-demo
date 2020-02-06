@@ -1,13 +1,13 @@
 {
-  "name": "guess-melody",
+  "name": "02-demo",
   "version": "1.0.0",
   "private": true,
-  "description": "Учебный проект «{{projectTitle}}» от HTML Academy",
+  "description": "Демонстрации к лекции второго модуля",
   "scripts": {
     "build": "webpack --mode production",
     "eslint": "eslint --ext .jsx --ext .js src/",
     "start": "webpack-dev-server",
-    "test": "npm run eslint && npm run test.jest",
+    "test": "npm run && npm run test.jest",
     "test.jest": "jest"
   },
   "devDependencies": {
