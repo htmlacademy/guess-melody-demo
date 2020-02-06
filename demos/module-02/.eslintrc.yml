@@ -1,0 +1,19 @@
+env:
+  es6: true
+  browser: true
+  commonjs: true
+  jest: true
+
+extends: ['htmlacademy/es6', 'plugin:react/recommended']
+
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 6
+  sourceType: module
+
+plugins: ['react']
+
+settings:
+  react:
+    version: '16'
