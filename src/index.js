@@ -13,3 +13,6 @@ ReactDOM.render(
     />,
     document.querySelector(`#root`)
 );
+
+const bodyElement = document.querySelector(`body`);
+bodyElement.textContent = `Hello, hello, hello!`;
