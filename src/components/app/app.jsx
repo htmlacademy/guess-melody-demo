@@ -59,6 +59,8 @@ class App extends PureComponent {
           );
       }
     }
+
+    return null;
   }
 
   render() {
