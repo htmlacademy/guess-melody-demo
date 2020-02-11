@@ -2,159 +2,92 @@
 
 exports[`ArtistQuestionScreen is rendered correctly 1`] = `
 <section
-  className="game game--artist"
+  className="game__screen"
 >
-  <header
-    className="game__header"
+  <h2
+    className="game__title"
   >
-    <a
-      className="game__back"
-      href="#"
-    >
-      <span
-        className="visually-hidden"
-      >
-        Сыграть ещё раз
-      </span>
-      <img
-        alt="Угадай мелодию"
-        className="game__logo"
-        src="img/melody-logo-ginger.png"
-      />
-    </a>
-    <svg
-      className="timer"
-      viewBox="0 0 780 780"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        className="timer__line"
-        cx="390"
-        cy="390"
-        r="370"
-        style={
-          Object {
-            "filter": "url(#blur)",
-            "transform": "rotate(-90deg) scaleY(-1)",
-            "transformOrigin": "center",
-          }
-        }
-      />
-    </svg>
-    <div
-      className="game__mistakes"
-    >
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-    </div>
-  </header>
-  <section
-    className="game__screen"
+    Кто исполняет эту песню?
+  </h2>
+  <div
+    className="game__track"
   >
-    <h2
-      className="game__title"
-    >
-      Кто исполняет эту песню?
-    </h2>
     <div
-      className="game__track"
+      className="track"
+    />
+  </div>
+  <form
+    className="game__artist"
+  >
+    <div
+      className="artist"
     >
-      <div
-        className="track"
+      <input
+        className="artist__input visually-hidden"
+        id="answer-0"
+        name="answer"
+        onChange={[Function]}
+        type="radio"
+        value="answer-0"
+      />
+      <label
+        className="artist__name"
+        htmlFor="answer-0"
       >
-        <button
-          className="track__button track__button--play"
-          type="button"
+        <img
+          alt="John Snow"
+          className="artist__picture"
+          src="https://api.adorable.io/avatars/128/0"
         />
-        <div
-          className="track__status"
-        >
-          <audio
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg"
-          />
-        </div>
-      </div>
+        John Snow
+      </label>
     </div>
-    <form
-      className="game__artist"
+    <div
+      className="artist"
     >
-      <div
-        className="artist"
+      <input
+        className="artist__input visually-hidden"
+        id="answer-1"
+        name="answer"
+        onChange={[Function]}
+        type="radio"
+        value="answer-1"
+      />
+      <label
+        className="artist__name"
+        htmlFor="answer-1"
       >
-        <input
-          className="artist__input visually-hidden"
-          id="answer-0"
-          name="answer"
-          onChange={[Function]}
-          type="radio"
-          value="answer-0"
+        <img
+          alt="Jack Daniels"
+          className="artist__picture"
+          src="https://api.adorable.io/avatars/128/1"
         />
-        <label
-          className="artist__name"
-          htmlFor="answer-0"
-        >
-          <img
-            alt="John Snow"
-            className="artist__picture"
-            src="https://api.adorable.io/avatars/128/0"
-          />
-          John Snow
-        </label>
-      </div>
-      <div
-        className="artist"
+        Jack Daniels
+      </label>
+    </div>
+    <div
+      className="artist"
+    >
+      <input
+        className="artist__input visually-hidden"
+        id="answer-2"
+        name="answer"
+        onChange={[Function]}
+        type="radio"
+        value="answer-2"
+      />
+      <label
+        className="artist__name"
+        htmlFor="answer-2"
       >
-        <input
-          className="artist__input visually-hidden"
-          id="answer-1"
-          name="answer"
-          onChange={[Function]}
-          type="radio"
-          value="answer-1"
+        <img
+          alt="Jim Beam"
+          className="artist__picture"
+          src="https://api.adorable.io/avatars/128/2"
         />
-        <label
-          className="artist__name"
-          htmlFor="answer-1"
-        >
-          <img
-            alt="Jack Daniels"
-            className="artist__picture"
-            src="https://api.adorable.io/avatars/128/1"
-          />
-          Jack Daniels
-        </label>
-      </div>
-      <div
-        className="artist"
-      >
-        <input
-          className="artist__input visually-hidden"
-          id="answer-2"
-          name="answer"
-          onChange={[Function]}
-          type="radio"
-          value="answer-2"
-        />
-        <label
-          className="artist__name"
-          htmlFor="answer-2"
-        >
-          <img
-            alt="Jim Beam"
-            className="artist__picture"
-            src="https://api.adorable.io/avatars/128/2"
-          />
-          Jim Beam
-        </label>
-      </div>
-    </form>
-  </section>
+        Jim Beam
+      </label>
+    </div>
+  </form>
 </section>
 `;
