@@ -18,17 +18,6 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--pause"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >
@@ -52,17 +41,6 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--play"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >
@@ -86,17 +64,6 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--play"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >
@@ -120,17 +87,6 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
     <div
       className="track"
     >
-      <button
-        className="track__button track__button--play"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
       <div
         className="game__answer"
       >
