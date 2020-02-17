@@ -14,19 +14,7 @@ exports[`ArtistQuestionScreen is rendered correctly 1`] = `
   >
     <div
       className="track"
-    >
-      <button
-        className="track__button track__button--pause"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
-      />
-      <div
-        className="track__status"
-      >
-        <audio />
-      </div>
-    </div>
+    />
   </div>
   <form
     className="game__artist"
