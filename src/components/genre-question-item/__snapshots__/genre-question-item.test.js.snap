@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenreQuestionItem is rendered correctly 1`] = `
+<div
+  className="track"
+>
+  <div
+    className="game__answer"
+  >
+    <input
+      checked={false}
+      className="game__input visually-hidden"
+      id="answer-0"
+      name="answer"
+      onChange={[Function]}
+      type="checkbox"
+      value="answer-0"
+    />
+    <label
+      className="game__check"
+      htmlFor="answer-0"
+    >
+      Отметить
+    </label>
+  </div>
+</div>
+`;
