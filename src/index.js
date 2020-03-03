@@ -10,12 +10,21 @@ import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./
 import {createAPI} from "./api.js";
 
 
-const api = createAPI(() => {});
+// Выносим код в отдельную функцию, чтобы развязать циклическую зависимость:
+// `store` зависит от `api`, а `api` зависит от `store`.
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
     applyMiddleware(thunk.withExtraArgument(api))
 );
+
+store.dispatch(DataOperation.loadQuestions());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
