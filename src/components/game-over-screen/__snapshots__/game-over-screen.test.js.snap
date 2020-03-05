@@ -24,12 +24,12 @@ exports[`Should GameOverScreen render correctly 1`] = `
   >
     У вас закончились все попытки. Ничего, повезёт в следующий раз!
   </p>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Попробовать ещё раз
-  </button>
+  </a>
 </section>
 `;
