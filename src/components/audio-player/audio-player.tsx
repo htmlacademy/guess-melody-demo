@@ -1,13 +1,13 @@
-import React, {PureComponent, Fragment} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 
-export default class AudioPlayer extends PureComponent {
+export default class AudioPlayer extends React.PureComponent {
   render() {
     const {isLoading, isPlaying, onPlayButtonClick, children} = this.props;
 
     return (
-      <Fragment>
+      <React.Fragment>
         <button
           className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
           type="button"
@@ -17,7 +17,7 @@ export default class AudioPlayer extends PureComponent {
         <div className="track__status">
           {children}
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
