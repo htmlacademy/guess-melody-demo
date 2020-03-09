@@ -1,13 +1,13 @@
-import React, {PureComponent, createRef} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 
-class AuthScreen extends PureComponent {
+class AuthScreen extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.loginRef = createRef();
-    this.passwordRef = createRef();
+    this.loginRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
