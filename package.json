@@ -5,7 +5,9 @@
   "description": "Учебный проект «{{projectTitle}}» от HTML Academy",
   "scripts": {
     "build": "webpack --mode production",
-    "eslint": "eslint --ext .jsx --ext .js src/",
+    "eslint": "npm run eslint.js && npm run eslint.ts",
+    "eslint.js": "eslint --ext .jsx --ext .js src/",
+    "eslint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx src/",
     "start": "webpack-dev-server",
     "test": "npm run eslint && npm run test.jest",
     "test.jest": "jest"
