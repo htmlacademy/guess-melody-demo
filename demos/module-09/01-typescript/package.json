@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "tsc index.ts"
+  },
+  "devDependencies": {
+    "typescript": "3.8.3"
+  }
+}
