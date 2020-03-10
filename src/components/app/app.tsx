@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/game/game";
@@ -131,18 +130,6 @@ class App extends React.PureComponent {
     );
   }
 }
-
-App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
-  maxMistakes: PropTypes.number.isRequired,
-  mistakes: PropTypes.number.isRequired,
-  questions: PropTypes.array.isRequired,
-  onUserAnswer: PropTypes.func.isRequired,
-  onWelcomeButtonClick: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
-  step: PropTypes.number.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
