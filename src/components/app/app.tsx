@@ -11,7 +11,6 @@ import GenreQuestionScreen from "../genre-question-screen/genre-question-screen"
 import GameOverScreen from "../game-over-screen/game-over-screen";
 import WinScreen from "../win-screen/win-screen";
 import PrivateRoute from "../private-route/private-route";
-import {GameType} from "../../const";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
 import {getStep, getMistakes, getMaxMistakes} from "../../reducer/game/selectors";
@@ -20,11 +19,27 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors";
 import {Operation as UserOperation} from "../../reducer/user/user";
 import history from "../../history";
 import {AppRoute} from "../../const";
+import {GameType, QuestionGenre, QuestionArtist} from "../../types";
+
+
+interface Props {
+  authorizationStatus: string;
+  login: () => void;
+  maxMistakes: number;
+  mistakes: number;
+  questions: Question[];
+  onUserAnswer: () => void;
+  onWelcomeButtonClick: () => void;
+  resetGame: () => void;
+  step: number;
+}
+
+type Question = QuestionArtist | QuestionGenre;
 
 const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
-class App extends React.PureComponent {
+class App extends React.PureComponent<Props, {}> {
   _renderGameScreen() {
     const {
       authorizationStatus,
