@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import Mistakes from "./mistakes.jsx";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import Mistakes from "./mistakes";
 
 describe(`Should Mistakes render correctly`, () => {
   it(`With one zero count`, () => {
