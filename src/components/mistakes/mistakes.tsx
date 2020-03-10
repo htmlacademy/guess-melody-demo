@@ -1,7 +1,11 @@
 import * as React from "react";
 
 
-const Mistakes = (props) => {
+interface Props {
+  count: number;
+}
+
+const Mistakes: React.FunctionComponent<Props> = (props: Props) => {
   const {count} = props;
 
   const mistakes = new Array(count).fill(``);
