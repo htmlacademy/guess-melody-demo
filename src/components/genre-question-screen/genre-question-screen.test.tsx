@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import GenreQuestionScreen from "./genre-question-screen";
 import {GameType, QuestionGenre} from "../../types";

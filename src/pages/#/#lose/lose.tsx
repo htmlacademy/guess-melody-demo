@@ -1,13 +1,13 @@
-import React from "react";
+import * as React from "react";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const";
+
+import {AppRoute} from "../../../const";
+import {useResetGame} from 'reducer/game';
 
 
-interface Props {
-  onReplayButtonClick: () => void;
-}
+const Lose: React.FC = (): JSX.Element => {
+  const onReplayButtonClick = useResetGame();
 
-const GameOverScreen: React.FC<Props> = ({onReplayButtonClick}): JSX.Element => {
   return (
     <section className="result">
       <div className="result__logo">
@@ -27,4 +27,4 @@ const GameOverScreen: React.FC<Props> = ({onReplayButtonClick}): JSX.Element => 
 };
 
 
-export default GameOverScreen;
+export default Lose;

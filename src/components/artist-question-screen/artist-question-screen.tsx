@@ -1,4 +1,5 @@
-import React from "react";
+import * as React from "react";
+
 import {QuestionArtist, AnswerArtist} from "../../types";
 
 
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const ArtistQuestionScreen: React.FC<Props> = ({onAnswer, question, renderPlayer}): JSX.Element => {
-  const { answers, song } = question;
+  const {answers, song} = question;
 
   return (
     <section className="game__screen">

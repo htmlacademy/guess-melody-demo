@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 
 interface Props {
@@ -21,6 +21,6 @@ const AuditPlayer: React.FC<Props> = ({isLoading, isPlaying, onPlayButtonClick, 
       </div>
     </>
   );
-}
+};
 
 export default AuditPlayer;

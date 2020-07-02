@@ -1,29 +1,33 @@
-import React from "react";
+import * as React from "react";
+import {useCallback} from 'react';
 import {Route, Redirect, RouteProps} from "react-router-dom";
 import {connect} from "react-redux";
+
+import {AuthorizationStatus} from "reducer/user/user";
+import {getAuthorizationStatus} from "reducer/user/selectors";
+
 import {AppRoute} from "../../const";
-import {AuthorizationStatus} from "../../reducer/user/user";
-import {getAuthorizationStatus} from "../../reducer/user/selectors";
 
 
 type Props = RouteProps & {
   authorizationStatus: string;
-  render: () => React.ReactNode;
+  children: React.ReactNode;
 }
 
-const PrivateRoute: React.FC<Props> = ({render, path, exact, authorizationStatus}): JSX.Element => {
+const PrivateRoute: React.FC<Props> = ({authorizationStatus, children, exact, path}): JSX.Element => {
+  const renderRoute = useCallback(() => {
+    return (
+      authorizationStatus === AuthorizationStatus.AUTH
+        ? children
+        : <Redirect to={AppRoute.LOGIN} />
+    );
+  }, [authorizationStatus]);
 
   return (
     <Route
       path={path}
       exact={exact}
-      render={() => {
-        return (
-          authorizationStatus === AuthorizationStatus.AUTH
-            ? render()
-            : <Redirect to={AppRoute.LOGIN} />
-        );
-      }}
+      render={renderRoute}
     />
   );
 };

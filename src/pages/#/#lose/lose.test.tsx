@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import GameOverScreen from "./game-over-screen";
-import history from "../../history";
-import {noop} from "../../utils";
+
+import Lose from "./lose";
+import history from "../../../history";
 
 
 it(`Should GameOverScreen render correctly`, () => {
@@ -12,9 +12,7 @@ it(`Should GameOverScreen render correctly`, () => {
         <Router
           history={history}
         >
-          <GameOverScreen
-            onReplayButtonClick={noop}
-          />
+          <Lose />
         </Router>
     )
     .toJSON();

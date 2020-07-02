@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 
 interface Props {
@@ -31,7 +31,7 @@ const withAudio = (Component) => {
 
     componentDidMount() {
       const {src} = this.props;
-      const audio = this.audioRef.current;
+      const audio: HTMLAudioElement = this.audioRef.current;
 
       audio.src = src;
 
@@ -55,7 +55,7 @@ const withAudio = (Component) => {
     }
 
     componentDidUpdate() {
-      const audio = this.audioRef.current;
+      const audio: HTMLAudioElement = this.audioRef.current;
 
       if (this.state.isPlaying) {
         audio.play();
@@ -65,7 +65,7 @@ const withAudio = (Component) => {
     }
 
     componentWillUnmount() {
-      const audio = this.audioRef.current;
+      const audio: HTMLAudioElement = this.audioRef.current;
 
       audio.oncanplaythrough = null;
       audio.onplay = null;

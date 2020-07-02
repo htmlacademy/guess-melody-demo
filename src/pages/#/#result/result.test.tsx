@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import WinScreen from "./win-screen";
-import history from "../../history";
-import {noop} from "../../utils";
+
+import Result from "./result";
+import history from "../../../history";
 
 
 describe(`Should WinScreen render correctly`, () => {
@@ -14,11 +14,7 @@ describe(`Should WinScreen render correctly`, () => {
             <Router
               history={history}
             >
-              <WinScreen
-                questionsCount={3}
-                mistakesCount={0}
-                onReplayButtonClick={noop}
-              />
+              <Result />
             </Router>
         )
         .toJSON();
@@ -32,11 +28,7 @@ describe(`Should WinScreen render correctly`, () => {
             <Router
               history={history}
             >
-              <WinScreen
-                questionsCount={3}
-                mistakesCount={1}
-                onReplayButtonClick={noop}
-              />
+              <Result />
             </Router>
         )
         .toJSON();
@@ -52,11 +44,7 @@ describe(`Should WinScreen render correctly`, () => {
             <Router
               history={history}
             >
-              <WinScreen
-                questionsCount={2}
-                mistakesCount={0}
-                onReplayButtonClick={noop}
-              />
+              <Result />
             </Router>
         )
         .toJSON();
@@ -70,11 +58,7 @@ describe(`Should WinScreen render correctly`, () => {
             <Router
               history={history}
             >
-              <WinScreen
-                questionsCount={2}
-                mistakesCount={1}
-                onReplayButtonClick={noop}
-              />
+              <Result />
             </Router>
         )
         .toJSON();

@@ -3,5 +3,6 @@ extends: ['./.eslintrc.yml', 'plugin:@typescript-eslint/recommended']
 parser: '@typescript-eslint/parser'
 
 rules:
+  react/prop-types: 0
   '@typescript-eslint/explicit-function-return-type': 'off'
   '@typescript-eslint/no-use-before-define': 'off'

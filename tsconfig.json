@@ -1,14 +1,19 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "baseUrl": "./src",
     "outDir": "./dist",
+    "moduleResolution": "node",
+    "pretty": true,
     "sourceMap": true,
     "module": "commonjs",
-    "target": "es2016",
+    "target": "es6",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "lib": ["dom"]
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
     "demos",
     "node_modules",

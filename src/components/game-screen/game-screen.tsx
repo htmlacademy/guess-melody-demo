@@ -1,10 +1,11 @@
-import React from "react";
-import {useSelector} from "react-redux";
+import * as React from "react";
 import {Link} from "react-router-dom";
+
+import {useGoToWelcome} from "reducer/game/hooks/useGoToWelcome";
+import {useMistakes} from "reducer/game/hooks/useMistakes";
+
 import {GameType} from "../../types";
 import Mistakes from "../mistakes/mistakes";
-import {getMistakes} from "../../reducer/game/selectors";
-import {useGoToWelcome} from "../../reducer/game/hooks/useGoToWelcome";
 import {AppRoute} from "../../const";
 
 
@@ -13,8 +14,8 @@ interface Props {
   children: React.ReactNode;
 }
 
-const GameScreen: React.FC<Props> = ({ children, type }): JSX.Element => {
-  const mistakes = useSelector(getMistakes);
+const GameScreen: React.FC<Props> = ({children, type}): JSX.Element => {
+  const mistakes = useMistakes();
 
   const goToWelcome = useGoToWelcome();
 

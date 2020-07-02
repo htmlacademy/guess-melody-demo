@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {Subtract} from "utility-types";
 import Player from "../../components/audio-player/audio-player";
 import withAudio from "../with-audio/with-audio";

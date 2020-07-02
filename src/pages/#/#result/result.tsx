@@ -1,19 +1,19 @@
-import React, {useMemo} from "react";
+import * as React from "react";
+import {useMemo} from "react";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const";
+
+import {AppRoute} from "../../../const";
+import {useQuestions} from 'reducer/data';
+import {useMistakes, useResetGame} from 'reducer/game';
 
 
-interface Props {
-  questionsCount: number;
-  mistakesCount: number;
-  onReplayButtonClick: () => void;
-}
-
-const WinScreen: React.FC<Props> = ({
-  questionsCount,
-  mistakesCount,
-  onReplayButtonClick
-}): JSX.Element => {
+const Result: React.FC = (): JSX.Element => {
+  const mistakesCount = useMistakes();
+  const questions = useQuestions();
+  const onReplayButtonClick = useResetGame();
+  const questionsCount = useMemo(() => {
+    return questions.length;
+  }, [questions]);
 
   const correctlyQuestionsCount = useMemo(() => {
     return questionsCount - mistakesCount;
@@ -40,4 +40,4 @@ const WinScreen: React.FC<Props> = ({
 };
 
 
-export default WinScreen;
+export default Result;

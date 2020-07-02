@@ -22,13 +22,15 @@ module.exports = {
           loader: `babel-loader`,
         },
       }, {
-        test: /\.(tsx|ts)?$/,
+        test: /\.(tsx|ts)$/,
+        exclude: /node_modules/,
         loader: `ts-loader`
       }
     ],
   },
   resolve: {
-    extensions: [`.ts`, `.tsx`, `.js`, `json`]
+    modules: [`node_modules`, `src`],
+    extensions: [`.ts`, `.tsx`, `.js`, `.jsx`, `json`]
   },
   devtool: `source-map`,
 };
