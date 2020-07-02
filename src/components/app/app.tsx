@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/game/game";

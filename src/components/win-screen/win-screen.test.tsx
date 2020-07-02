@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as renderer from "react-test-renderer";
+import React from "react";
+import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 import WinScreen from "./win-screen";
 import history from "../../history";

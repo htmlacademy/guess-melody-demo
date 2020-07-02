@@ -4,26 +4,26 @@ export enum GameType {
 }
 
 export interface AnswerArtist {
-  artist: string,
-  picture: string,
+  artist: string;
+  picture: string;
 }
 
 export interface AnswerGenre {
-  genre: string,
-  src: string,
+  genre: string;
+  src: string;
 }
 
 export interface QuestionArtist {
-  answers: AnswerArtist[],
+  answers: AnswerArtist[];
   song: {
     artist: string,
     src: string,
-  },
-  type: GameType.ARTIST,
+  };
+  type: GameType;
 }
 
 export interface QuestionGenre {
-  answers: AnswerGenre[],
-  genre: string,
-  type: GameType.GENRE,
+  answers: AnswerGenre[];
+  genre: string;
+  type: GameType;
 }

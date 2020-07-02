@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as renderer from "react-test-renderer";
+import React from "react";
+import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import {GameScreen} from "./game-screen";
+import GameScreen from "./game-screen";
 import {GameType} from "../../types";
 import history from "../../history";
 import {noop} from "../../utils";
@@ -17,8 +17,7 @@ describe(`GameScreen component render correctly`, () => {
         >
           <GameScreen
             type={GameType.ARTIST}
-            mistakes={3}
-            goToWelcome={noop}
+            // mistakes={3}
           >
             {children}
           </GameScreen>
@@ -35,8 +34,7 @@ describe(`GameScreen component render correctly`, () => {
         >
           <GameScreen
             type={GameType.GENRE}
-            mistakes={3}
-            goToWelcome={noop}
+            // mistakes={3}
           >
             {children}
           </GameScreen>

@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 import {configure, shallow, mount} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import Adapter from "enzyme-adapter-react-16";
 import GenreQuestionScreen from "./genre-question-screen";
 import {GameType, QuestionGenre} from "../../types";
 import {noop} from "../../utils";

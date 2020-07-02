@@ -1,27 +1,22 @@
-import * as React from "react";
-import {connect} from "react-redux";
+import React from "react";
+import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {GameType} from "../../types";
 import Mistakes from "../mistakes/mistakes";
 import {getMistakes} from "../../reducer/game/selectors";
-import {ActionCreator} from "../../reducer/game/game";
+import {useGoToWelcome} from "../../reducer/game/hooks/useGoToWelcome";
 import {AppRoute} from "../../const";
 
 
 interface Props {
   type: GameType;
   children: React.ReactNode;
-  goToWelcome: () => void;
-  mistakes: number;
 }
 
-const GameScreen: React.FunctionComponent<Props> = (props: Props) => {
-  const {
-    type,
-    children,
-    goToWelcome,
-    mistakes,
-  } = props;
+const GameScreen: React.FC<Props> = ({ children, type }): JSX.Element => {
+  const mistakes = useSelector(getMistakes);
+
+  const goToWelcome = useGoToWelcome();
 
   return (
     <section className={`game game--${type}`}>
@@ -50,16 +45,4 @@ const GameScreen: React.FunctionComponent<Props> = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  mistakes: getMistakes(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  goToWelcome() {
-    dispatch(ActionCreator.goToWelcome());
-  },
-});
-
-
-export {GameScreen};
-export default connect(mapStateToProps, mapDispatchToProps)(GameScreen);
+export default GameScreen;

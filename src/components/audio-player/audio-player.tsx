@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 
 interface Props {
@@ -7,22 +7,20 @@ interface Props {
   onPlayButtonClick: () => void;
 }
 
-export default class AudioPlayer extends React.PureComponent<Props, {}> {
-  render() {
-    const {isLoading, isPlaying, onPlayButtonClick, children} = this.props;
-
-    return (
-      <React.Fragment>
-        <button
-          className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
-          type="button"
-          disabled={isLoading}
-          onClick={() => onPlayButtonClick()}
-        />
-        <div className="track__status">
-          {children}
-        </div>
-      </React.Fragment>
-    );
-  }
+const AuditPlayer: React.FC<Props> = ({isLoading, isPlaying, onPlayButtonClick, children}): JSX.Element => {
+  return (
+    <>
+      <button
+        className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
+        type="button"
+        disabled={isLoading}
+        onClick={() => onPlayButtonClick()}
+      />
+      <div className="track__status">
+        {children}
+      </div>
+    </>
+  );
 }
+
+export default AuditPlayer;

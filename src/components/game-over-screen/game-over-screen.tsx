@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 
@@ -7,9 +7,7 @@ interface Props {
   onReplayButtonClick: () => void;
 }
 
-const GameOverScreen: React.FunctionComponent<Props> = (props: Props) => {
-  const {onReplayButtonClick} = props;
-
+const GameOverScreen: React.FC<Props> = ({onReplayButtonClick}): JSX.Element => {
   return (
     <section className="result">
       <div className="result__logo">

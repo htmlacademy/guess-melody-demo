@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 
 interface Props {
@@ -6,8 +6,7 @@ interface Props {
   onWelcomeButtonClick: () => void;
 }
 
-const WelcomeScreen: React.FunctionComponent<Props> = (props: Props) => {
-  const {errorsCount, onWelcomeButtonClick} = props;
+const WelcomeScreen: React.FC<Props> = ({errorsCount, onWelcomeButtonClick}): JSX.Element => {
 
   return (
     <section className="welcome">

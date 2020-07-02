@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 import {configure, shallow} from "enzyme";
-import * as Adapter from "enzyme-adapter-react-16";
+import Adapter from "enzyme-adapter-react-16";
 import withUserAnswer from "./with-user-answer";
 import {GameType, QuestionGenre} from "../../types";
 import {noop} from "../../utils";

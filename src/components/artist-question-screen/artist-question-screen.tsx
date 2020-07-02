@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {QuestionArtist, AnswerArtist} from "../../types";
 
 
@@ -8,12 +8,8 @@ interface Props {
   renderPlayer: (string, number) => React.ReactNode;
 }
 
-const ArtistQuestionScreen: React.FunctionComponent<Props> = (props: Props) => {
-  const {onAnswer, question, renderPlayer} = props;
-  const {
-    answers,
-    song,
-  } = question;
+const ArtistQuestionScreen: React.FC<Props> = ({onAnswer, question, renderPlayer}): JSX.Element => {
+  const { answers, song } = question;
 
   return (
     <section className="game__screen">

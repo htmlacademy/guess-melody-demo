@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as renderer from "react-test-renderer";
+import React from "react";
+import renderer from "react-test-renderer";
 import GenreQuestionScreen from "./genre-question-screen";
 import {GameType, QuestionGenre} from "../../types";
 import {noop} from "../../utils";
