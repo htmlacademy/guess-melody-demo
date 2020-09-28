@@ -4,14 +4,28 @@
   "private": true,
   "description": "Учебный проект «{{projectTitle}}» от HTML Academy",
   "scripts": {
-    "eslint": "eslint src/**/*.js",
+    "build": "webpack --mode production",
+    "eslint": "eslint --ext .jsx --ext .js src/",
+    "start": "webpack-dev-server",
     "test": "npm run eslint"
   },
   "devDependencies": {
+    "@babel/core": "7.8.3",
+    "@babel/preset-env": "7.8.3",
+    "@babel/preset-react": "7.8.3",
+    "babel-loader": "8.0.6",
     "eslint": "5.13.0",
-    "eslint-config-htmlacademy": "0.5.2"
+    "eslint-config-htmlacademy": "0.5.2",
+    "eslint-plugin-react": "7.18.0",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.10.1"
   },
   "engines": {
     "node": "10"
+  },
+  "dependencies": {
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
   }
 }
