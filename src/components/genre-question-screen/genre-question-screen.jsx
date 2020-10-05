@@ -43,6 +43,10 @@ class GenreQuestionScreen extends PureComponent {
           <h2 className="game__title">Выберите {genre} треки</h2>
           <form
             className="game__tracks"
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              onAnswer(question, this.state.answers);
+            }}
           >
             {answers.map((answer, i) => (
               <div key={`${i}-${answer.src}`} className="track">
