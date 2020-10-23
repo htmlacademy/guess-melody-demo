@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
@@ -16,7 +17,9 @@ const api = createAPI(
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 store.dispatch(fetchQuestionList());
