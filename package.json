@@ -15,6 +15,8 @@
     "@babel/preset-env": "7.8.3",
     "@babel/preset-react": "7.8.3",
     "babel-loader": "8.0.6",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",
     "eslint-plugin-react": "7.18.0",
