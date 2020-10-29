@@ -1,0 +1,38 @@
+{
+  "name": "demo-for-testing-section",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Демонстрации к разделу про тестирование",
+  "scripts": {
+    "build": "webpack --mode production",
+    "eslint": "eslint --ext .jsx --ext .js src/",
+    "start": "webpack-dev-server",
+    "test": "npm run && npm run test.jest",
+    "test.jest": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "7.8.3",
+    "@babel/preset-env": "7.8.3",
+    "@babel/preset-react": "7.8.3",
+    "babel-jest": "25.1.0",
+    "babel-loader": "8.0.6",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
+    "eslint": "5.13.0",
+    "eslint-config-htmlacademy": "0.5.2",
+    "eslint-plugin-react": "7.18.0",
+    "jest": "25.1.0",
+    "react-test-renderer": "16.12.0",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.10.1"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "dependencies": {
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
+  }
+}
