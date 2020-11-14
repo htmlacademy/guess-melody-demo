@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Render connected to store component Should WinScreen connected to store render correctly 1`] = `
+<section
+  className="result"
+>
+  <div
+    className="result__logo"
+  >
+    <img
+      alt="Угадай мелодию"
+      height="83"
+      src="img/melody-logo.png"
+      width="186"
+    />
+  </div>
+  <h2
+    className="result__title"
+  >
+    Вы настоящий меломан!
+  </h2>
+  <p
+    className="result__total"
+  >
+    Вы ответили правильно на 
+    31
+     вопросов и совершили 
+    2
+     ошибки
+  </p>
+  <button
+    className="replay"
+    onClick={[Function]}
+    type="button"
+  >
+    Сыграть ещё раз
+  </button>
+</section>
+`;
+
 exports[`Should WinScreen render correctly With 2 questions With 0 mistake 1`] = `
 <section
   className="result"
