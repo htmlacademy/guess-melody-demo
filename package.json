@@ -1,0 +1,17 @@
+{
+  "name": "guess-melody-6",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Демо-проект «Угадай мелодию» для курса «React. Разработка сложных клиентских приложений, 6-й поток»",
+  "scripts": {
+    "eslint": "eslint src/**/*.js",
+    "test": "npm run eslint"
+  },
+  "devDependencies": {
+    "eslint": "7.18.0",
+    "eslint-config-htmlacademy": "2.1.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
