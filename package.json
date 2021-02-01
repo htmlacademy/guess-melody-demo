@@ -4,12 +4,20 @@
   "private": true,
   "description": "Демо-проект «Угадай мелодию» для курса «React. Разработка сложных клиентских приложений, 6-й поток»",
   "scripts": {
-    "eslint": "eslint src/**/*.js",
+    "eslint": "eslint --ext .jsx --ext .js src/",
     "test": "npm run eslint"
   },
   "devDependencies": {
+    "@babel/core": "7.12.10",
+    "@babel/preset-env": "7.12.11",
+    "@babel/preset-react": "7.12.10",
+    "babel-loader": "8.2.2",
     "eslint": "7.18.0",
-    "eslint-config-htmlacademy": "2.1.0"
+    "eslint-config-htmlacademy": "2.1.0",
+    "eslint-plugin-react": "7.22.0",
+    "webpack": "4.46.0",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.2"
   },
   "engines": {
     "node": ">=12.0.0"
