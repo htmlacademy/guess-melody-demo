@@ -10,7 +10,8 @@ import WinScreen from '../win-screen/win-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 const App = (props) => {
-  const {errorsCount} = props;
+  const {errorsCount, questions} = props;
+  const [firstQuestion] = questions;
 
   return (
     <BrowserRouter>
@@ -22,7 +23,9 @@ const App = (props) => {
           <ArtistQuestionScreen />
         </Route>
         <Route exact path="/dev-genre">
-          <GenreQuestionScreen />
+          <GenreQuestionScreen
+            question={firstQuestion}
+          />
         </Route>
         <Route exact path="/login">
           <AuthScreen />
@@ -43,6 +46,7 @@ const App = (props) => {
 
 App.propTypes = {
   errorsCount: PropTypes.number.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default App;
