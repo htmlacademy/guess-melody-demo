@@ -8,13 +8,11 @@ const AudioPlayer = ({defaultIsPlaying, src}) => {
   const audioRef = useRef();
 
   useEffect(() => {
-    audioRef.current = new Audio(src);
     audioRef.current.oncanplaythrough = () => setIsLoading(false);
     audioRef.current.onplay = () => setIsPlaying(true);
     audioRef.current.onpause = () => setIsPlaying(false);
 
     return () => {
-      audioRef.current.pause();
       audioRef.current.oncanplaythrough = null;
       audioRef.current.onplay = null;
       audioRef.current.onpause = null;
@@ -40,7 +38,7 @@ const AudioPlayer = ({defaultIsPlaying, src}) => {
         onClick={() => setIsPlaying(!isPlaying)}
       />
       <div className="track__status">
-        <audio />
+        <audio src={src} ref={audioRef} />
       </div>
     </Fragment>
   );
