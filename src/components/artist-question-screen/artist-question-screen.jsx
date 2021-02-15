@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import artistQuestionProp from './artist-question.prop';
 import AudioPlayer from '../audio-player/audio-player';
 
 const ArtistQuestionScreen = (props) => {
+  const [isPlaying, setIsPlaying] = useState(true);
   const {onAnswer, question} = props;
   const {answers, song} = question;
 
@@ -33,8 +34,9 @@ const ArtistQuestionScreen = (props) => {
         <div className="game__track">
           <div className="track">
             <AudioPlayer
-              defaultIsPlaying={true}
+              isPlaying={isPlaying}
               src={song.src}
+              onPlayButtonClick={() => setIsPlaying(!isPlaying)}
             />
           </div>
         </div>

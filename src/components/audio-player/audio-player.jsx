@@ -1,16 +1,13 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 
-const AudioPlayer = ({defaultIsPlaying, src}) => {
+const AudioPlayer = ({isPlaying, src, onPlayButtonClick}) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(defaultIsPlaying);
 
   const audioRef = useRef();
 
   useEffect(() => {
     audioRef.current.oncanplaythrough = () => setIsLoading(false);
-    audioRef.current.onplay = () => setIsPlaying(true);
-    audioRef.current.onpause = () => setIsPlaying(false);
 
     return () => {
       audioRef.current.oncanplaythrough = null;
@@ -35,7 +32,7 @@ const AudioPlayer = ({defaultIsPlaying, src}) => {
         className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
         type="button"
         disabled={isLoading}
-        onClick={() => setIsPlaying(!isPlaying)}
+        onClick={onPlayButtonClick}
       />
       <div className="track__status">
         <audio src={src} ref={audioRef} />
@@ -45,7 +42,8 @@ const AudioPlayer = ({defaultIsPlaying, src}) => {
 };
 
 AudioPlayer.propTypes = {
-  defaultIsPlaying: PropTypes.bool.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
   src: PropTypes.string.isRequired,
 };
 

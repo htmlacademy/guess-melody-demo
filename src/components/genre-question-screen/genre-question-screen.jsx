@@ -6,6 +6,7 @@ import AudioPlayer from '../audio-player/audio-player';
 
 const GenreQuestionScreen = (props) => {
   const [userAnswers, setUserAnswers] = useState([false, false, false, false]);
+  const [activePlayer, setActivePlayer] = useState(0);
   const {onAnswer, question} = props;
   const {answers, genre} = question;
 
@@ -41,8 +42,9 @@ const GenreQuestionScreen = (props) => {
           {answers.map((answer, id) => (
             <div key={`${id}-${answer.src}`} className="track">
               <AudioPlayer
-                defaultIsPlaying={id === 0}
+                isPlaying={id === activePlayer}
                 src={answer.src}
+                onPlayButtonClick = {() => setActivePlayer(activePlayer === id ? -1 : id)}
               />
               <div className="game__answer">
                 <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${id}`}
