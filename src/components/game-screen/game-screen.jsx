@@ -7,6 +7,11 @@ import GenreQuestionScreen from '../genre-question-screen/genre-question-screen'
 import artistQuestionProp from "../artist-question-screen/artist-question.prop";
 import genreQuestionProp from "../genre-question-screen/genre-question.prop";
 
+import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
+
+const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
+const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
+
 const GameScreen = (props) => {
   const [step, setStep] = useState(FIRST_GAME_STEP);
 
@@ -22,14 +27,14 @@ const GameScreen = (props) => {
   switch (question.type) {
     case GameType.ARTIST:
       return (
-        <ArtistQuestionScreen
+        <ArtistQuestionScreenWrapped
           question={question}
           onAnswer={() => setStep((prevStep) => prevStep + 1)}
         />
       );
     case GameType.GENRE:
       return (
-        <GenreQuestionScreen
+        <GenreQuestionScreenWrapped
           question={question}
           onAnswer={() => setStep((prevStep) => prevStep + 1)}
         />
