@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom';
 import {GameType, FIRST_GAME_STEP} from '../../const';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
+import artistQuestionProp from "../artist-question-screen/artist-question.prop";
+import genreQuestionProp from "../genre-question-screen/genre-question.prop";
 
 const GameScreen = (props) => {
   const [step, setStep] = useState(FIRST_GAME_STEP);
@@ -38,7 +40,9 @@ const GameScreen = (props) => {
 };
 
 GameScreen.propTypes = {
-  questions: PropTypes.array.isRequired,
+  questions: PropTypes.arrayOf(
+      PropTypes.oneOfType([artistQuestionProp, genreQuestionProp]).isRequired
+  ),
 };
 
 export default GameScreen;
