@@ -7,6 +7,7 @@ import {State} from '../../types/state';
 import {Actions} from '../../types/action';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
+import Mistakes from '../mistakes/mistakes';
 import {QuestionArtist, QuestionGenre, Questions} from '../../types/question';
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
 
@@ -17,8 +18,9 @@ type GameScreenProps = {
   questions: Questions;
 };
 
-const mapStateToProps = ({step}: State) => ({
+const mapStateToProps = ({step, mistakes}: State) => ({
   step,
+  mistakes,
 });
 
 // Без использования bindActionCreators
@@ -34,7 +36,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & GameScreenProps;
 
 function GameScreen(props: ConnectedComponentProps): JSX.Element {
-  const {questions, step, onUserAnswer} = props;
+  const {questions, step, onUserAnswer, mistakes} = props;
   const question = questions[step];
 
   if (step >= questions.length || !question) {
@@ -50,7 +52,9 @@ function GameScreen(props: ConnectedComponentProps): JSX.Element {
           key={step}
           question={question as QuestionArtist}
           onAnswer={onUserAnswer}
-        />
+        >
+          <Mistakes count={mistakes} />
+        </ArtistQuestionScreenWrapped>
       );
     case GameType.Genre:
       return (
@@ -58,7 +62,9 @@ function GameScreen(props: ConnectedComponentProps): JSX.Element {
           key={step}
           question={question as QuestionGenre}
           onAnswer={onUserAnswer}
-        />
+        >
+          <Mistakes count={mistakes} />
+        </GenreQuestionScreenWrapped>
       );
     default:
       return <Redirect to={AppRoute.Root} />;
