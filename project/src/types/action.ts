@@ -1,6 +1,7 @@
 export enum ActionType {
   IncrementMistake = 'game/incrementMistake',
   IncrementStep = 'game/incrementStep',
+  ResetGame = 'game/reset',
 }
 
 export type IncrementMistakeAction = {
@@ -12,4 +13,8 @@ export type IncrementStepAction = {
   type: ActionType.IncrementStep;
 };
 
-export type Actions = IncrementMistakeAction | IncrementStepAction;
+export type ResetGameAction = {
+  type: ActionType.ResetGame;
+};
+
+export type Actions = IncrementMistakeAction | IncrementStepAction | ResetGameAction;

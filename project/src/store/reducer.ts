@@ -15,6 +15,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, step: state.step + STEP_COUNT};
     case ActionType.IncrementMistake:
       return {...state, mistakes: state.mistakes + action.payload};
+    case ActionType.ResetGame:
+      return {...initialState};
     default:
       return state;
   }
