@@ -1,12 +1,17 @@
+import {Question, UserAnswer} from './question';
+
 export enum ActionType {
-  IncrementMistake = 'game/incrementMistake',
+  CheckUserAnswer = 'game/checkUserAnswer',
   IncrementStep = 'game/incrementStep',
   ResetGame = 'game/reset',
 }
 
-export type IncrementMistakeAction = {
-  type: ActionType.IncrementMistake;
-  payload: number;
+export type CheckUserAnswerAction = {
+  type: ActionType.CheckUserAnswer;
+  payload: {
+    question: Question;
+    userAnswer: UserAnswer;
+  };
 };
 
 export type IncrementStepAction = {
@@ -17,4 +22,4 @@ export type ResetGameAction = {
   type: ActionType.ResetGame;
 };
 
-export type Actions = IncrementMistakeAction | IncrementStepAction | ResetGameAction;
+export type Actions = CheckUserAnswerAction | IncrementStepAction | ResetGameAction;
