@@ -1,6 +1,10 @@
-import {useState} from 'react';
 import {Redirect} from 'react-router-dom';
-import {AppRoute, GameType, FIRST_GAME_STEP} from '../../const';
+import {Dispatch} from 'redux';
+import {connect, ConnectedProps} from 'react-redux';
+import {incrementStep} from '../../store/action';
+import {AppRoute, GameType} from '../../const';
+import {State} from '../../types/state';
+import {Actions} from '../../types/action';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import {QuestionArtist, QuestionGenre, Questions} from '../../types/question';
@@ -13,9 +17,24 @@ type GameScreenProps = {
   questions: Questions;
 };
 
-function GameScreen({questions}: GameScreenProps): JSX.Element {
-  const [step, setStep] = useState(FIRST_GAME_STEP);
+const mapStateToProps = ({step}: State) => ({
+  step,
+});
 
+// Без использования bindActionCreators
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onUserAnswer() {
+    dispatch(incrementStep());
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & GameScreenProps;
+
+function GameScreen(props: ConnectedComponentProps): JSX.Element {
+  const {questions, step, onUserAnswer} = props;
   const question = questions[step];
 
   if (step >= questions.length || !question) {
@@ -30,7 +49,7 @@ function GameScreen({questions}: GameScreenProps): JSX.Element {
         <ArtistQuestionScreenWrapped
           key={step}
           question={question as QuestionArtist}
-          onAnswer={() => setStep((prevStep) => prevStep + 1)}
+          onAnswer={onUserAnswer}
         />
       );
     case GameType.Genre:
@@ -38,7 +57,7 @@ function GameScreen({questions}: GameScreenProps): JSX.Element {
         <GenreQuestionScreenWrapped
           key={step}
           question={question as QuestionGenre}
-          onAnswer={() => setStep((prevStep) => prevStep + 1)}
+          onAnswer={onUserAnswer}
         />
       );
     default:
@@ -46,4 +65,5 @@ function GameScreen({questions}: GameScreenProps): JSX.Element {
   }
 }
 
-export default GameScreen;
+export {GameScreen};
+export default connector(GameScreen);
