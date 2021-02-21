@@ -1,5 +1,6 @@
 import {ActionType} from '../types/action';
 import {Question, Questions, UserAnswer} from '../types/question';
+import {AuthorizationStatus} from '../const';
 
 export const checkUserAnswer = (question: Question, userAnswer: UserAnswer) => ({
   type: ActionType.CheckUserAnswer,
@@ -22,4 +23,13 @@ export const loadQuestions = (questions: Questions) => ({
   payload: {
     questions,
   },
+} as const);
+
+export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
+  type: ActionType.RequireAuthorization,
+  payload: authStatus,
+} as const);
+
+export const requireLogout = () => ({
+  type: ActionType.RequireLogout,
 } as const);
