@@ -6,6 +6,7 @@ export const ActionType = {
   INCREMENT_STEP: `game/incrementStep`,
   RESET_GAME: `game/reset`,
   LOAD_QUESTIONS: `data/loadQuestions`,
+  REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
 };
 
 export const ActionCreator = {
@@ -36,5 +37,9 @@ export const ActionCreator = {
   loadQuestions: (questions) => ({
     type: ActionType.LOAD_QUESTIONS,
     payload: questions
+  }),
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRED_AUTHORIZATION,
+    payload: status,
   })
 };
