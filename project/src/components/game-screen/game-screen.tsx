@@ -2,7 +2,7 @@ import {Redirect} from 'react-router-dom';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 import {checkUserAnswer, incrementStep} from '../../store/action';
-import {AppRoute, GameType} from '../../const';
+import {AppRoute, GameType, MAX_MISTAKE_COUNT} from '../../const';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
@@ -36,9 +36,15 @@ function GameScreen(props: PropsFromRedux): JSX.Element {
   const {questions, step, onUserAnswer, mistakes} = props;
   const question = questions[step];
 
+  if (mistakes >= MAX_MISTAKE_COUNT) {
+    return (
+      <Redirect to={AppRoute.Lose} />
+    );
+  }
+
   if (step >= questions.length || !question) {
     return (
-      <Redirect to={AppRoute.Root} />
+      <Redirect to={AppRoute.Result} />
     );
   }
 
