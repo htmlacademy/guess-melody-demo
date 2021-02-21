@@ -1,5 +1,5 @@
 import {ActionType} from '../types/action';
-import {Question, UserAnswer} from '../types/question';
+import {Question, Questions, UserAnswer} from '../types/question';
 
 export const checkUserAnswer = (question: Question, userAnswer: UserAnswer) => ({
   type: ActionType.CheckUserAnswer,
@@ -15,4 +15,11 @@ export const incrementStep = () => ({
 
 export const resetGame = () => ({
   type: ActionType.ResetGame,
+} as const);
+
+export const loadQuestions = (questions: Questions) => ({
+  type: ActionType.LoadQuestions,
+  payload: {
+    questions,
+  },
 } as const);
