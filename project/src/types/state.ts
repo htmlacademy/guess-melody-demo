@@ -6,4 +6,5 @@ export type State = {
   step: number,
   questions: Questions,
   authorizationStatus: AuthorizationStatus,
+  isDataLoaded: boolean,
 };

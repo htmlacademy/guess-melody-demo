@@ -8,6 +8,7 @@ const initialState = {
   step: FIRST_GAME_STEP,
   questions: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  isDataLoaded: false,
 };
 
 const STEP_COUNT = 1;
@@ -21,13 +22,22 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, mistakes: state.mistakes += Number(!isAnswerCorrect(question, userAnswer))};
     }
     case ActionType.ResetGame:
-      return {...initialState};
+      return {
+        ...state,
+        mistakes: 0,
+        step: FIRST_GAME_STEP,
+
+      };
     case ActionType.LoadQuestions: {
       const {questions} = action.payload;
       return {...state, questions};
     }
     case ActionType.RequireAuthorization:
-      return {...state, authorizationStatus: action.payload};
+      return {
+        ...state,
+        authorizationStatus: action.payload,
+        isDataLoaded: true,
+      };
     case ActionType.RequireLogout:
       return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
     default:

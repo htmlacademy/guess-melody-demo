@@ -1,3 +1,4 @@
+import {connect, ConnectedProps} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus, MAX_MISTAKE_COUNT} from '../../const';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
@@ -7,8 +8,28 @@ import WinScreen from '../win-screen/win-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import GameScreen from '../game-screen/game-screen';
+import LoadingScreen from '../loading-screen/loading-screen';
+import {isCheckedAuth} from '../../game';
+import {State} from '../../types/state';
 
-function App(): JSX.Element {
+const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
+  authorizationStatus,
+  isDataLoaded,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App(props: PropsFromRedux): JSX.Element {
+  const {authorizationStatus, isDataLoaded} = props;
+
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -41,4 +62,5 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export {App};
+export default connector(App);
