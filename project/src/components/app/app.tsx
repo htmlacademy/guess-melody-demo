@@ -45,12 +45,21 @@ function App(props: PropsFromRedux): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.Result}
-          render={() => <WinScreen />}
-        >
-        </PrivateRoute>
-        <Route exact path={AppRoute.Lose}>
-          <GameOverScreen />
-        </Route>
+          render={({history}) => (
+            <WinScreen
+              onReplayButtonClick={() => history.push(AppRoute.Game)}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={AppRoute.Lose}
+          render={({history}) => (
+            <GameOverScreen
+              onReplayButtonClick={() => history.push(AppRoute.Game)}
+            />
+          )}
+        />
         <Route exact path={AppRoute.Game}>
           <GameScreen />
         </Route>
