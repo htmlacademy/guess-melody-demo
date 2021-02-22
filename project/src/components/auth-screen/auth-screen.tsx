@@ -1,4 +1,40 @@
-function AuthScreen(): JSX.Element {
+import {useRef, FormEvent} from 'react';
+import {useHistory} from 'react-router-dom';
+import {connect, ConnectedProps} from 'react-redux';
+import {loginAction} from '../../store/api-actions';
+import {ThunkAppDispatch} from '../../types/action';
+import {AuthData} from '../../types/auth-data';
+import {AppRoute} from '../../const';
+
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  onSubmit(authData: AuthData) {
+    dispatch(loginAction(authData));
+  },
+});
+
+const connector = connect(null, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function AuthScreen(props: PropsFromRedux): JSX.Element {
+  const {onSubmit} = props;
+
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const history = useHistory();
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      onSubmit({
+        login: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
+    }
+  };
+
   return (
     <section className="login">
       <div className="login__logo">
@@ -9,21 +45,41 @@ function AuthScreen(): JSX.Element {
       <form
         className="login__form"
         action=""
+        onSubmit={handleSubmit}
       >
         <p className="login__field">
           <label className="login__label" htmlFor="name">Логин</label>
-          <input className="login__input" type="text" name="name" id="name" />
+          <input
+            ref={loginRef}
+            className="login__input"
+            type="text"
+            name="name"
+            id="name"
+          />
         </p>
         <p className="login__field">
           <label className="login__label" htmlFor="password">Пароль</label>
-          <input className="login__input" type="text" name="password" id="password" />
+          <input
+            ref={passwordRef}
+            className="login__input"
+            type="text"
+            name="password"
+            id="password"
+          />
           <span className="login__error">Неверный пароль</span>
         </p>
         <button className="login__button button" type="submit">Войти</button>
       </form>
-      <button className="replay" type="button">Сыграть ещё раз</button>
+      <button
+        onClick={() => history.push(AppRoute.Game)}
+        className="replay"
+        type="button"
+      >
+        Сыграть ещё раз
+      </button>
     </section>
   );
 }
 
-export default AuthScreen;
+export {AuthScreen};
+export default connector(AuthScreen);
