@@ -1,6 +1,6 @@
 import {ActionType} from '../types/action';
 import {Question, Questions, UserAnswer} from '../types/question';
-import {AuthorizationStatus} from '../const';
+import {AppRoute, AuthorizationStatus} from '../const';
 
 export const checkUserAnswer = (question: Question, userAnswer: UserAnswer) => ({
   type: ActionType.CheckUserAnswer,
@@ -32,4 +32,9 @@ export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
 
 export const requireLogout = () => ({
   type: ActionType.RequireLogout,
+} as const);
+
+export const redirectToRoute = (url: AppRoute) => ({
+  type: ActionType.RedirectToRoute,
+  payload: url,
 } as const);
