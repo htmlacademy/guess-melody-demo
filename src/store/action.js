@@ -5,6 +5,7 @@ export const ActionType = {
   INCREMENT_MISTAKES: `game/incrementMistake`,
   INCREMENT_STEP: `game/incrementStep`,
   RESET_GAME: `game/reset`,
+  REDIRECT_TO_ROUTE: `game/redirectToRoute`,
   LOAD_QUESTIONS: `data/loadQuestions`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
 };
@@ -41,5 +42,9 @@ export const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
+  }),
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
   })
 };
