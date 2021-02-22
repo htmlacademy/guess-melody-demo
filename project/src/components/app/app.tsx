@@ -1,6 +1,6 @@
 import {connect, ConnectedProps} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, MAX_MISTAKE_COUNT} from '../../const';
+import {AppRoute, MAX_MISTAKE_COUNT} from '../../const';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import AuthScreen from '../auth-screen/auth-screen';
 import GameOverScreen from '../game-over-screen/game-over-screen';
@@ -45,7 +45,6 @@ function App(props: PropsFromRedux): JSX.Element {
           exact
           path={AppRoute.Result}
           render={() => <WinScreen />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Lose}>
