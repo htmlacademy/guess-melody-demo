@@ -1,3 +1,4 @@
+import {createAction} from '@reduxjs/toolkit';
 import {isArtistAnswerCorrect, isGenreAnswerCorrect} from '../game';
 import {GameType} from '../const';
 
@@ -10,18 +11,16 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
 };
 
-export const incrementStep = () => ({
-  type: ActionType.INCREMENT_STEP,
-  payload: 1,
+export const incrementStep = createAction(ActionType.INCREMENT_STEP, () => {
+  return {
+    payload: 1,
+  };
 });
 
-export const resetGame = () => ({
-  type: ActionType.RESET_GAME,
-});
+export const resetGame = createAction(ActionType.RESET_GAME);
 
-export const incrementMistake = (question, userAnswer) => {
+export const incrementMistake = createAction(ActionType.INCREMENT_MISTAKES, (question, userAnswer) => {
   let answerIsCorrect = false;
-
   switch (question.type) {
     case GameType.ARTIST:
       answerIsCorrect = isArtistAnswerCorrect(question, userAnswer);
@@ -32,22 +31,24 @@ export const incrementMistake = (question, userAnswer) => {
   }
 
   return {
-    type: ActionType.INCREMENT_MISTAKES,
     payload: answerIsCorrect ? 0 : 1,
   };
-};
-
-export const loadQuestions = (questions) => ({
-  type: ActionType.LOAD_QUESTIONS,
-  payload: questions
 });
 
-export const requireAuthorization = (status) => ({
-  type: ActionType.REQUIRED_AUTHORIZATION,
-  payload: status,
+export const loadQuestions = createAction(ActionType.LOAD_QUESTIONS, (questions) => {
+  return {
+    payload: questions
+  };
 });
 
-export const redirectToRoute = (url) => ({
-  type: ActionType.REDIRECT_TO_ROUTE,
-  payload: url,
+export const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => {
+  return {
+    payload: status,
+  };
+});
+
+export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => {
+  return {
+    payload: url,
+  };
 });
