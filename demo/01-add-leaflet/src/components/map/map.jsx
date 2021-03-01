@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
 
-import "leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
 
 const Map = ({city, points}) => {
   const mapRef = useRef();
@@ -37,15 +37,15 @@ const Map = ({city, points}) => {
       })
       .addTo(mapRef.current)
       .bindPopup(point.title);
-
-      return () => {
-        mapRef.current.remove();
-      };
     });
+
+    return () => {
+      mapRef.current.remove();
+    };
   }, []);
 
   return (
-    <div id="map" style={{height: `500px`}} ref={mapRef}></div>
+    <div id="map" style={{height: `500px`}}></div>
   );
 };
 
