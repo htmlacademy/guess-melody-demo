@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {resetGame} from '../../store/action';
-import {getStep, getMistakeCount} from '../../store/game-process/selectors';
 
 const WinScreen = (props) => {
-  const {questionsCount, mistakesCount, onReplayButtonClick, onResetGame} = props;
-  const correctlyQuestionsCount = questionsCount - mistakesCount;
-
+  const {onReplayButtonClick} = props;
+  const {step, mistakes} = useSelector((state) => state.GAME);
+  const dispatch = useDispatch();
+  const correctlyQuestionsCount = step - mistakes;
   return (
     <section className="result">
       <div className="result__logo">
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
-      <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили {mistakesCount} ошибки</p>
+      <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили {mistakes} ошибки</p>
       <button
         onClick={() => {
-          onResetGame();
+          dispatch(resetGame());
           onReplayButtonClick();
         }}
         className="replay"
@@ -30,24 +30,7 @@ const WinScreen = (props) => {
 };
 
 WinScreen.propTypes = {
-  questionsCount: PropTypes.number.isRequired,
-  mistakesCount: PropTypes.number.isRequired,
   onReplayButtonClick: PropTypes.func.isRequired,
-  onResetGame: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  questionsCount: getStep(state),
-  mistakesCount: getMistakeCount(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onResetGame() {
-    dispatch(resetGame());
-  },
-});
-
-
-export {WinScreen};
-
-export default connect(mapStateToProps, mapDispatchToProps)(WinScreen);
+export default WinScreen;
