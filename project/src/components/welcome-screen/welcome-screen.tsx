@@ -1,26 +1,17 @@
 import {useHistory} from 'react-router-dom';
-import {bindActionCreators, Dispatch} from 'redux';
-import {connect, ConnectedProps} from 'react-redux';
-import {resetGame as resetGameState} from '../../store/action';
+import {useDispatch} from 'react-redux';
+import {resetGame} from '../../store/action';
 import {AppRoute} from '../../const';
 
 type WelcomeScreenProps = {
   errorsCount: number;
 };
 
-// С использованием bindActionCreators
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
-  onResetGame: resetGameState,
-}, dispatch);
+function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
+  const {errorsCount} = props;
 
-const connector = connect(null, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & WelcomeScreenProps;
-
-function WelcomeScreen(props: ConnectedComponentProps): JSX.Element {
-  const {errorsCount, onResetGame} = props;
   const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <section className="welcome">
@@ -30,7 +21,7 @@ function WelcomeScreen(props: ConnectedComponentProps): JSX.Element {
       <button
         className="welcome__button"
         onClick={() => {
-          onResetGame();
+          dispatch(resetGame());
           history.push(AppRoute.Game);
         }}
       >
@@ -49,5 +40,4 @@ function WelcomeScreen(props: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export {WelcomeScreen};
-export default connector(WelcomeScreen);
+export default WelcomeScreen;

@@ -1,37 +1,21 @@
 import {Link} from 'react-router-dom';
-import {connect, ConnectedProps} from 'react-redux';
-import {resetGame} from '../../store/action';
-import {State} from '../../types/state';
-import {ThunkAppDispatch} from '../../types/action';
-import {logoutAction} from '../../store/api-actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {requireLogout, resetGame} from '../../store/action';
 import {getStep, getMistakeCount} from '../../store/game-process/selectors';
 
 type WinScreenProps = {
   onReplayButtonClick: () => void;
 };
 
-const mapStateToProps = (state: State) => ({
-  questionsCount: getStep(state),
-  mistakesCount: getMistakeCount(state),
-});
+function WinScreen(props: WinScreenProps): JSX.Element {
+  const {onReplayButtonClick} = props;
 
-const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  onResetGame() {
-    dispatch(resetGame());
-  },
-  logoutGame() {
-    dispatch(logoutAction());
-  },
-});
+  const step = useSelector(getStep);
+  const mistakes = useSelector(getMistakeCount);
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+  const dispatch = useDispatch();
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & WinScreenProps;
-
-function WinScreen(props: ConnectedComponentProps): JSX.Element {
-  const {questionsCount, mistakesCount, onReplayButtonClick, onResetGame, logoutGame} = props;
-  const correctlyQuestionsCount = questionsCount - mistakesCount;
+  const correctlyQuestionsCount = step - mistakes;
 
   return (
     <section className="result">
@@ -41,7 +25,7 @@ function WinScreen(props: ConnectedComponentProps): JSX.Element {
           onClick={(evt) => {
             evt.preventDefault();
 
-            logoutGame();
+            dispatch(requireLogout());
           }}
           to='/'
         >
@@ -52,10 +36,10 @@ function WinScreen(props: ConnectedComponentProps): JSX.Element {
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
-      <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили {mistakesCount} ошибки</p>
+      <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили {mistakes} ошибки</p>
       <button
         onClick={() => {
-          onResetGame();
+          dispatch(resetGame());
           onReplayButtonClick();
         }}
         className="replay"
@@ -67,5 +51,4 @@ function WinScreen(props: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export {WinScreen};
-export default connector(WinScreen);
+export default WinScreen;
