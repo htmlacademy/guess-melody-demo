@@ -4,14 +4,15 @@ import {resetGame} from '../../store/action';
 import {State} from '../../types/state';
 import {ThunkAppDispatch} from '../../types/action';
 import {logoutAction} from '../../store/api-actions';
+import {getStep, getMistakeCount} from '../../store/game-process/selectors';
 
 type WinScreenProps = {
   onReplayButtonClick: () => void;
 };
 
-const mapStateToProps = ({GAME}: State) => ({
-  questionsCount: GAME.step,
-  mistakesCount: GAME.mistakes,
+const mapStateToProps = (state: State) => ({
+  questionsCount: getStep(state),
+  mistakesCount: getMistakeCount(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

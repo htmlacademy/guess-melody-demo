@@ -10,14 +10,16 @@ import GenreQuestionScreen from '../genre-question-screen/genre-question-screen'
 import Mistakes from '../mistakes/mistakes';
 import {QuestionArtist, QuestionGenre, Question, UserAnswer} from '../../types/question';
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
+import {getQuestions} from '../../store/game-data/selectors';
+import {getStep, getMistakeCount} from '../../store/game-process/selectors';
 
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
 
-const mapStateToProps = ({GAME, DATA}: State) => ({
-  step: GAME.step,
-  mistakes: GAME.mistakes,
-  questions: DATA.questions,
+const mapStateToProps = (state: State) => ({
+  step: getStep(state),
+  mistakes: getMistakeCount(state),
+  questions: getQuestions(state),
 });
 
 // Без использования bindActionCreators
