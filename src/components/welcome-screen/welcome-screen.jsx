@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {resetGame} from '../../store/action';
 
 const WelcomeScreen = (props) => {
-  const {errorsCount, resetGame} = props;
+  const {errorsCount, onResetGame} = props;
+
   const history = useHistory();
 
   return (
@@ -16,7 +17,7 @@ const WelcomeScreen = (props) => {
       <button
         className="welcome__button"
         onClick={() => {
-          resetGame();
+          onResetGame();
           history.push(`/game`);
         }}
       >
@@ -37,12 +38,12 @@ const WelcomeScreen = (props) => {
 
 WelcomeScreen.propTypes = {
   errorsCount: PropTypes.number.isRequired,
-  resetGame: PropTypes.func.isRequired,
+  onResetGame: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  onResetGame() {
+    dispatch(resetGame());
   },
 });
 
