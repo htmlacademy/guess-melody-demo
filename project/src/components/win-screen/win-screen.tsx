@@ -9,9 +9,9 @@ type WinScreenProps = {
   onReplayButtonClick: () => void;
 };
 
-const mapStateToProps = ({step, mistakes}: State) => ({
-  questionsCount: step,
-  mistakesCount: mistakes,
+const mapStateToProps = ({GAME}: State) => ({
+  questionsCount: GAME.step,
+  mistakesCount: GAME.mistakes,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

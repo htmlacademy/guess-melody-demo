@@ -13,9 +13,9 @@ import {isCheckedAuth} from '../../game';
 import {State} from '../../types/state';
 import browserHistory from '../../browser-history';
 
-const mapStateToProps = ({authorizationStatus, isDataLoaded}: State) => ({
-  authorizationStatus,
-  isDataLoaded,
+const mapStateToProps = ({USER, DATA}: State) => ({
+  authorizationStatus: USER.authorizationStatus,
+  isDataLoaded: DATA.isDataLoaded,
 });
 
 const connector = connect(mapStateToProps);
