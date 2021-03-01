@@ -1,5 +1,6 @@
-import {FormEvent, ChangeEvent, PropsWithChildren} from 'react';
+import {FormEvent, PropsWithChildren} from 'react';
 import Logo from '../logo/logo';
+import GenreQuestionItem from '../genre-question-item/genre-question-item';
 import {useUserAnswers} from '../../hooks/use-user-answers';
 import {QuestionGenre, UserGenreQuestionAnswer} from '../../types/question';
 
@@ -41,20 +42,14 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
           {answers.map((answer, id) => {
             const keyValue = `${id}-${answer.src}`;
             return (
-              <div key={keyValue} className="track">
-                {renderPlayer(answer.src, id)}
-                <div className="game__answer">
-                  <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${id}`}
-                    id={`answer-${id}`}
-                    checked={userAnswers[id]}
-                    onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-                      const value = target.checked;
-                      handleAnswerChange(id, value);
-                    }}
-                  />
-                  <label className="game__check" htmlFor={`answer-${id}`}>Отметить</label>
-                </div>
-              </div>
+              <GenreQuestionItem
+                answer={answer}
+                id={id}
+                key={keyValue}
+                onChange={handleAnswerChange}
+                renderPlayer={renderPlayer}
+                userAnswer={userAnswers[id]}
+              />
             );
           })}
 
