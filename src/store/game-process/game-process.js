@@ -1,4 +1,5 @@
-import {ActionType} from '../action';
+import {createReducer} from '@reduxjs/toolkit';
+import {incrementStep, incrementMistake, resetGame} from '../action';
 import {FIRST_GAME_STEP} from '../../const';
 
 const initialState = {
@@ -6,31 +7,17 @@ const initialState = {
   step: FIRST_GAME_STEP,
 };
 
-const gameProcess = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.INCREMENT_STEP:
-      let nextStep = state.step + action.payload;
-
-      return {
-        ...state,
-        step: nextStep,
-      };
-
-    case ActionType.INCREMENT_MISTAKES:
-      return {
-        ...state,
-        mistakes: state.mistakes + action.payload
-      };
-
-    case ActionType.RESET_GAME:
-      return {
-        ...state,
-        mistakes: 0,
-        step: FIRST_GAME_STEP
-      };
-  }
-
-  return state;
-};
+const gameProcess = createReducer(initialState, (builder) => {
+  builder.addCase(incrementStep, (state, action) => {
+    state.step = state.step + action.payload;
+  });
+  builder.addCase(incrementMistake, (state, action) => {
+    state.mistakes = state.mistakes + action.payload;
+  });
+  builder.addCase(resetGame, (state) => {
+    state.mistakes = 0;
+    state.step = FIRST_GAME_STEP;
+  });
+});
 
 export {gameProcess};
