@@ -1,9 +1,7 @@
 import {Redirect} from 'react-router-dom';
-import {Dispatch} from 'redux';
-import {connect, ConnectedProps} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {checkUserAnswer, incrementStep} from '../../store/action';
 import {AppRoute, GameType, MAX_MISTAKE_COUNT} from '../../const';
-import {State} from '../../types/state';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import Mistakes from '../mistakes/mistakes';
@@ -15,26 +13,18 @@ import {getStep, getMistakeCount} from '../../store/game-process/selectors';
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
 
-const mapStateToProps = (state: State) => ({
-  step: getStep(state),
-  mistakes: getMistakeCount(state),
-  questions: getQuestions(state),
-});
+function GameScreen(): JSX.Element {
+  const step = useSelector(getStep);
+  const mistakes = useSelector(getMistakeCount);
+  const questions = useSelector(getQuestions);
 
-// Без использования bindActionCreators
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onUserAnswer(question: Question, userAnswer: UserAnswer) {
+  const dispatch = useDispatch();
+
+  const onUserAnswer = (currentQuestion: Question, answer: UserAnswer) => {
     dispatch(incrementStep());
-    dispatch(checkUserAnswer(question, userAnswer));
-  },
-});
+    dispatch(checkUserAnswer(currentQuestion, answer));
+  };
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function GameScreen(props: PropsFromRedux): JSX.Element {
-  const {questions, step, onUserAnswer, mistakes} = props;
   const question = questions[step];
 
   if (mistakes >= MAX_MISTAKE_COUNT) {
@@ -75,5 +65,4 @@ function GameScreen(props: PropsFromRedux): JSX.Element {
   }
 }
 
-export {GameScreen};
-export default connector(GameScreen);
+export default GameScreen;
