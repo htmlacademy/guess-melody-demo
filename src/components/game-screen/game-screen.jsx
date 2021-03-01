@@ -11,8 +11,9 @@ import genreQuestionProp from "../genre-question-screen/genre-question.prop";
 import Mistakes from '../mistakes/mistakes';
 import LoadingScreen from '../loading-screen/loading-screen';
 import {fetchQuestionList} from "../../store/api-actions";
-
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
+import {getQuestions, getLoadedDataStatus} from '../../store/game-data/selectors';
+import {getStep, getMistakeCount} from '../../store/game-process/selectors';
 
 const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
@@ -82,11 +83,11 @@ GameScreen.propTypes = {
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({GAME, DATA}) => ({
-  step: GAME.step,
-  mistakes: GAME.mistakes,
-  questions: DATA.questions,
-  isDataLoaded: DATA.isDataLoaded,
+const mapStateToProps = (state) => ({
+  step: getStep(state),
+  mistakes: getMistakeCount(state),
+  questions: getQuestions(state),
+  isDataLoaded: getLoadedDataStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
