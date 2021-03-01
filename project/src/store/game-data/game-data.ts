@@ -1,24 +1,20 @@
-import {ActionType, Actions} from '../../types/action';
+import {createReducer} from '@reduxjs/toolkit';
 import {GameData} from '../../types/state';
+import {loadQuestions} from '../action';
 
 const initialState: GameData = {
   questions: [],
   isDataLoaded: false,
 };
 
-const gameData = (state = initialState, action: Actions): GameData => {
-  switch (action.type) {
-    case ActionType.LoadQuestions: {
+const gameData = createReducer(initialState, (builder) => {
+  builder
+    .addCase(loadQuestions, (state, action) => {
       const {questions} = action.payload;
-      return {
-        ...state,
-        questions,
-        isDataLoaded: true,
-      };
-    }
-    default:
-      return state;
-  }
-};
+
+      state.questions = questions;
+      state.isDataLoaded = true;
+    });
+});
 
 export {gameData};
