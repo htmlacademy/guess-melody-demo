@@ -2,7 +2,6 @@ import {useHistory} from 'react-router-dom';
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 import {resetGame as resetGameState} from '../../store/action';
-import {Actions} from '../../types/action';
 import {AppRoute} from '../../const';
 
 type WelcomeScreenProps = {
@@ -10,7 +9,7 @@ type WelcomeScreenProps = {
 };
 
 // С использованием bindActionCreators
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => bindActionCreators({
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
   onResetGame: resetGameState,
 }, dispatch);
 

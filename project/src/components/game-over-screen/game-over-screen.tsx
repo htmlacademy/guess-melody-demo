@@ -2,13 +2,12 @@ import {RouteProps} from 'react-router-dom';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 import {resetGame} from '../../store/action';
-import {Actions} from '../../types/action';
 
 type GameOverScreenProps = RouteProps & {
   onReplayButtonClick: () => void;
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onResetGame() {
     dispatch(resetGame());
   },

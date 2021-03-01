@@ -7,7 +7,6 @@ import App from './components/app/app';
 import {rootReducer} from './store/root-reducer';
 import {requireAuthorization} from './store/action';
 import {fetchQuestionAction, checkAuthAction} from './store/api-actions';
-import {ThunkAppDispatch} from './types/action';
 import {AuthorizationStatus} from './const';
 import {redirect} from './store/middlewares/redirect';
 import {ToastContainer} from 'react-toastify';
@@ -27,8 +26,8 @@ const store = configureStore({
     }).concat(redirect),
 });
 
-(store.dispatch as ThunkAppDispatch)(checkAuthAction());
-(store.dispatch as ThunkAppDispatch)(fetchQuestionAction());
+store.dispatch(checkAuthAction());
+store.dispatch(fetchQuestionAction());
 
 ReactDOM.render(
   <React.StrictMode>

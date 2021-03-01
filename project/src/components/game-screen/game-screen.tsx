@@ -4,7 +4,6 @@ import {connect, ConnectedProps} from 'react-redux';
 import {checkUserAnswer, incrementStep} from '../../store/action';
 import {AppRoute, GameType, MAX_MISTAKE_COUNT} from '../../const';
 import {State} from '../../types/state';
-import {Actions} from '../../types/action';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import Mistakes from '../mistakes/mistakes';
@@ -23,7 +22,7 @@ const mapStateToProps = (state: State) => ({
 });
 
 // Без использования bindActionCreators
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onUserAnswer(question: Question, userAnswer: UserAnswer) {
     dispatch(incrementStep());
     dispatch(checkUserAnswer(question, userAnswer));
