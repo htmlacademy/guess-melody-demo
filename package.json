@@ -7,7 +7,8 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "test": "npm run eslint"
+    "test": "npm run eslint && npm run test.jest",
+    "test.jest": "jest"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
@@ -34,5 +35,10 @@
     "react-dom": "16.14.0",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/src/style-mock.js"
+    }
   }
 }
