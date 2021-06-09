@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
-import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 import {resetGame} from '../../store/action';
 import {State} from '../../types/state';
-import {Actions} from '../../types/action';
+import {ThunkAppDispatch} from '../../types/action';
+import {logoutAction} from '../../store/api-actions';
 
 type WinScreenProps = {
   onReplayButtonClick: () => void;
@@ -14,9 +14,12 @@ const mapStateToProps = ({step, mistakes}: State) => ({
   mistakesCount: mistakes,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onResetGame() {
     dispatch(resetGame());
+  },
+  logoutGame() {
+    dispatch(logoutAction());
   },
 });
 
@@ -26,13 +29,23 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & WinScreenProps;
 
 function WinScreen(props: ConnectedComponentProps): JSX.Element {
-  const {questionsCount, mistakesCount, onReplayButtonClick, onResetGame} = props;
+  const {questionsCount, mistakesCount, onReplayButtonClick, onResetGame, logoutGame} = props;
   const correctlyQuestionsCount = questionsCount - mistakesCount;
 
   return (
     <section className="result">
       <div className="result-logout__wrapper">
-        <Link className="result-logout__link" to="/">Выход</Link>
+        <Link
+          className="result-logout__link"
+          onClick={(evt) => {
+            evt.preventDefault();
+
+            logoutGame();
+          }}
+          to='/'
+        >
+          Выход
+        </Link>
       </div>
       <div className="result__logo">
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
