@@ -9,9 +9,7 @@ import NotFoundScreen from '../not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import GameScreen from '../game-screen/game-screen';
 import LoadingScreen from '../loading-screen/loading-screen';
-import HistoryRouter from '../history-route/history-route';
 import {isCheckedAuth} from '../../game';
-import browserHistory from '../../browser-history';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {getLoadedDataStatus} from '../../store/game-data/selectors';
 
@@ -26,42 +24,40 @@ function App(): JSX.Element {
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
-      <Routes>
-        <Route
-          path={AppRoute.Root}
-          element={<WelcomeScreen errorsCount={MAX_MISTAKE_COUNT} />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<AuthScreen />}
-        />
-        <Route
-          path={AppRoute.Result}
-          element={
-            <PrivateRoute
-              authorizationStatus={authorizationStatus}
-            >
-              <WinScreen />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Lose}
-          element={<GameOverScreen />}
-        />
-        <Route
-          path={AppRoute.Game}
-          element={
-            <GameScreen />
-          }
-        />
-        <Route
-          path="*"
-          element={<NotFoundScreen />}
-        />
-      </Routes>
-    </HistoryRouter>
+    <Routes>
+      <Route
+        path={AppRoute.Root}
+        element={<WelcomeScreen errorsCount={MAX_MISTAKE_COUNT} />}
+      />
+      <Route
+        path={AppRoute.Login}
+        element={<AuthScreen />}
+      />
+      <Route
+        path={AppRoute.Result}
+        element={
+          <PrivateRoute
+            authorizationStatus={authorizationStatus}
+          >
+            <WinScreen />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={AppRoute.Lose}
+        element={<GameOverScreen />}
+      />
+      <Route
+        path={AppRoute.Game}
+        element={
+          <GameScreen />
+        }
+      />
+      <Route
+        path="*"
+        element={<NotFoundScreen />}
+      />
+    </Routes>
   );
 }
 
