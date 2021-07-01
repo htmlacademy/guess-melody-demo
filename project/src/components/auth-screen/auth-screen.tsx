@@ -47,6 +47,7 @@ function AuthScreen(): JSX.Element {
             type="text"
             name="name"
             id="name"
+            data-testid="login"
           />
         </p>
         <p className="login__field">
@@ -57,6 +58,7 @@ function AuthScreen(): JSX.Element {
             type="text"
             name="password"
             id="password"
+            data-testid="password"
           />
           <span className="login__error">Неверный пароль</span>
         </p>
