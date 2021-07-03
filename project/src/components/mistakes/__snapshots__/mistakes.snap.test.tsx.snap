@@ -7,12 +7,15 @@ exports[`Component: Mistakes should render correctly 1`] = `
   >
     <div
       class="wrong"
+      data-testid="mistake"
     />
     <div
       class="wrong"
+      data-testid="mistake"
     />
     <div
       class="wrong"
+      data-testid="mistake"
     />
   </div>
 </div>
