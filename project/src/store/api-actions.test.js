@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../services/api';
 import {ActionType} from './action';
-import {checkAuth, login, fetchQuestionList} from './api-actions';
+import {checkAuth, login, fetchQuestionList, logout} from './api-actions';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 
 let api = null;
@@ -72,6 +72,29 @@ describe('Async operations', () => {
           type: ActionType.LOAD_QUESTIONS,
           payload: [{fake: true}],
         });
+      });
+  });
+
+  it('should make a correct API call to DELETE /logout', () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const logoutLoader = logout();
+
+    Storage.prototype.removeItem = jest.fn();
+
+    apiMock
+      .onDelete(APIRoute.LOGOUT)
+      .reply(204, [{fake: true}]);
+
+    return logoutLoader(dispatch, jest.fn(() => {}), api)
+      .then(() => {
+        expect(dispatch).toBeCalledTimes(1);
+        expect(dispatch).nthCalledWith(1, {
+          type: ActionType.LOGOUT,
+        });
+
+        expect(Storage.prototype.removeItem).toBeCalledTimes(1);
+        expect(Storage.prototype.removeItem).nthCalledWith(1, 'token');
       });
   });
 });
