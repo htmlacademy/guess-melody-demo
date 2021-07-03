@@ -9,7 +9,7 @@ function Mistakes({count}: MistakesProps): JSX.Element {
     <div className="game__mistakes">
       {mistakes.map((_item, index) => {
         const keyValue = `mistake-${index}`;
-        return <div key={keyValue} className="wrong" />;
+        return <div key={keyValue} className="wrong" data-testid="mistake" />;
       })}
     </div>
   );
