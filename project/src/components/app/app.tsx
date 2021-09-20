@@ -8,7 +8,7 @@ import GameOverScreen from '../game-over-screen/game-over-screen';
 import WinScreen from '../win-screen/win-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-import {Questions} from '../../types/question';
+import {Questions, QuestionGenre} from '../../types/question';
 
 type AppScreenProps = {
   errorsCount: number;
@@ -16,6 +16,8 @@ type AppScreenProps = {
 }
 
 function App({errorsCount, questions}: AppScreenProps): JSX.Element {
+  const [firstQuestion] = questions;
+
   return (
     <BrowserRouter>
       <Routes>
@@ -29,7 +31,11 @@ function App({errorsCount, questions}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.DevGenre}
-          element={<GenreQuestionScreen />}
+          element={
+            <GenreQuestionScreen
+              question={firstQuestion as QuestionGenre}
+            />
+          }
         />
         <Route
           path={AppRoute.Login}
