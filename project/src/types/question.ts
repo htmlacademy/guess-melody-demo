@@ -30,3 +30,5 @@ export type Question = QuestionArtist | QuestionGenre;
 export type Questions = Question[];
 
 export type UserGenreQuestionAnswer = readonly boolean[];
+
+export type UserArtistQuestionAnswer = string;
