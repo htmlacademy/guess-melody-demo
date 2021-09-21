@@ -1,6 +1,7 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
+import AudioPlayer from '../../components/audio-player/audio-player';
 import {QuestionGenre, UserGenreQuestionAnswer} from '../../types/question';
 
 type GenreQuestionScreenProps = {
@@ -48,12 +49,10 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
             const keyValue = `${id}-${answer.src}`;
             return (
               <div key={keyValue} className="track">
-                <button className="track__button track__button--play" type="button"/>
-                <div className="track__status">
-                  <audio
-                    src={answer.src}
-                  />
-                </div>
+                <AudioPlayer
+                  autoPlay={id === 0}
+                  src={answer.src}
+                />
                 <div className="game__answer">
                   <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${id}`}
                     id={`answer-${id}`}
