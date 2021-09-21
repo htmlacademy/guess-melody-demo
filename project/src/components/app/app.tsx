@@ -8,6 +8,7 @@ import GameOverScreen from '../game-over-screen/game-over-screen';
 import WinScreen from '../win-screen/win-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
+import GameScreen from '../game-screen/game-screen';
 import {Questions, QuestionGenre, QuestionArtist} from '../../types/question';
 
 type AppScreenProps = {
@@ -54,6 +55,11 @@ function App({errorsCount, questions}: AppScreenProps): JSX.Element {
         </PrivateRoute>
         <Route exact path={AppRoute.Lose}>
           <GameOverScreen />
+        </Route>
+        <Route exact path={AppRoute.Game}>
+          <GameScreen
+            questions={questions}
+          />
         </Route>
         <Route>
           <NotFoundScreen />
