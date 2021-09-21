@@ -2,15 +2,13 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
-import ArtistQuestionScreen from '../../pages/artist-question-screen/artist-question-screen';
-import GenreQuestionScreen from '../../pages/genre-question-screen/genre-question-screen';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
 import GameOverScreen from '../../pages/game-over-screen/game-over-screen';
 import WinScreen from '../../pages/win-screen/win-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import GameScreen from '../../pages/game-screen/game-screen';
-import {Questions, QuestionGenre, QuestionArtist} from '../../types/question';
+import {Questions} from '../../types/question';
 
 type AppScreenProps = {
   errorsCount: number;
@@ -18,8 +16,6 @@ type AppScreenProps = {
 }
 
 function App({errorsCount, questions}: AppScreenProps): JSX.Element {
-  const [firstQuestion, secondQuestion] = questions;
-
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -27,28 +23,6 @@ function App({errorsCount, questions}: AppScreenProps): JSX.Element {
           <Route
             path={AppRoute.Root}
             element={<WelcomeScreen errorsCount={errorsCount} />}
-          />
-          <Route
-            path={AppRoute.DevArtist}
-            element={
-              <ArtistQuestionScreen
-                question={secondQuestion as QuestionArtist}
-                onAnswer={() => {
-                  throw new Error('Function \'onAnswer\' isn\'t implemented.');
-                }}
-              />
-            }
-          />
-          <Route
-            path={AppRoute.DevGenre}
-            element={
-              <GenreQuestionScreen
-                question={firstQuestion as QuestionGenre}
-                onAnswer={() => {
-                  throw new Error('Function \'onAnswer\' isn\'t implemented.');
-                }}
-              />
-            }
           />
           <Route
             path={AppRoute.Login}
