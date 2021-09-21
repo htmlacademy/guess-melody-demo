@@ -1,14 +1,15 @@
-import {useState, ChangeEvent} from 'react';
+import {useState, FormEvent, ChangeEvent} from 'react';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
-import {QuestionGenre} from '../../types/question';
+import {QuestionGenre, UserGenreQuestionAnswer} from '../../types/question';
 
 type GenreQuestionScreenProps = {
   question: QuestionGenre;
+  onAnswer: (question: QuestionGenre, answers: UserGenreQuestionAnswer) => void;
 };
 
 function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
-  const {question} = props;
+  const {question, onAnswer} = props;
   const {answers, genre} = question;
 
   const [userAnswers, setUserAnswers] = useState([false, false, false, false]);
@@ -36,7 +37,13 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
 
       <section className="game__screen">
         <h2 className="game__title">Выберите {genre} треки</h2>
-        <form className="game__tracks">
+        <form
+          className="game__tracks"
+          onSubmit={(evt: FormEvent<HTMLFormElement>) => {
+            evt.preventDefault();
+            onAnswer(question, userAnswers);
+          }}
+        >
           {answers.map((answer, id) => {
             const keyValue = `${id}-${answer.src}`;
             return (
