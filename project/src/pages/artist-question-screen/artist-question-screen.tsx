@@ -1,4 +1,4 @@
-import {ChangeEvent} from 'react';
+import {useState, ChangeEvent} from 'react';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 import AudioPlayer from '../../components/audio-player/audio-player';
@@ -12,6 +12,8 @@ type ArtistQuestionScreenProps = {
 function ArtistQuestionScreen(props: ArtistQuestionScreenProps): JSX.Element {
   const {question, onAnswer} = props;
   const {answers, song} = question;
+
+  const [isPlaying, setIsPlaying] = useState(true);
 
   return (
     <section className="game game--artist">
@@ -39,8 +41,9 @@ function ArtistQuestionScreen(props: ArtistQuestionScreenProps): JSX.Element {
         <div className="game__track">
           <div className="track">
             <AudioPlayer
-              autoPlay
+              isPlaying={isPlaying}
               src={song.src}
+              onPlayButtonClick={() => setIsPlaying(!isPlaying)}
             />
           </div>
         </div>
