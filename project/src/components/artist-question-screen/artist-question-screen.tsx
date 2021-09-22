@@ -1,4 +1,4 @@
-import {ChangeEvent} from 'react';
+import {useState, ChangeEvent} from 'react';
 import Logo from '../logo/logo';
 import AudioPlayer from '../audio-player/audio-player';
 import {QuestionArtist, UserArtistQuestionAnswer} from '../../types/question';
@@ -11,6 +11,8 @@ type ArtistQuestionScreenProps = {
 function ArtistQuestionScreen(props: ArtistQuestionScreenProps): JSX.Element {
   const {question, onAnswer} = props;
   const {answers, song} = question;
+
+  const [isPlaying, setIsPlaying] = useState(true);
 
   return (
     <section className="game game--artist">
@@ -35,8 +37,9 @@ function ArtistQuestionScreen(props: ArtistQuestionScreenProps): JSX.Element {
         <div className="game__track">
           <div className="track">
             <AudioPlayer
-              autoPlay
+              isPlaying={isPlaying}
               src={song.src}
+              onPlayButtonClick={() => setIsPlaying(!isPlaying)}
             />
           </div>
         </div>
