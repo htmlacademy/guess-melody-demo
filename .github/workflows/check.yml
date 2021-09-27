@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: '*'
+
+name: Project check
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - uses: actions/checkout@master
+      name: Checkout
+
+    - name: Install dependencies
+      run: |
+        if [ -f 'package.json' ]; then npm install; else echo 'Skip. The package.json file does not exist'; fi
+
+    - name: Run checks
+      run: |
+        if [ -f 'package.json' ]; then npm test && npm run lint; else echo 'Skip. The package.json file does not exist'; fi
