@@ -1,0 +1,78 @@
+{
+  "name": "project",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.6",
+    "axios": "^0.27.2",
+    "history": "^5.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.2",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --passWithNoTests",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .tsx --ext .ts src/"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "htmlacademy/react-typescript"
+    ],
+    "parserOptions": {
+      "project": [
+        "tsconfig.json"
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "*test*"
+        ],
+        "rules": {
+          "@typescript-eslint/unbound-method": "off",
+          "jest/unbound-method": "error"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@jedmao/redux-mock-store": "^3.0.5",
+    "@redux-devtools/extension": "^3.2.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/faker": "^5.5.8",
+    "@types/jest": "^29.1.2",
+    "@types/node": "^16.11.7",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-redux": "^7.1.24",
+    "axios-mock-adapter": "^1.21.2",
+    "eslint-config-htmlacademy": "^8.0.0",
+    "faker": "^5.5.3",
+    "typescript": "^4.8.4"
+  }
+}
