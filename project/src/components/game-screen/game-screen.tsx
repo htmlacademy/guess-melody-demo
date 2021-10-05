@@ -1,14 +1,14 @@
 import {Redirect} from 'react-router-dom';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
-import {incrementStep} from '../../store/action';
+import {checkUserAnswer, incrementStep} from '../../store/action';
 import {AppRoute, GameType} from '../../const';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import Mistakes from '../mistakes/mistakes';
-import {QuestionArtist, QuestionGenre, Questions} from '../../types/question';
+import {QuestionArtist, QuestionGenre, Questions, Question, UserAnswer} from '../../types/question';
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
 
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
@@ -25,8 +25,9 @@ const mapStateToProps = ({step, mistakes}: State) => ({
 
 // Без использования bindActionCreators
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onUserAnswer() {
+  onUserAnswer(question: Question, userAnswer: UserAnswer) {
     dispatch(incrementStep());
+    dispatch(checkUserAnswer(question, userAnswer));
   },
 });
 
