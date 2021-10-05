@@ -1,11 +1,13 @@
 import {isAnswerCorrect} from '../game';
 import {ActionType, Actions} from '../types/action';
 import {State} from '../types/state';
-import {FIRST_GAME_STEP} from '../const';
+import {questions} from '../mocks/questions';
+import {FIRST_GAME_STEP, MAX_MISTAKE_COUNT} from '../const';
 
 const initialState = {
   mistakes: 0,
   step: FIRST_GAME_STEP,
+  questions,
 };
 
 const STEP_COUNT = 1;
@@ -16,7 +18,15 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, step: state.step + STEP_COUNT};
     case ActionType.CheckUserAnswer: {
       const {question, userAnswer} = action.payload;
-      return {...state, mistakes: state.mistakes += Number(!isAnswerCorrect(question, userAnswer))};
+      const mistakes = state.mistakes += Number(!isAnswerCorrect(question, userAnswer));
+
+      if (mistakes >= MAX_MISTAKE_COUNT) {
+        return {
+          ...initialState,
+        };
+      }
+
+      return {...state, mistakes};
     }
     case ActionType.ResetGame:
       return {...initialState};
