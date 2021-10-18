@@ -1,23 +1,18 @@
-import {
-  ActionType,
-  CheckUserAnswerAction,
-  IncrementStepAction,
-  ResetGameAction
-} from '../types/action';
+import {ActionType} from '../types/action';
 import {Question, UserAnswer} from '../types/question';
 
-export const checkUserAnswer = (question: Question, userAnswer: UserAnswer): CheckUserAnswerAction => ({
+export const checkUserAnswer = (question: Question, userAnswer: UserAnswer) => ({
   type: ActionType.CheckUserAnswer,
   payload: {
     question,
     userAnswer,
   },
-});
+} as const);
 
-export const incrementStep = (): IncrementStepAction => ({
+export const incrementStep = () => ({
   type: ActionType.IncrementStep,
-});
+} as const);
 
-export const resetGame = (): ResetGameAction => ({
+export const resetGame = () => ({
   type: ActionType.ResetGame,
-});
+} as const);
