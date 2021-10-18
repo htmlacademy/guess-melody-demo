@@ -1,13 +1,12 @@
 import {isAnswerCorrect} from '../game';
 import {ActionType, Actions} from '../types/action';
 import {State} from '../types/state';
-import {questions} from '../mocks/questions';
 import {FIRST_GAME_STEP, AuthorizationStatus} from '../const';
 
 const initialState = {
   mistakes: 0,
   step: FIRST_GAME_STEP,
-  questions,
+  questions: [],
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 
@@ -23,8 +22,10 @@ const reducer = (state: State = initialState, action: Actions): State => {
     }
     case ActionType.ResetGame:
       return {...initialState};
-    case ActionType.LoadQuestions:
+    case ActionType.LoadQuestions: {
+      const {questions} = action.payload;
       return {...state, questions};
+    }
     case ActionType.RequireAuthorization:
       return {...state, authorizationStatus: action.payload};
     case ActionType.RequireLogout:
