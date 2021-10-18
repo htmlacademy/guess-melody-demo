@@ -3,11 +3,11 @@ import {GameType} from './const';
 
 export const isAnswerCorrect = (question: Question, answer: UserAnswer): boolean => {
   if (question.type === GameType.Artist && typeof answer === 'string') {
-    return isArtistAnswerCorrect(question as QuestionArtist, answer);
+    return isArtistAnswerCorrect(question, answer);
   }
 
   if (question.type === GameType.Genre && Array.isArray(answer)) {
-    return isGenreAnswerCorrect(question as QuestionGenre, answer);
+    return isGenreAnswerCorrect(question, answer);
   }
 
   throw new Error('Unknown question type');

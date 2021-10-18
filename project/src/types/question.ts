@@ -11,7 +11,7 @@ export type Song = {
 export type QuestionArtist = {
   answers: ArtistAnswer[];
   song: Song;
-  type: string;
+  type: 'artist';
 };
 
 export type GenreAnswer = {
@@ -22,7 +22,7 @@ export type GenreAnswer = {
 export type QuestionGenre = {
   answers: GenreAnswer[];
   genre: string;
-  type: string;
+  type: 'genre';
 };
 
 export type Question = QuestionArtist | QuestionGenre;
