@@ -1,7 +1,18 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import {useAppSelector, useAppDispatch} from '../../hooks';
+import {resetGame} from '../../store/action';
+import {AppRoute} from '../../const';
 
 function WinScreen(): JSX.Element {
+  const step = useAppSelector((state) => state.step);
+  const mistakes = useAppSelector((state) => state.mistakes);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const correctlyQuestionsCount = step - mistakes;
+
   return (
     <section className="result">
       <Helmet>
@@ -14,8 +25,17 @@ function WinScreen(): JSX.Element {
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
-      <p className="result__total">Вы ответили правильно на 6 вопросов и совершили 2 ошибки</p>
-      <button className="replay" type="button">Сыграть ещё раз</button>
+      <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили {mistakes} ошибки</p>
+      <button
+        onClick={() => {
+          dispatch(resetGame());
+          navigate(AppRoute.Game);
+        }}
+        className="replay"
+        type="button"
+      >
+        Сыграть ещё раз
+      </button>
     </section>
   );
 }
