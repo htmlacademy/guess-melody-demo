@@ -1,11 +1,11 @@
 import {Navigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {incrementStep} from '../../store/action';
+import {incrementStep, checkUserAnswer} from '../../store/action';
 import {AppRoute, GameType} from '../../const';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import Mistakes from '../../components/mistakes/mistakes';
-import {Questions} from '../../types/question';
+import {Questions, Question, UserAnswer} from '../../types/question';
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
 
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
@@ -27,13 +27,18 @@ function GameScreen({questions}: GameScreenProps): JSX.Element {
     return <Navigate to={AppRoute.Root} />;
   }
 
+  const handleUserAnswer = (questionItem: Question, userAnswer: UserAnswer) => {
+    dispatch(incrementStep());
+    dispatch(checkUserAnswer({question: questionItem, userAnswer}));
+  };
+
   switch (question.type) {
     case GameType.Artist:
       return (
         <ArtistQuestionScreenWrapped
           key={step}
           question={question}
-          onAnswer={() => dispatch(incrementStep())}
+          onAnswer={handleUserAnswer}
         >
           <Mistakes count={mistakes} />
         </ArtistQuestionScreenWrapped>
@@ -43,7 +48,7 @@ function GameScreen({questions}: GameScreenProps): JSX.Element {
         <GenreQuestionScreenWrapped
           key={step}
           question={question}
-          onAnswer={() => dispatch(incrementStep())}
+          onAnswer={handleUserAnswer}
         >
           <Mistakes count={mistakes} />
         </GenreQuestionScreenWrapped>
