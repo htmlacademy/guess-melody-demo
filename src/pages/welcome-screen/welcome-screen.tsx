@@ -1,5 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import {useAppDispatch} from '../../hooks';
+import {resetGame} from '../../store/action';
 import {AppRoute} from '../../const';
 
 type WelcomeScreenProps = {
@@ -8,6 +10,7 @@ type WelcomeScreenProps = {
 
 function WelcomeScreen({errorsCount}: WelcomeScreenProps): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   return (
     <section className="welcome">
@@ -19,7 +22,10 @@ function WelcomeScreen({errorsCount}: WelcomeScreenProps): JSX.Element {
       </div>
       <button
         className="welcome__button"
-        onClick={() => navigate(AppRoute.Game)}
+        onClick={() => {
+          dispatch(resetGame());
+          navigate(AppRoute.Game);
+        }}
       >
         <span className="visually-hidden">
           Начать игру
