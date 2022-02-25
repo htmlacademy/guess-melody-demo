@@ -2,12 +2,14 @@ import {createReducer} from '@reduxjs/toolkit';
 import {incrementStep, checkUserAnswer, resetGame} from './action';
 import {isAnswerCorrect} from '../game';
 import {FIRST_GAME_STEP} from '../const';
+import {questions} from '../mocks/questions';
 
 const STEP_COUNT = 1;
 
 const initialState = {
   mistakes: 0,
   step: FIRST_GAME_STEP,
+  questions,
 };
 
 const reducer = createReducer(initialState, (builder) => {
