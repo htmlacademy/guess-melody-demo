@@ -5,19 +5,16 @@ import {AppRoute, GameType, MAX_MISTAKE_COUNT} from '../../const';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import Mistakes from '../../components/mistakes/mistakes';
-import {Questions, Question, UserAnswer} from '../../types/question';
+import {Question, UserAnswer} from '../../types/question';
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
 
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
 
-type GameScreenProps = {
-  questions: Questions;
-};
-
-function GameScreen({questions}: GameScreenProps): JSX.Element {
+function GameScreen(): JSX.Element {
   const step = useAppSelector((state) => state.step);
   const mistakes = useAppSelector((state) => state.mistakes);
+  const questions = useAppSelector((state) => state.questions);
 
   const question = questions[step];
 
