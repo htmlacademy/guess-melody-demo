@@ -1,15 +1,15 @@
-import {ChangeEvent} from 'react';
+import {ChangeEvent, PropsWithChildren} from 'react';
 import Logo from '../logo/logo';
 import {QuestionArtist, UserArtistQuestionAnswer} from '../../types/question';
 
-type ArtistQuestionScreenProps = {
+type ArtistQuestionScreenProps = PropsWithChildren<{
   question: QuestionArtist,
   onAnswer: (question: QuestionArtist, answer: UserArtistQuestionAnswer) => void;
   renderPlayer: (src: string, playerIndex: number) => JSX.Element;
-};
+}>;
 
 function ArtistQuestionScreen(props: ArtistQuestionScreenProps): JSX.Element {
-  const {question, onAnswer, renderPlayer} = props;
+  const {question, onAnswer, renderPlayer, children} = props;
   const {answers, song} = question;
 
   return (
@@ -23,11 +23,7 @@ function ArtistQuestionScreen(props: ArtistQuestionScreenProps): JSX.Element {
           />
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong" />
-          <div className="wrong" />
-          <div className="wrong" />
-        </div>
+        {children}
       </header>
 
       <section className="game__screen">
