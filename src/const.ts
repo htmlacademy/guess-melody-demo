@@ -1,7 +1,3 @@
-export const Setting = {
-  ErrorsCount: 3
-};
-
 export const FIRST_GAME_STEP = 0;
 export const MAX_MISTAKE_COUNT = 3;
 
