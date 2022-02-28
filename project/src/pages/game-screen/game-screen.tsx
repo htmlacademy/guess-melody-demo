@@ -23,7 +23,7 @@ function GameScreen(): JSX.Element {
   }
 
   if (step >= questions.length || !question) {
-    return <Navigate to={AppRoute.Root} />;
+    return <Navigate to={AppRoute.Result} />;
   }
 
   const onUserAnswer = (questionItem: Question, userAnswer: UserAnswer) => {
