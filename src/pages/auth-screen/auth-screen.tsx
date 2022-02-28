@@ -1,6 +1,28 @@
 import {Helmet} from 'react-helmet-async';
+import {useRef, FormEvent} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useAppDispatch} from '../../hooks';
+import {loginAction} from '../../store/api-actions';
+import {AppRoute} from '../../const';
 
 function AuthScreen(): JSX.Element {
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      dispatch(loginAction({
+        login: loginRef.current.value,
+        password: passwordRef.current.value
+      }));
+    }
+  };
+
   return (
     <section className="login">
       <Helmet>
@@ -14,19 +36,38 @@ function AuthScreen(): JSX.Element {
       <form
         className="login__form"
         action=""
+        onSubmit={handleSubmit}
       >
         <p className="login__field">
           <label className="login__label" htmlFor="name">Логин</label>
-          <input className="login__input" type="text" name="name" id="name" />
+          <input
+            ref={loginRef}
+            className="login__input"
+            type="text"
+            name="name"
+            id="name"
+          />
         </p>
         <p className="login__field">
           <label className="login__label" htmlFor="password">Пароль</label>
-          <input className="login__input" type="text" name="password" id="password" />
+          <input
+            ref={passwordRef}
+            className="login__input"
+            type="text"
+            name="password"
+            id="password"
+          />
           <span className="login__error">Неверный пароль</span>
         </p>
         <button className="login__button button" type="submit">Войти</button>
       </form>
-      <button className="replay" type="button">Сыграть ещё раз</button>
+      <button
+        onClick={() => navigate(AppRoute.Game)}
+        className="replay"
+        type="button"
+      >
+        Сыграть ещё раз
+      </button>
     </section>
   );
 }
