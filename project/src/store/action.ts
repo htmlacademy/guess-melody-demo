@@ -10,6 +10,8 @@ export const resetGame = createAction('game/reset');
 
 export const loadQuestions = createAction<Questions>('data/loadQuestions');
 
+export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
+
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 export const setError = createAction<string | null>('game/setError');
