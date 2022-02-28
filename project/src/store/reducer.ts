@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {incrementStep, checkUserAnswer, loadQuestions, setQuestionsDataLoadingStatus, requireAuthorization, resetGame, setError} from './action';
+import {incrementStep, checkUserAnswer, loadQuestions, setQuestionsDataLoadingStatus, requireAuthorization, resetGame} from './action';
 import {isAnswerCorrect} from '../game';
 import {FIRST_GAME_STEP, AuthorizationStatus} from '../const';
 import {Questions} from '../types/question';
@@ -12,7 +12,6 @@ type InitalState = {
   questions: Questions;
   authorizationStatus: AuthorizationStatus;
   isQuestionsDataLoading: boolean;
-  error: string | null;
 }
 
 const initialState: InitalState = {
@@ -21,7 +20,6 @@ const initialState: InitalState = {
   questions: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   isQuestionsDataLoading: false,
-  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -46,9 +44,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     });
 });
 
