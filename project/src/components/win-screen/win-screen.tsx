@@ -1,6 +1,7 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {resetGame} from '../../store/action';
+import {logoutAction} from '../../store/api-actions';
 import {AppRoute} from '../../const';
 
 function WinScreen(): JSX.Element {
@@ -14,7 +15,16 @@ function WinScreen(): JSX.Element {
   return (
     <section className="result">
       <div className="result-logout__wrapper">
-        <Link className="result-logout__link" to="/">Выход</Link>
+        <Link
+          className="result-logout__link"
+          onClick={(evt) => {
+            evt.preventDefault();
+            dispatch(logoutAction());
+          }}
+          to='/'
+        >
+          Выход
+        </Link>
       </div>
       <div className="result__logo">
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
