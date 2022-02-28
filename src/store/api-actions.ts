@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {Questions} from '../types/question';
-import {loadQuestions, requireAuthorization, setError} from './action';
+import {loadQuestions, requireAuthorization, setQuestionsDataLoadingStatus, setError} from './action';
 import {saveToken, dropToken} from '../services/token';
 import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
@@ -26,7 +26,9 @@ export const fetchQuestionAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchQuestions',
   async (_arg, {dispatch, extra: api}) => {
+    dispatch(setQuestionsDataLoadingStatus(true));
     const {data} = await api.get<Questions>(APIRoute.Questions);
+    dispatch(setQuestionsDataLoadingStatus(false));
     dispatch(loadQuestions(data));
   },
 );
