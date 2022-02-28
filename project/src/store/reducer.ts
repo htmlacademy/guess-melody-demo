@@ -11,6 +11,7 @@ type InitalState = {
   step: number,
   questions: Questions,
   authorizationStatus: AuthorizationStatus,
+  isDataLoaded: boolean,
   error: string,
 }
 
@@ -19,6 +20,7 @@ const initialState: InitalState = {
   step: FIRST_GAME_STEP,
   questions: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  isDataLoaded: false,
   error: '',
 };
 
@@ -38,6 +40,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadQuestions, (state, action) => {
       state.questions = action.payload;
+      state.isDataLoaded = true;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
