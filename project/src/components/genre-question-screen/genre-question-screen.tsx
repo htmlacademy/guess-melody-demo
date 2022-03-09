@@ -1,5 +1,6 @@
-import {useState, FormEvent, ChangeEvent, PropsWithChildren} from 'react';
+import {FormEvent, ChangeEvent, PropsWithChildren} from 'react';
 import Logo from '../logo/logo';
+import {useUserAnswers} from '../../hooks/use-user-answers';
 import {QuestionGenre, UserGenreQuestionAnswer} from '../../types/question';
 
 type GenreQuestionScreenProps = PropsWithChildren<{
@@ -12,7 +13,7 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
   const {question, onAnswer, renderPlayer, children} = props;
   const {answers, genre} = question;
 
-  const [userAnswers, setUserAnswers] = useState([false, false, false, false]);
+  const [userAnswers, handleAnswerChange] = useUserAnswers(question);
 
   return (
     <section className="game game--genre">
@@ -48,7 +49,7 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
                     checked={userAnswers[id]}
                     onChange={({target}: ChangeEvent<HTMLInputElement>) => {
                       const value = target.checked;
-                      setUserAnswers([...userAnswers.slice(0, id), value, ...userAnswers.slice(id + 1)]);
+                      handleAnswerChange(id, value);
                     }}
                   />
                   <label className="game__check" htmlFor={`answer-${id}`}>Отметить</label>
