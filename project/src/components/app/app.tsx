@@ -1,7 +1,7 @@
 import {Route, Routes} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks';
-import {AppRoute, AuthorizationStatus, MAX_MISTAKE_COUNT} from '../../const';
+import {AppRoute, MAX_MISTAKE_COUNT} from '../../const';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import AuthScreen from '../../pages/auth-screen/auth-screen';
 import GameOverScreen from '../../pages/game-over-screen/game-over-screen';
@@ -12,12 +12,15 @@ import GameScreen from '../../pages/game-screen/game-screen';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import {getAuthorizationStatus, getAuthCheckedStatus} from '../../store/user-process/selectors';
+import {getQuestionsDataLoadingStatus} from '../../store/game-data/selectors';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isQuestionsDataLoading = useAppSelector((state) => state.isQuestionsDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const isQuestionsDataLoading = useAppSelector(getQuestionsDataLoadingStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isQuestionsDataLoading) {
+  if (!isAuthChecked || isQuestionsDataLoading) {
     return (
       <LoadingScreen />
     );
