@@ -1,5 +1,16 @@
-import {store} from '../store/index';
-import {AuthorizationStatus} from '../const';
+import {store} from '../store/index.js';
+import {Questions} from './question.js';
+import {AuthorizationStatus} from '../const.js';
+
+export type GameData = {
+  questions: Questions;
+  isQuestionsDataLoading: boolean;
+};
+
+export type GameProcess = {
+  mistakes: number;
+  step: number;
+};
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
