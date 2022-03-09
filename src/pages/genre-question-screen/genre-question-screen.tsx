@@ -1,8 +1,7 @@
-import {FormEvent, PropsWithChildren} from 'react';
+import {PropsWithChildren} from 'react';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
-import GenreQuestionItem from '../../components/genre-question-item/genre-question-item';
-import {useUserAnswers} from '../../hooks/use-user-answers';
+import GenreQuestionList from '../../components/genre-question-list/genre-question-list';
 import {QuestionGenre, UserGenreQuestionAnswer} from '../../types/question';
 
 type GenreQuestionScreenProps = PropsWithChildren<{
@@ -13,9 +12,7 @@ type GenreQuestionScreenProps = PropsWithChildren<{
 
 function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
   const {question, onAnswer, renderPlayer, children} = props;
-  const {answers, genre} = question;
-
-  const [userAnswers, handleAnswerChange] = useUserAnswers(question);
+  const {genre} = question;
 
   return (
     <section className="game game--genre">
@@ -36,29 +33,11 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
 
       <section className="game__screen">
         <h2 className="game__title">Выберите {genre} треки</h2>
-        <form
-          className="game__tracks"
-          onSubmit={(evt: FormEvent<HTMLFormElement>) => {
-            evt.preventDefault();
-            onAnswer(question, userAnswers);
-          }}
-        >
-          {answers.map((answer, id) => {
-            const keyValue = `${id}-${answer.src}`;
-            return (
-              <GenreQuestionItem
-                answer={answer}
-                id={id}
-                key={keyValue}
-                onChange={handleAnswerChange}
-                renderPlayer={renderPlayer}
-                userAnswer={userAnswers[id]}
-              />
-            );
-          })}
-
-          <button className="game__submit button" type="submit">Ответить</button>
-        </form>
+        <GenreQuestionList
+          question={question}
+          onAnswer={onAnswer}
+          renderPlayer={renderPlayer}
+        />
       </section>
     </section>
   );
