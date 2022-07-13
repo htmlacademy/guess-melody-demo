@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {GameData} from '../../types/state';
+import {fetchQuestionAction} from '../api-actions';
 
 const initialState: GameData = {
   questions: [],
@@ -10,12 +11,12 @@ const initialState: GameData = {
 export const gameData = createSlice({
   name: NameSpace.Data,
   initialState,
-  reducers: {
-    loadQuestions: (state, action) => {
-      state.questions = action.payload;
-      state.isDataLoaded = true;
-    },
-  },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchQuestionAction.fulfilled, (state, action) => {
+        state.questions = action.payload;
+        state.isDataLoaded = true;
+      });
+  }
 });
-
-export const {loadQuestions} = gameData.actions;

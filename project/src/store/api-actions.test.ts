@@ -3,8 +3,12 @@ import thunk, {ThunkDispatch} from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {createAPI} from '../services/api';
-import {checkAuthAction, loginAction, fetchQuestionAction, logoutAction} from './api-actions';
-import {loadQuestions} from './game-data/game-data';
+import {
+  checkAuthAction,
+  loginAction,
+  fetchQuestionAction,
+  logoutAction
+} from './api-actions';
 import {APIRoute} from '../const';
 import {State} from '../types/state';
 import {AuthData} from '../types/auth-data';
@@ -78,7 +82,10 @@ describe('Async actions', () => {
 
     const actions = store.getActions().map(({type}) => type);
 
-    expect(actions).toContain(loadQuestions.toString());
+    expect(actions).toEqual([
+      fetchQuestionAction.pending.type,
+      fetchQuestionAction.fulfilled.type
+    ]);
   });
 
   it('should dispatch Logout when Delete /logout', async () => {

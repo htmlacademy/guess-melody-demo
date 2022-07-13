@@ -1,6 +1,6 @@
 import {gameData} from './game-data';
 import {makeFakeArtistQuestion, makeFakeGenreQuestion} from '../../utils/mocks';
-import {loadQuestions} from './game-data';
+import {fetchQuestionAction} from '../api-actions';
 
 const questions = [makeFakeArtistQuestion(), makeFakeGenreQuestion()];
 
@@ -12,7 +12,7 @@ describe('Reducer: gameData', () => {
 
   it('should update questions by load questions', () => {
     const state = {questions: [], isDataLoaded: false};
-    expect(gameData.reducer(state, loadQuestions(questions)))
+    expect(gameData.reducer(state, {type: fetchQuestionAction.fulfilled.type, payload: questions}))
       .toEqual({questions, isDataLoaded: true});
   });
 });
