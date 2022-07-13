@@ -4,12 +4,12 @@ import MockAdapter from 'axios-mock-adapter';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {createAPI} from '../services/api';
 import {checkAuthAction, loginAction, fetchQuestionAction, logoutAction} from './api-actions';
-import {requireAuthorization} from './user-process/user-process';
 import {loadQuestions} from './game-data/game-data';
 import {APIRoute} from '../const';
 import {State} from '../types/state';
 import {AuthData} from '../types/auth-data';
 import {makeFakeGenreQuestion, makeFakeArtistQuestion} from '../utils/mocks';
+import {redirectToRoute} from './action';
 
 
 describe('Async actions', () => {
@@ -35,7 +35,10 @@ describe('Async actions', () => {
 
     const actions = store.getActions().map(({type}) => type);
 
-    expect(actions).toContain(requireAuthorization.toString());
+    expect(actions).toEqual([
+      checkAuthAction.pending.type,
+      checkAuthAction.fulfilled.type
+    ]);
   });
 
   it('should dispatch RequriedAuthorization and RedirectToRoute when POST /login', async () => {
@@ -53,7 +56,11 @@ describe('Async actions', () => {
 
     const actions = store.getActions().map(({type}) => type);
 
-    expect(actions).toContain(requireAuthorization.toString());
+    expect(actions).toEqual([
+      loginAction.pending.type,
+      redirectToRoute.type,
+      loginAction.fulfilled.type
+    ]);
 
     expect(Storage.prototype.setItem).toBeCalledTimes(1);
     expect(Storage.prototype.setItem).toBeCalledWith('guess-melody-token', 'secret');
@@ -86,7 +93,10 @@ describe('Async actions', () => {
 
     const actions = store.getActions().map(({type}) => type);
 
-    expect(actions).toContain(requireAuthorization.toString());
+    expect(actions).toEqual([
+      logoutAction.pending.type,
+      logoutAction.fulfilled.type
+    ]);
 
     expect(Storage.prototype.removeItem).toBeCalledTimes(1);
     expect(Storage.prototype.removeItem).toBeCalledWith('guess-melody-token');
