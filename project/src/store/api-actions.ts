@@ -6,7 +6,6 @@ import {redirectToRoute} from './action';
 import {loadQuestions} from './game-data/game-data';
 import {requireAuthorization} from './user-process/user-process';
 import {saveToken, dropToken} from '../services/token';
-import {errorHandle} from '../services/error-handle';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
@@ -18,12 +17,8 @@ export const fetchQuestionAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchQuestions',
   async (_arg, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<Questions>(APIRoute.Questions);
-      dispatch(loadQuestions(data));
-    } catch (error) {
-      errorHandle(error);
-    }
+    const {data} = await api.get<Questions>(APIRoute.Questions);
+    dispatch(loadQuestions(data));
   },
 );
 
@@ -38,7 +33,6 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
       await api.get(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
     } catch(error) {
-      errorHandle(error);
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
@@ -57,7 +51,6 @@ export const loginAction = createAsyncThunk<void, AuthData, {
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
       dispatch(redirectToRoute(AppRoute.Result));
     } catch (error) {
-      errorHandle(error);
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
@@ -70,13 +63,9 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }>(
   'user/logout',
   async (_arg, { dispatch, extra: api}) => {
-    try {
-      await api.delete(APIRoute.Logout);
-      dropToken();
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    } catch (error) {
-      errorHandle(error);
-    }
+    await api.delete(APIRoute.Logout);
+    dropToken();
+    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
 );
 
