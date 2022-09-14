@@ -1,8 +1,12 @@
 import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 function WinScreen(): JSX.Element {
   return (
     <section className="result">
+      <Helmet>
+        <title>Угадай мелодию. Вы настоящий меломан!</title>
+      </Helmet>
       <div className="result-logout__wrapper">
         <Link className="result-logout__link" to="/">Выход</Link>
       </div>
