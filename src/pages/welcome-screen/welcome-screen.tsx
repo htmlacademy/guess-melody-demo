@@ -1,3 +1,5 @@
+import {Helmet} from 'react-helmet-async';
+
 type WelcomeScreenProps = {
   errorsCount: number;
 }
@@ -5,6 +7,9 @@ type WelcomeScreenProps = {
 function WelcomeScreen({errorsCount}: WelcomeScreenProps): JSX.Element {
   return (
     <section className="welcome">
+      <Helmet>
+        <title>Угадай мелодию. Правила игры</title>
+      </Helmet>
       <div className="welcome__logo">
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"/>
       </div>
