@@ -1,6 +1,11 @@
+import {Helmet} from 'react-helmet-async';
+
 function GameOverScreen(): JSX.Element {
   return (
     <section className="result">
+      <Helmet>
+        <title>Угадай мелодию. Какая жалость!</title>
+      </Helmet>
       <div className="result__logo">
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
       </div>
