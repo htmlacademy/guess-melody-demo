@@ -1,4 +1,5 @@
 import {Fragment, useState, useEffect, useRef} from 'react';
+import cn from 'classnames';
 
 type AudioPlayerProps = {
   autoPlay: boolean;
@@ -47,7 +48,11 @@ function AudioPlayer({autoPlay, src}: AudioPlayerProps): JSX.Element {
   return (
     <Fragment>
       <button
-        className="track__button track__button--play"
+        className={cn(
+          'track__button',
+          {'track__button--play': !isPlaying},
+          {'track__button--pause': isPlaying}
+        )}
         type="button"
         disabled={!isLoaded}
         onClick={() => setIsPlaying(!isPlaying)}
