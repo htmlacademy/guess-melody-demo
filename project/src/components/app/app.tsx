@@ -1,4 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {HelmetProvider} from 'react-helmet-async';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import ArtistQuestionScreen from '../../pages/artist-question-screen/artist-question-screen';
@@ -15,44 +16,46 @@ type AppScreenProps = {
 
 function App({errorsCount}: AppScreenProps): JSX.Element {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Root}
-          element={<WelcomeScreen errorsCount={errorsCount} />}
-        />
-        <Route
-          path={AppRoute.DevArtist}
-          element={<ArtistQuestionScreen />}
-        />
-        <Route
-          path={AppRoute.DevGenre}
-          element={<GenreQuestionScreen />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<AuthScreen />}
-        />
-        <Route
-          path={AppRoute.Result}
-          element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
-            >
-              <WinScreen />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Lose}
-          element={<GameOverScreen />}
-        />
-        <Route
-          path="*"
-          element={<NotFoundScreen />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Root}
+            element={<WelcomeScreen errorsCount={errorsCount} />}
+          />
+          <Route
+            path={AppRoute.DevArtist}
+            element={<ArtistQuestionScreen />}
+          />
+          <Route
+            path={AppRoute.DevGenre}
+            element={<GenreQuestionScreen />}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<AuthScreen />}
+          />
+          <Route
+            path={AppRoute.Result}
+            element={
+              <PrivateRoute
+                authorizationStatus={AuthorizationStatus.NoAuth}
+              >
+                <WinScreen />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Lose}
+            element={<GameOverScreen />}
+          />
+          <Route
+            path="*"
+            element={<NotFoundScreen />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
