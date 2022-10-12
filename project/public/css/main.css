@@ -639,6 +639,10 @@ legend, td, th {
 .login__replay:focus::after, .login__replay:hover::after, .replay:focus::after, .replay:hover::after, .result__replay:focus::after, .result__replay:hover::after {
   background-position: -5px -392px; }
 
+.replay--error {
+  margin-top: 10px;
+}
+
 .login {
   display: flex;
   align-items: center;
@@ -944,3 +948,8 @@ legend, td, th {
   right: 40px;
   top: 8px;
   position: absolute; }
+
+.error__text {
+  margin: 0;
+  text-align: center;
+}
