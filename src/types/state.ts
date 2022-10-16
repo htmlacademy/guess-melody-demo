@@ -5,6 +5,7 @@ import {AuthorizationStatus} from '../const.js';
 export type GameData = {
   questions: Questions;
   isQuestionsDataLoading: boolean;
+  hasError: boolean;
 };
 
 export type GameProcess = {
