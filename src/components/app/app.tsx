@@ -10,20 +10,27 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import GameScreen from '../../pages/game-screen/game-screen';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import ErrorScreen from '../../pages/error-screen/error-screen';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import {getAuthorizationStatus, getAuthCheckedStatus} from '../../store/user-process/selectors';
-import {getQuestionsDataLoadingStatus} from '../../store/game-data/selectors';
+import {getQuestionsDataLoadingStatus, getErrorStatus} from '../../store/game-data/selectors';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
   const isQuestionsDataLoading = useAppSelector(getQuestionsDataLoadingStatus);
+  const hasError = useAppSelector(getErrorStatus);
 
   if (!isAuthChecked || isQuestionsDataLoading) {
     return (
       <LoadingScreen />
     );
+  }
+
+  if (hasError) {
+    return (
+      <ErrorScreen />);
   }
 
   return (
