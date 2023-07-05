@@ -1,9 +1,9 @@
 import {RefObject, useEffect} from 'react';
 
-export const useElementListener = (
-  eventName: string,
-  element: RefObject<HTMLElement>,
-  listener: (evt: Event) => void
+export const useElementListener = <K extends keyof HTMLElementEventMap, T extends HTMLElement>(
+  eventName: K,
+  element: RefObject<T>,
+  listener: (evt: HTMLElementEventMap[K]) => void
 ) => {
 
   useEffect(() => {
