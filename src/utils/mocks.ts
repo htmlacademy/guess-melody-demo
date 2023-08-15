@@ -1,5 +1,5 @@
 import {music, system, name, internet} from 'faker';
-import {GameType} from '../const';
+import {AuthorizationStatus, GameType} from '../const';
 import {QuestionArtist, QuestionGenre} from '../types/question';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -28,3 +28,10 @@ export const makeFakeGenreQuestion = (): QuestionGenre => ({
 } as QuestionGenre);
 
 export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+
+export const makeFakeStore = (initialState?: Partial<State>): State => ({
+  USER: { authorizationStatus: AuthorizationStatus.NoAuth },
+  DATA: { isQuestionsDataLoading: false, questions: [], hasError: false },
+  GAME: {step: 10, mistakes: 2},
+  ...initialState ?? {},
+});
