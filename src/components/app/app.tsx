@@ -11,8 +11,6 @@ import PrivateRoute from '../private-route/private-route';
 import GameScreen from '../../pages/game-screen/game-screen';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import ErrorScreen from '../../pages/error-screen/error-screen';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browser-history';
 import {getAuthorizationStatus, getAuthCheckedStatus} from '../../store/user-process/selectors';
 import {getQuestionsDataLoadingStatus, getErrorStatus} from '../../store/game-data/selectors';
 
@@ -35,42 +33,40 @@ function App(): JSX.Element {
 
   return (
     <HelmetProvider>
-      <HistoryRouter history={browserHistory}>
-        <Routes>
-          <Route
-            path={AppRoute.Root}
-            element={<WelcomeScreen errorsCount={MAX_MISTAKE_COUNT} />}
-          />
-          <Route
-            path={AppRoute.Login}
-            element={<AuthScreen />}
-          />
-          <Route
-            path={AppRoute.Result}
-            element={
-              <PrivateRoute
-                authorizationStatus={authorizationStatus}
-              >
-                <WinScreen />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={AppRoute.Lose}
-            element={<GameOverScreen />}
-          />
-          <Route
-            path={AppRoute.Game}
-            element={
-              <GameScreen />
-            }
-          />
-          <Route
-            path="*"
-            element={<NotFoundScreen />}
-          />
-        </Routes>
-      </HistoryRouter>
+      <Routes>
+        <Route
+          path={AppRoute.Root}
+          element={<WelcomeScreen errorsCount={MAX_MISTAKE_COUNT} />}
+        />
+        <Route
+          path={AppRoute.Login}
+          element={<AuthScreen />}
+        />
+        <Route
+          path={AppRoute.Result}
+          element={
+            <PrivateRoute
+              authorizationStatus={authorizationStatus}
+            >
+              <WinScreen />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={AppRoute.Lose}
+          element={<GameOverScreen />}
+        />
+        <Route
+          path={AppRoute.Game}
+          element={
+            <GameScreen />
+          }
+        />
+        <Route
+          path="*"
+          element={<NotFoundScreen />}
+        />
+      </Routes>
     </HelmetProvider>
   );
 }
